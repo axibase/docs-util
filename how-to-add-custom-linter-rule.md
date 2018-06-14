@@ -2,7 +2,7 @@
 
 ## Create rule file
 
-Create JavaScript file in `linting-rules` directory, e.g. `my-rule.js`.It must be a CommonJS module, which exports object with structure described below:
+Create JavaScript file in `linting-rules` directory, e.g. `my-rule.js`. It must be a CommonJS module, which exports object with structure described below:
 
 ```typescript
 module.exports = {
