@@ -24,7 +24,7 @@ const testExternal = /^(?:https?\:)?\/\//;
 const testValidRelative = /^(?:\.\.?\/)/;
 
 module.exports = {
-    names: ["relative-image-urls"],
+    names: ["MD100", "relative-image-urls"],
     description: "Relative URLs to images must start with ./ or ../",
     tags: ["links"],
     "function": (params, onError) => {
