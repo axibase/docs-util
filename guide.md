@@ -1,6 +1,6 @@
 # Axibase Documentation Guide
 
-This guide contains documentation guidelines for software developers and are particularly relevant for documentation created in markdown.
+Guidelines for software developers who need to write documentation. It's particularly relevant for documentation created in markdown.
 
 ## References
 
