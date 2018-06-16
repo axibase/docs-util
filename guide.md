@@ -1,17 +1,21 @@
 # Axibase Documentation Guide
 
-Refer to [Google Developer Documentation Style Guide](https://developers.google.com/style/) (GDG) for in-depth reviews.
+## References
+
+* [Google Developer Documentation Style Guide](https://developers.google.com/style/).
+* [Salesforce Style Guide for Documentation and User Interface Text](https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/overview.htm).
 
 ## Abbreviations
 
 * Abbreviate if the acronym is known to the target audience.
 * Do not backtick acronyms.
 * **Always** abbreviate:
-  * Widely known terms: SQL, API, REST, JVM, UTF.
+  * Widely known terms: SQL, API, REST, JVM, UTF, URL, URI.
     * :white_check_mark: `SQL report`
     * :no_entry: `Structure Query Language (SQL) report`
-  * Common data formats: CSV, JSON, XLS, XML, XLS.
-  * Protocols: HTTP, HTTPS, TCP, UDP, SSH.
+  * Common data formats: CSV, JSON, XLS, XML, XLS, PDF.
+  * Protocols: HTTP, HTTPS, TCP, UDP, SSH, DNS.
+  * Standards and organizations: ISO, ASCII, ANSI, W3C.
   * Time zones: UTC, EST, GMT.
   * ATSD in Axibase docs repositories.
 * If an acronym is new, introduce it in the beginning and re-use thereafter.
@@ -20,8 +24,8 @@ Refer to [Google Developer Documentation Style Guide](https://developers.google.
 ## Contractions
 
 * Replace "i.e." or "e.g." with "for example".
-  * :white_check_mark: `Specify the recipient, e.g. 'test@example.org'`
-  * :no_entry: `Specify the recipient, for example 'test@example.org'`
+  * :white_check_mark: ``Specify the recipient, e.g. `test@example.org` ``
+  * :no_entry: ``Specify the recipient, for example `test@example.org` ``
 * "etc" is allowed.
 * Replace "don't", "can't", "hasn't", "isn't", "didn't" with "do not", "cannot", etc.
   * :white_check_mark: `The parameter isn't valid.`
@@ -42,18 +46,17 @@ Refer to [Google Developer Documentation Style Guide](https://developers.google.
 * Keep original product capitalization.
   * :white_check_mark: `SQL Server Database`, `Hadoop`, `HBase`.
 * In ambiguous cases, adhere to one option for consistency:
-  * :white_check_mark: Unix, bash, IPv4, IPv6
-  * :no_entry: UNIX, Bash, IP v4, IP v6
+  * :white_check_mark: Unix, bash, IPv4, IPv6, URL
+  * :no_entry: UNIX, Bash, IP v4, IP v6, Url
   
 ## Parentheses
 
 * Do not use parentheses.
-  * :no_entry: `Execute any query (such as 'SELECT 1') to test the connection`
-  * :white_check_mark: `Execute 'SELECT 1' query to test the connection`
+  * :no_entry: ``Execute any query (such as `SELECT 1`) to test the connection``
+  * :white_check_mark: ``Execute `SELECT 1` query to test the connection``
 * Parentheses are allowed to spell out a number or character sequence.
-  * :white_check_mark: `The field supports wildcards ('*')`
-  * :white_check_mark: `Up to nine (9) fraction digits are allowed`
-* If you need to make a note, refer to [Notes](#notes) guidelines.  
+  * :white_check_mark: ```The field supports wildcards (`*`)``
+  * :white_check_mark: ``Up to nine (`9`) fractions are printed``
 
 ## Colons
 
@@ -103,6 +106,7 @@ Apply single backticks to the following:
 * Host names and IP addresses: `127.0.0.1`, `2001:db8::1`
 * HTTP methods: `POST`, `GET`
 * HTTP status codes: `200 OK`, `404`.
+* HTTP status code ranges: `2xx`, `3xx`.
 * URI paths and query strings: `/api/v1/{entity}/metrics`
 * Header names and values.
   * Set `Content-Type` header to `application/json`.
@@ -110,18 +114,18 @@ Apply single backticks to the following:
 * Reserved SQL keywords and clauses.
   * Add condition to the `HAVING` clause.
 * Parameter, field, and variable names.
-  * "Reset `queue.policy` to `BLOCK`"
-  * "Local the `github-notify` rule on the **Alerts** page"
+  * ``Reset `queue.policy` to `BLOCK` setting.``
+  * ``Locate the `github-notify` rule on the **Alerts** page.``
 * Parameter, field, and variable values, including boolean values and numbers.
-  * "Set `limit` field to `16`"
+  * ``Set `limit` field to `16` batches.``
 * Usernames.
-  * "Switch to `axibase` user"
+  * ``Switch to `axibase` user``
 * Port numbers.
-  * "Make sure ATSD is listening on port `8443`"
+  * ``Make sure ATSD is listening on port `8443`.``
 * Version numbers.
-  * "Python `3.5` is required for ATSD version `19420`"
+  * ``Python `3.5` is required for ATSD version `19420`.``
 * Single-line machine output. Bold text is also allowed.
-  * :white_check_mark: "Watch the log file for `Start completed` message."
+  * :white_check_mark: ``Watch the log file for `Start completed` message.``
 
 Exceptions:
 
@@ -147,9 +151,9 @@ Exceptions:
   * :white_check_mark: `The first query causes the database to lock the table`  
 * Add thousands separator except for milliseconds and machine output.
   * :white_check_mark: `Stop the query if the row count exceeds 1,000`
-* When describing amounts of resource, write numeric value and space between the number and the unit.
-  * :white_check_mark: `8 GB`, `128 MB`, `2 CPUs`
-  
+* Insert a space between a number and multiple-letter unit. Omit space for one-letter units.
+  * :white_check_mark: `8 GB`, `128 MB`, `2 CPUs`, `10%`.
+
 ## Possessives
 
 * Do not use possessives.
@@ -186,7 +190,8 @@ Exceptions:
 * IPv6 address range: `2001:db8::/32`
 * Phone number: `(800) 555-0100`.
 * Host name: `atsd_hostname`, `atsd_ip_address`.
-* DNS name: `example.org`, `test.example.org`, `atsd.example.org` per [RFC 2606](https://tools.ietf.org/html/rfc2606).
+* DNS name: `example.org` per [RFC 2606](https://tools.ietf.org/html/rfc2606).
+* Subdomain: `test.example.org`, `atsd.example.org`
 * Email: `user@example.org`, `john.doe@example.org`
 * First name: `John`, `Jack`, `Jane`, `Mary`
 * Last name: `Doe`, `Smith`, `Jones`
@@ -198,6 +203,14 @@ Exceptions:
 
 * Use two spaces for indentation in bullet lists and numbered lists.
 
+## Dates
+
+* Don't use st, d, and th after numerals in dates to indicate ordinals.
+  * :white_check_mark: `April 15`
+  * :no_entry: `April 15th`
+* Use commas with full dates.
+  * :white_check_mark: The report was published on December 13, 2017.
+
 ## Active Voice
 
 * Maintain active voice for technical documentation.
@@ -205,53 +218,69 @@ Exceptions:
 
 ## Present Tense
 
-* Do not use "will" and "was". Write everything in one present tense.
+* Do not use "will" and "was". Write in present tense.
 
-## Blacklisted Words
+## Blacklisted Words and Phrases
 
 word | alternatives
 ---|---
-should | use must or remove
-would | -
-will | use present tense
-was | use present tens
-abort | stop, cancel
-kill | stop, cancel
-terminate | stop, cancel
-admin | administrator
-so | use formal style
-deselect | clear
-uncheck | clear
-flag | option, setting
-ingest | load, import
-lets | -
-please | -
-regex | regular expression
-Epoch time | Unix time
-
-## Notes
-
-* Include notes when needed but separate the note so as not to lead a reader to believe the note is critical to the process.
-* Notes that are not important but are relevant nonetheless should be appended to the end of a document.
+`should` | use `must` or remove
+`could` | -
+`would` | -
+`may` | `can`
+`will` | use present tense
+`was` | use present tens
+`abort` | `stop`, `cancel`
+`kill` | `stop`, `cancel`
+`terminate` | `stop`, `cancel`
+`admin` | `administrator`
+`so, a lot` | use formal style
+`deselect` | `clear`
+`uncheck` | `clear`
+`flag` | `option`, `setting`
+`ingest` | `load`, `import`
+`lets` | -
+`please` | -
+`regex` | `regular expression`
+`Epoch time` | `Unix time`
+`datacenter` | `data center`
+`and/or` | clarify the meaning
+`in order to` | `to`
+`make sure` | `ensure`
+`end-point` | `endpoint`
+`click on` | `click`
+`robust` | remove jargon and trite words, such as `User-friendly`
 
 ## Interface Elements
 
-* Interface elements should be **bold**.
-* When describing interface elements include the type of element, except for button. Use the defined article "the".
-  * `Click **Next**`
-  * `Open the **Alerts** page`
-* UI elements in Axibase products:
+* Interface elements should be **bold**, exactly as they appear in the UI.
+* Add `>` to describe navigation sequences.
+  * :white_check_mark: `Open the **Alerts > Rules** page`
+* Do not include types for named elements: button, split-button, checkbox, drop-down list, field, link, switch.
+  * :white_check_mark: `Click **Next**`
+  * :white_check_mark: ``Select `CSV` from **File Format**``
+  * :white_check_mark: `Open the **Rules** page`
+  * :no_entry: `Click **Next** button`
+  * :no_entry: ``Select `CSV` from the **File Format** drop-down list``  
+* Use consistent UI element types:
+  * button
+  * split-button (not multi-action button, drop-down button, combo-button)
+  * checkbox (not check box)
   * drop-down list (not drop-down menu)
   * tab
   * link
   * page
   * button
-  * switch
+  * switch (not selector)
   * window
-  * dialog window (not popup menu)
+  * dialog window (not popup window)
   * left menu (also main menu)
   * top menu
-* In ATSD, the **top menu** appears along the top of the user interface while the **left menu** or the **main menu** appears on the left side of the page.
+* Use "the" article when referring to the element by type.
+  * :white_check_mark: `Click the **Web Notifications** tab`
+  * :no_entry: `Click **Web Notifications** tab`
+* Use `log in` as verb and `login` as noun.
+  * `Log in to ATSD`.
 
 ## Links
 
@@ -265,13 +294,8 @@ Epoch time | Unix time
 ## Product Names
 
 * Shorten product names after you introduce the abbreviation.
-* Capitalize product name s unless you refer to a general concept in place of the product name.
+* Capitalize product names unless you refer to a general concept in place of the product name.
 * Articles may be omitted from product names in most cases.
-
-## Documentation Names
-
-* Axibase Documentation is a proper noun, capitalize Axibase Documentation every time.
-* When referring to a specific document or guide, you may leave the type of document lowercase.
 
 ## Issue Subjects
 
