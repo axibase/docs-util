@@ -1,5 +1,7 @@
 # Axibase Documentation Guide
 
+This guide contains documentation guidelines for software developers and are particularly relevant for documentation created in markdown.
+
 ## References
 
 * [Google Developer Documentation Style Guide](https://developers.google.com/style/).
