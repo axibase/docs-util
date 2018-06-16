@@ -55,7 +55,7 @@
   * :no_entry: ``Execute any query (such as `SELECT 1`) to test the connection``
   * :white_check_mark: ``Execute `SELECT 1` query to test the connection``
 * Parentheses are allowed to spell out a number or character sequence.
-  * :white_check_mark: ```The field supports wildcards (`*`)``
+  * :white_check_mark: ``The field supports wildcards (`*`)``
   * :white_check_mark: ``Up to nine (`9`) fractions are printed``
 
 ## Colons
