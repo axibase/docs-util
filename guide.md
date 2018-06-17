@@ -1,6 +1,6 @@
 # Axibase Documentation Guide
 
-Guidelines for software developers who need to write documentation. It's particularly relevant for documentation created in markdown.
+The guide contains a compilation of grammar and punctuation rules for software developers. The formatting rules are targeted at markdown. To comply with general markdown syntax, use [markdownlint](https://www.npmjs.com/package/markdownlint).
 
 ## References
 
@@ -10,24 +10,24 @@ Guidelines for software developers who need to write documentation. It's particu
 ## Abbreviations
 
 * Abbreviate if the acronym is known to the target audience.
+* Introduce new acronyms in parentheses and re-use thereafter.
+  * :white_check_mark: `Hadoop Distributed File System (HDFS) is a clustered system. HDFS is resilient.`
 * Do not backtick acronyms.
-* **Always** abbreviate:
-  * Widely known terms: SQL, API, REST, JVM, UTF, URL, URI.
+* Always abbreviate:
+  * Known terms: SQL, API, REST, JVM, UTF, URL, URI.
     * :white_check_mark: `SQL report`
     * :no_entry: `Structure Query Language (SQL) report`
-  * Common data formats: CSV, JSON, XLS, XML, XLS, PDF.
+  * Data formats: CSV, JSON, XLS, XML, XLS, PDF.
   * Protocols: HTTP, HTTPS, TCP, UDP, SSH, DNS.
   * Standards and organizations: ISO, ASCII, ANSI, W3C.
   * Time zones: UTC, EST, GMT.
   * ATSD in Axibase docs repositories.
-* If an acronym is new, introduce it in the beginning and re-use thereafter.
-  * :white_check_mark: `Hadoop Distributed File System (HDFS) is a clustered system. HDFS is resilient.`
   
 ## Contractions
 
 * Replace "i.e." or "e.g." with "for example".
-  * :white_check_mark: ``Specify the recipient, e.g. `test@example.org` ``
-  * :no_entry: ``Specify the recipient, for example `test@example.org` ``
+  * :white_check_mark: ``Specify the recipient, e.g. `test@example.org`.``
+  * :no_entry: ``Specify the recipient, for example `test@example.org`.``
 * "etc" is allowed.
 * Replace "don't", "can't", "hasn't", "isn't", "didn't" with "do not", "cannot", etc.
   * :white_check_mark: `The parameter isn't valid.`
@@ -169,7 +169,7 @@ Exceptions:
   * :no_entry: `## Import data from file`
 * Do not use backticks in headers.
   * :white_check_mark: `## Configure cron`
-  * :no_entry: `` ## Configure `cron` ``
+  * :no_entry: ``## Configure `cron` schedule``
 * Do not terminate sentences in headers with dot.
   * :no_entry: `## Import data from file.`
 * Avoid punctuation symbols in headers except colon (`:`).
@@ -177,12 +177,15 @@ Exceptions:
 
 ## Variables
 
-* Use curly brackets (`{}`) to designate a variable or parameter in URI path or query string
-  * :white_check_mark: `/api/v1/entity/{entity}/metrics`
-  * :white_check_mark: `/api/v1/entity/{entity}/metrics?tags={tagValue}`
+* Use curly brackets (`{}`) to designate a variable in URI path or query string
+  * :white_check_mark: `/api/{entity}/metrics`
+  * :white_check_mark: `/api/metrics?id={metricId}`
 * Use camelCase in compound variable names in REST API
   * :white_check_mark: `entityGroup`
   * :no_entry: `entity-group`
+* Add "the" article before the variables with types.
+  * :white_check_mark: ``Open the `atsd.log` file.``
+  * :no_entry: ``Open the file `atsd.log`.``
 
 ## Example Names
 
@@ -201,17 +204,16 @@ Exceptions:
 * SSN: `000-00-0000`
 * File path: `/path/to/new-dir`, `/path/to/new-file`. Replace `new-dir` and `new-file` to indicate the purpose, for example, `/path/to/backup-dir`
 
-## Lists
-
-* Use two spaces for indentation in bullet lists and numbered lists.
-
 ## Dates
 
-* Don't use st, d, and th after numerals in dates to indicate ordinals.
+* Spell out month if the format is ambiguous
+  * :white_check_mark: `01/Jun/2018`
+  * :no_entry: `06/01/2018`
+* Don't use ordinal numbers in dates.
   * :white_check_mark: `April 15`
   * :no_entry: `April 15th`
 * Use commas with full dates.
-  * :white_check_mark: The report was published on December 13, 2017.
+  * :white_check_mark: `The report was published on December 13, 2017`
 
 ## Active Voice
 
@@ -222,7 +224,7 @@ Exceptions:
 
 * Do not use "will" and "was". Write in present tense.
 
-## Blacklisted Words and Phrases
+## Blacklisted Words
 
 word | alternatives
 ---|---
@@ -251,7 +253,7 @@ word | alternatives
 `make sure` | `ensure`
 `end-point` | `endpoint`
 `click on` | `click`
-`robust` | remove jargon and trite words, such as `User-friendly`
+`robust` | avoid trite words
 
 ## Interface Elements
 
@@ -287,17 +289,21 @@ word | alternatives
 ## Links
 
 * Use relative paths when linking markdown files in the same repository.
-  * :white_check_mark: `Perform [ATSD restart](../../administration/restarting.md)`
-  * :no_entry: `Perform [ATSD restart](/administration/restarting.md)`  
+  * :white_check_mark: `Initiate a [restart](../../administration/restarting.md)`
+  * :no_entry: `Initiate a [restart](/administration/restarting.md)`  
 * When linking to documents in the same repository, link to markdown files, and not to `https://axibase.com/` URLs.
-  * :white_check_mark: `Perform [ATSD restart](../../administration/restarting.md)`
-  * :no_entry: `Perform [ATSD restart](https://axibase.com/docs/atsd/administration/restarting.html)`
+  * :white_check_mark: `Initiate a [restart](../../administration/restarting.md)`
+  * :no_entry: `Initiate a [restart](https://axibase.com/docs/atsd/administration/restarting.html)`
+* Describe the linked document in the link title
+  * :white_check_mark: `Review [installation notes](install.md).`
+  * :no_entry: `Click [here](install.md) to view installation notes.`
 
 ## Product Names
 
-* Shorten product names after you introduce the abbreviation.
-* Capitalize product names unless you refer to a general concept in place of the product name.
+* Use original product names unless you introduce an abbreviation.
 * Articles may be omitted from product names in most cases.
+
+----
 
 ## Issue Subjects
 
@@ -308,3 +314,19 @@ word | alternatives
   * :white_check_mark: `Storage: Add table details to data consistency page.`
 * Use descriptive sentences for bugs.
   * :white_check_mark: `NMON Parser: property record is not updated.`
+
+## Style
+
+* Remove verbiage, such as "execute these steps", "follow the prompts", "perform these tasks", "by executing the following command"
+  * :no_entry: `Go to https://slack.com/create and follow the prompts to create a new workspace.`
+  * :white_check_mark: `Create a Slack [workspace](https://slack.com/create).`
+  * :no_entry: ``Execute the command to remove the ephemeral `/hbase` directory from Zookeeper cache.``
+  * :white_check_mark: ``Remove the ephemeral `/hbase` directory from Zookeeper cache.``  
+  * :no_entry: `Setup crontab with the following commands so that nmon will collect the data constantly.`
+  * :white_check_mark: `Add nmon to crontab to collect the data constantly.`
+* Describe what the command does.
+  * :no_entry: `Run the script with the following command:`
+  * :white_check_mark: ``Launch the `inotify` script to watch for file changes.``
+* Prefer `example` over `sample`
+  * :white_check_mark: `Example configuration:`
+  * :no_entry: `Sample configuration:`
