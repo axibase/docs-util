@@ -12,7 +12,6 @@ The guide contains a compilation of grammar and punctuation rules for software d
 * Abbreviate if the acronym is known to the target audience.
 * Introduce new acronyms in parentheses and re-use thereafter.
   * :white_check_mark: `Hadoop Distributed File System (HDFS) is a clustered system. HDFS is resilient.`
-* Do not backtick acronyms.
 * Always abbreviate:
   * Known terms: SQL, API, REST, JVM, UTF, URL, URI.
     * :white_check_mark: `SQL report`
@@ -54,8 +53,8 @@ The guide contains a compilation of grammar and punctuation rules for software d
 ## Parentheses
 
 * Do not use parentheses.
-  * :no_entry: ``Execute any query (such as `SELECT 1`) to test the connection``
   * :white_check_mark: ``Execute `SELECT 1` query to test the connection``
+  * :no_entry: ``Execute any query (such as `SELECT 1`) to test the connection``
 * Parentheses are allowed to spell out a number or character sequence.
   * :white_check_mark: ``The field supports wildcards (`*`)``
   * :white_check_mark: ``Up to nine (`9`) fractions are printed``
@@ -71,30 +70,30 @@ The guide contains a compilation of grammar and punctuation rules for software d
 
 * Do not use quotation marks.
 * To designate [UI elements](#interface-elements) use bold text.
-  * :no_entry: `Click on 'View' to proceed`
   * :white_check_mark: `Click **View** to proceed`
+  * :no_entry: `Click on 'View' to proceed`
 * To designate single-line machine output use bold text or backticks.
-  * :no_entry: `Watch the log file for "Start completed" message.`
   * :white_check_mark: `Watch the log file for **Start completed** message.`
   * :white_check_mark: ``Watch the log file for `Start completed` message.``
+  * :no_entry: `Watch the log file for "Start completed" message.`  
 * To designate multiple-line machine output use code blocks with `txt` dialect.
 
 ## Commas
 
 * Do not use a comma to separate clauses with multiple actors. Create separate sentences.
-  * :no_entry: `Submit the query, the result is displayed.`
   * :white_check_mark: `Submit the query. Review the results.`
+  * :no_entry: `Submit the query, the result is displayed.`
 
 ## Hyphens
 
 * Hyphenate compound adjectives.
   * :white_check_mark: `Cancel a long-running query`
 * Do not hyphenate adverb adjectives that end with `ly`.
-  * :no_entry: `Load data from the publicly-accessible service`.
   * :white_check_mark: `Review frequently used queries`.
+  * :no_entry: `Load data from the publicly-accessible service`.
 * Do not use a hyphen to separate title from meaning, use a [colon](#colons).
-  * :no_entry: `Meta Query - retrieves metadata from the service.`
   * :white_check_mark: `Meta Query: retrieves metadata from the service.`
+  * :no_entry: `Meta Query - retrieves metadata from the service.`
 
 ## Backticks
 
@@ -131,8 +130,12 @@ Apply single backticks to the following:
 
 Exceptions:
 
+* Do not backtick an acronym, unless it represents a field or parameter value.
+  * :white_check_mark: ``Select `GZIP` or `LZO` option in the **Codec** drop-down list``
+  * :no_entry: ``The file is exported in `CSV` format``
 * Do not use backticks in headings.
   * :white_check_mark: `## Install Python 3.5 using curl`
+ 
   
 ### Code Block
 
@@ -159,8 +162,8 @@ Exceptions:
 ## Possessives
 
 * Do not use possessives.
-  * :no_entry: `Modify the file's content`
   * :white_check_mark: `Modify the file content` or `Modify the contents of the file`
+  * :no_entry: `Modify the file's content`
 
 ## Headers
 
@@ -318,15 +321,15 @@ word | alternatives
 ## Style
 
 * Remove verbiage, such as "execute these steps", "follow the prompts", "perform these tasks", "by executing the following command"
-  * :no_entry: `Go to https://slack.com/create and follow the prompts to create a new workspace.`
   * :white_check_mark: `Create a Slack [workspace](https://slack.com/create).`
-  * :no_entry: ``Execute the command to remove the ephemeral `/hbase` directory from Zookeeper cache.``
+  * :no_entry: `Go to https://slack.com/create and follow the prompts to create a new workspace.`
   * :white_check_mark: ``Remove the ephemeral `/hbase` directory from Zookeeper cache.``  
-  * :no_entry: `Setup crontab with the following commands so that nmon will collect the data constantly.`
+  * :no_entry: ``Execute the command to remove the ephemeral `/hbase` directory from Zookeeper cache.``
   * :white_check_mark: `Add nmon to crontab to collect the data constantly.`
+  * :no_entry: `Setup crontab with the following commands so that nmon will collect the data constantly.`
 * Describe what the command does.
-  * :no_entry: `Run the script with the following command:`
   * :white_check_mark: ``Launch the `inotify` script to watch for file changes.``
+  * :no_entry: `Run the script with the following command:`
 * Prefer `example` over `sample`
   * :white_check_mark: `Example configuration:`
   * :no_entry: `Sample configuration:`
