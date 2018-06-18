@@ -16,38 +16,30 @@
  */
 
 /**
- * Plugin checks that curl, wget are backticked if they are:
+ * Plugin checks that bash keywords are backticked if they are:
  * a) not in heading
- * b) not in code block.
+ * b) not in code block
+ * c) are in uppercase
  */
 
-const testExternal = /^(?:https?\:)?\/\//;
-const testValidRelative = /^(?:\.\.?\/)/;
+let bash_keywords = ['curl', 'wget'];
 
 module.exports = {
     names: ["MD101", "backtick-keywords"],
-    description: "curl, wget must be backticked if they are a) not in heading b) not in code block.",
-    tags: ["backtick", "code"],
+    description: "Bash keywords must be backticked and lowercased.",
+    tags: ["backtick", "code", "bash"],
     "function": (params, onError) => {
-        params.tokens.filter(t => t.type === "content").forEach(token => {
-            let images = token.children.filter(t => t.type === "image")
-            for (let img of images) {
-                let src = img.attrGet("src")
-                if (src) {
-                    let isExternal = testExternal.test(src);
-                    let isValidRelative = testValidRelative.test(src);
-                    if (!isExternal && !isValidRelative) {
-                        let index = img.line.indexOf(src);
-                        let range =  [index+1, src.length];
+        params.tokens.filter(token => (token.type != "fence") && token.children.filter(child =>
+            bash_keywords.indexOf(child.content.toLowerCase()) > -1)).forEach(token => {
+                let keywords = token.children;
+                for (let word of keywords) {
+                    if (!(word.type === 'code_inline') && !(bash_keywords.indexOf(word.content) > -1)) {
                         onError({
-                            lineNumber: img.lineNumber,
-                            details: `In the image for ${img.content}`,
-                            context: `![${src}](${img.content})`,
-                            range,
+                            lineNumber: word.lineNumber
                         })
                     }
                 }
             }
-        });
+            )
     }
 };
