@@ -37,7 +37,7 @@ module.exports = {
                     let isValidRelative = testValidRelative.test(src);
                     if (!isExternal && !isValidRelative) {
                         let index = img.line.indexOf(src);
-                        let range =  [index+1, src.length];
+                        let range = [index + 1, src.length];
                         onError({
                             lineNumber: img.lineNumber,
                             details: `In the image for ${img.content}`,
