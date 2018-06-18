@@ -17,7 +17,7 @@ The guide contains a compilation of grammar and punctuation rules for software d
     * :white_check_mark: `SQL report`
     * :no_entry: `Structure Query Language (SQL) report`
   * Data formats: CSV, JSON, XLS, XML, XLS, PDF.
-  * Protocols: HTTP, HTTPS, TCP, UDP, SSH, DNS.
+  * Protocols: HTTP, HTTPS, SSL, JMX, TCP, UDP, SSH, DNS.
   * Standards and organizations: ISO, ASCII, ANSI, W3C.
   * Time zones: UTC, EST, GMT.
   * ATSD in Axibase docs repositories.
