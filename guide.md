@@ -11,10 +11,10 @@ The guide contains a compilation of grammar and punctuation rules for software d
 
 * Abbreviate if the acronym is known to the target audience.
 * Introduce new acronyms in parentheses and re-use thereafter.
-  * :white_check_mark: `Hadoop Distributed File System (HDFS) is a clustered system. HDFS is resilient.`
+  * :heavy_check_mark: `Hadoop Distributed File System (HDFS) is a clustered system. HDFS is resilient.`
 * Always abbreviate:
   * Known terms: SQL, API, REST, JVM, UTF, URL, URI.
-    * :white_check_mark: `SQL report`
+    * :heavy_check_mark: `SQL report`
     * :no_entry: `Structure Query Language (SQL) report`
   * Data formats: CSV, JSON, XLS, XML, XLS, PDF.
   * Protocols: HTTP, HTTPS, SSL, JMX, TCP, UDP, SSH, DNS.
@@ -25,74 +25,74 @@ The guide contains a compilation of grammar and punctuation rules for software d
 ## Contractions
 
 * Replace "i.e." or "e.g." with "for example".
-  * :white_check_mark: ``Specify the recipient, e.g. `test@example.org`.``
+  * :heavy_check_mark: ``Specify the recipient, e.g. `test@example.org`.``
   * :no_entry: ``Specify the recipient, for example `test@example.org`.``
 * "etc" is allowed.
 * Replace "don't", "can't", "hasn't", "isn't", "didn't" with "do not", "cannot", etc.
-  * :white_check_mark: `The parameter isn't valid.`
+  * :heavy_check_mark: `The parameter isn't valid.`
   * :no_entry: `The parameter is not value.`
 
 ## Capitalization
 
 * Use [title case](https://titlecase.com/) in headers.
-  * :white_check_mark: `## Import Data`
+  * :heavy_check_mark: `## Import Data`
   * :no_entry: `## Import data`
 * Do not capitalize program/file/function names such as `curl`, `atsd.log`, even in headers.
-  * :white_check_mark: `## Import Data with curl`
+  * :heavy_check_mark: `## Import Data with curl`
   * :no_entry: `## Import Data with Curl`
 * Do not capitalize the first word after the colon in a list.
-  * :white_check_mark: `Step 3: unzip files`
+  * :heavy_check_mark: `Step 3: unzip files`
 * Do not capitalize file extensions.
-  * :white_check_mark: `.png`, `.xml`, `.jar`
+  * :heavy_check_mark: `.png`, `.xml`, `.jar`
 * Keep original product capitalization.
-  * :white_check_mark: `SQL Server Database`, `Hadoop`, `HBase`.
+  * :heavy_check_mark: `SQL Server Database`, `Hadoop`, `HBase`.
 * In ambiguous cases, adhere to one option for consistency:
-  * :white_check_mark: Unix, bash, IPv4, IPv6, URL
+  * :heavy_check_mark: Unix, bash, IPv4, IPv6, URL
   * :no_entry: UNIX, Bash, IP v4, IP v6, Url
   
 ## Parentheses
 
 * Do not use parentheses.
-  * :white_check_mark: ``Execute `SELECT 1` query to test the connection``
+  * :heavy_check_mark: ``Execute `SELECT 1` query to test the connection``
   * :no_entry: ``Execute any query (such as `SELECT 1`) to test the connection``
 * Parentheses are allowed to spell out a number or character sequence.
-  * :white_check_mark: ``The field supports wildcards (`*`)``
-  * :white_check_mark: ``Up to nine (`9`) fractions are printed``
+  * :heavy_check_mark: ``The field supports wildcards (`*`)``
+  * :heavy_check_mark: ``Up to nine (`9`) fractions are printed``
 
 ## Colons
 
 * Begin lists with colons (:).
-  * :white_check_mark: `Execute the following commands to stop the database:`
+  * :heavy_check_mark: `Execute the following commands to stop the database:`
 * Separate list titles from their content with a colon.
-  * :white_check_mark: `Step 1: stop ATSD process.`
+  * :heavy_check_mark: `Step 1: stop ATSD process.`
 
 ## Quotation Marks
 
 * Do not use quotation marks.
 * To designate [UI elements](#interface-elements) use bold text.
-  * :white_check_mark: `Click **View** to proceed`
+  * :heavy_check_mark: `Click **View** to proceed`
   * :no_entry: `Click on 'View' to proceed`
 * To designate single-line machine output use bold text or backticks.
-  * :white_check_mark: `Watch the log file for **Start completed** message.`
-  * :white_check_mark: ``Watch the log file for `Start completed` message.``
+  * :heavy_check_mark: `Watch the log file for **Start completed** message.`
+  * :heavy_check_mark: ``Watch the log file for `Start completed` message.``
   * :no_entry: `Watch the log file for "Start completed" message.`  
 * To designate multiple-line machine output use code blocks with `txt` dialect.
 
 ## Commas
 
 * Do not use a comma to separate clauses with multiple actors. Create separate sentences.
-  * :white_check_mark: `Submit the query. Review the results.`
+  * :heavy_check_mark: `Submit the query. Review the results.`
   * :no_entry: `Submit the query, the result is displayed.`
 
 ## Hyphens
 
 * Hyphenate compound adjectives.
-  * :white_check_mark: `Cancel a long-running query`
+  * :heavy_check_mark: `Cancel a long-running query`
 * Do not hyphenate adverb adjectives that end with `ly`.
-  * :white_check_mark: `Review frequently used queries`.
+  * :heavy_check_mark: `Review frequently used queries`.
   * :no_entry: `Load data from the publicly-accessible service`.
 * Do not use a hyphen to separate title from meaning, use a [colon](#colons).
-  * :white_check_mark: `Meta Query: retrieves metadata from the service.`
+  * :heavy_check_mark: `Meta Query: retrieves metadata from the service.`
   * :no_entry: `Meta Query - retrieves metadata from the service.`
 
 ## Backticks
@@ -126,15 +126,15 @@ Apply single backticks to the following:
 * Version numbers.
   * ``Python `3.5` is required for ATSD version `19420`.``
 * Single-line machine output. Bold text is also allowed.
-  * :white_check_mark: ``Watch the log file for `Start completed` message.``
+  * :heavy_check_mark: ``Watch the log file for `Start completed` message.``
 
 Exceptions:
 
 * Do not backtick an acronym, unless it represents a field or parameter value.
-  * :white_check_mark: ``Select `GZIP` or `LZO` option in the **Codec** drop-down list``
+  * :heavy_check_mark: ``Select `GZIP` or `LZO` option in the **Codec** drop-down list``
   * :no_entry: ``The file is exported in `CSV` format``
 * Do not use backticks in headings.
-  * :white_check_mark: `## Install Python 3.5 using curl`
+  * :heavy_check_mark: `## Install Python 3.5 using curl`
  
   
 ### Code Block
@@ -151,27 +151,27 @@ Exceptions:
 ## Numbers
 
 * Write out numbers one through ten, unless they have units.
-  * :white_check_mark: `There are three ways to perform this calculation`
+  * :heavy_check_mark: `There are three ways to perform this calculation`
 * Write out ordinal numbers.
-  * :white_check_mark: `The first query causes the database to lock the table`  
+  * :heavy_check_mark: `The first query causes the database to lock the table`  
 * Add thousands separator except for milliseconds and machine output.
-  * :white_check_mark: `Stop the query if the row count exceeds 1,000`
+  * :heavy_check_mark: `Stop the query if the row count exceeds 1,000`
 * Insert a space between a number and multiple-letter unit. Omit space for one-letter units.
-  * :white_check_mark: `8 GB`, `128 MB`, `2 CPUs`, `10%`.
+  * :heavy_check_mark: `8 GB`, `128 MB`, `2 CPUs`, `10%`.
 
 ## Possessives
 
 * Do not use possessives.
-  * :white_check_mark: `Modify the file content` or `Modify the contents of the file`
+  * :heavy_check_mark: `Modify the file content` or `Modify the contents of the file`
   * :no_entry: `Modify the file's content`
 
 ## Headers
 
 * Use [title case](https://titlecase.com/) in headers.
-  * :white_check_mark: `## Import Data from File`
+  * :heavy_check_mark: `## Import Data from File`
   * :no_entry: `## Import data from file`
 * Do not use backticks in headers.
-  * :white_check_mark: `## Configure cron`
+  * :heavy_check_mark: `## Configure cron`
   * :no_entry: ``## Configure `cron` schedule``
 * Do not terminate sentences in headers with dot.
   * :no_entry: `## Import data from file.`
@@ -181,13 +181,13 @@ Exceptions:
 ## Variables
 
 * Use curly brackets (`{}`) to designate a variable in URI path or query string
-  * :white_check_mark: `/api/{entity}/metrics`
-  * :white_check_mark: `/api/metrics?id={metricId}`
+  * :heavy_check_mark: `/api/{entity}/metrics`
+  * :heavy_check_mark: `/api/metrics?id={metricId}`
 * Use camelCase in compound variable names in REST API
-  * :white_check_mark: `entityGroup`
+  * :heavy_check_mark: `entityGroup`
   * :no_entry: `entity-group`
 * Add "the" article before the variables with types.
-  * :white_check_mark: ``Open the `atsd.log` file.``
+  * :heavy_check_mark: ``Open the `atsd.log` file.``
   * :no_entry: ``Open the file `atsd.log`.``
 
 ## Example Names
@@ -210,13 +210,13 @@ Exceptions:
 ## Dates
 
 * Spell out month if the format is ambiguous
-  * :white_check_mark: `01/Jun/2018`
+  * :heavy_check_mark: `01/Jun/2018`
   * :no_entry: `06/01/2018`
 * Don't use ordinal numbers in dates.
-  * :white_check_mark: `April 15`
+  * :heavy_check_mark: `April 15`
   * :no_entry: `April 15th`
 * Use commas with full dates.
-  * :white_check_mark: `The report was published on December 13, 2017`
+  * :heavy_check_mark: `The report was published on December 13, 2017`
 
 ## Active Voice
 
@@ -262,11 +262,11 @@ word | alternatives
 
 * Interface elements should be **bold**, exactly as they appear in the UI.
 * Add `>` to describe navigation sequences.
-  * :white_check_mark: `Open the **Alerts > Rules** page`
+  * :heavy_check_mark: `Open the **Alerts > Rules** page`
 * Do not include types for named elements: button, split-button, checkbox, drop-down list, field, link, switch.
-  * :white_check_mark: `Click **Next**`
-  * :white_check_mark: ``Select `CSV` from **File Format**``
-  * :white_check_mark: `Open the **Rules** page`
+  * :heavy_check_mark: `Click **Next**`
+  * :heavy_check_mark: ``Select `CSV` from **File Format**``
+  * :heavy_check_mark: `Open the **Rules** page`
   * :no_entry: `Click **Next** button`
   * :no_entry: ``Select `CSV` from the **File Format** drop-down list``  
 * Use consistent UI element types:
@@ -284,7 +284,7 @@ word | alternatives
   * left menu (also main menu)
   * top menu
 * Use "the" article when referring to the element by type.
-  * :white_check_mark: `Click the **Web Notifications** tab`
+  * :heavy_check_mark: `Click the **Web Notifications** tab`
   * :no_entry: `Click **Web Notifications** tab`
 * Use `log in` as verb and `login` as noun.
   * `Log in to ATSD`.
@@ -292,13 +292,13 @@ word | alternatives
 ## Links
 
 * Use relative paths when linking markdown files in the same repository.
-  * :white_check_mark: `Initiate a [restart](../../administration/restarting.md)`
+  * :heavy_check_mark: `Initiate a [restart](../../administration/restarting.md)`
   * :no_entry: `Initiate a [restart](/administration/restarting.md)`  
 * When linking to documents in the same repository, link to markdown files, and not to `https://axibase.com/` URLs.
-  * :white_check_mark: `Initiate a [restart](../../administration/restarting.md)`
+  * :heavy_check_mark: `Initiate a [restart](../../administration/restarting.md)`
   * :no_entry: `Initiate a [restart](https://axibase.com/docs/atsd/administration/restarting.html)`
 * Describe the linked document in the link title
-  * :white_check_mark: `Review [installation notes](install.md).`
+  * :heavy_check_mark: `Review [installation notes](install.md).`
   * :no_entry: `Click [here](install.md) to view installation notes.`
 
 ## Product Names
@@ -311,25 +311,25 @@ word | alternatives
 ## Issue Subjects
 
 * Add prefix (topic) to subject. The topic can repeat the category or clarify it if necessary.
-  * :white_check_mark: `UI: SQL Query Statistics page error.`
+  * :heavy_check_mark: `UI: SQL Query Statistics page error.`
 * Use regular case (not title case) in the subject.
 * Use the imperative for features.
-  * :white_check_mark: `Storage: Add table details to data consistency page.`
+  * :heavy_check_mark: `Storage: Add table details to data consistency page.`
 * Use descriptive sentences for bugs.
-  * :white_check_mark: `NMON Parser: property record is not updated.`
+  * :heavy_check_mark: `NMON Parser: property record is not updated.`
 
 ## Style
 
 * Remove verbiage, such as "execute these steps", "follow the prompts", "perform these tasks", "by executing the following command"
-  * :white_check_mark: `Create a Slack [workspace](https://slack.com/create).`
+  * :heavy_check_mark: `Create a Slack [workspace](https://slack.com/create).`
   * :no_entry: `Go to https://slack.com/create and follow the prompts to create a new workspace.`
-  * :white_check_mark: ``Remove the ephemeral `/hbase` directory from Zookeeper cache.``  
+  * :heavy_check_mark: ``Remove the ephemeral `/hbase` directory from Zookeeper cache.``  
   * :no_entry: ``Execute the command to remove the ephemeral `/hbase` directory from Zookeeper cache.``
-  * :white_check_mark: `Add nmon to crontab to collect the data constantly.`
+  * :heavy_check_mark: `Add nmon to crontab to collect the data constantly.`
   * :no_entry: `Setup crontab with the following commands so that nmon will collect the data constantly.`
 * Describe what the command does.
-  * :white_check_mark: ``Launch the `inotify` script to watch for file changes.``
+  * :heavy_check_mark: ``Launch the `inotify` script to watch for file changes.``
   * :no_entry: `Run the script with the following command:`
 * Prefer `example` over `sample`
-  * :white_check_mark: `Example configuration:`
+  * :heavy_check_mark: `Example configuration:`
   * :no_entry: `Sample configuration:`
