@@ -16,27 +16,39 @@
  */
 
 /**
- * Plugin checks that bash keywords are backticked and in lowercase if they are:
- * a) not in heading
- * b) not in code block 
+ * Plugin checks that keywords are backticked and in lowercase if they are:
+ * a) not in heading;
+ * b) not in code block.
+ * Keyword in header must not be backticked and must be in lowercase.
  */
 
-const bash_keywords = /(curl|wget)/i;
-const bash_keywords_lower = /(curl|wget)/;
+const keywords = /(curl|wget|cron)/i;
+const keywords_lower = /(curl|wget|cron)/;
 
 module.exports = {
     names: ["MD101", "backtick-keywords"],
-    description: "Bash keywords must be backticked and lowercased.",
+    description: " ",
     tags: ["backtick", "code", "bash"],
     "function": (params, onError) => {
-        params.tokens.filter((token, index, tokens) => (token.type === "inline") && (tokens[index - 1].type != "heading_open")).forEach(token => {
-            let keywords = token.children.filter(child => bash_keywords.test(child.content));
-            for (let word of keywords) {
-                if ((word.type != "code_inline") || (!bash_keywords_lower.test(word.content))) {
-                    onError({
-                        lineNumber: word.lineNumber,
-                        detail: word.content
-                    })
+        params.tokens.forEach((token, index, tokens) => {
+            if (token.children != null) {
+                let words = token.children.filter(child => keywords.test(child.content));
+                for (let word of words) {
+                    if (tokens[index - 1].type != "heading_open") {
+                        if ((word.type != "code_inline") || (!keywords_lower.test(word.content))) {
+                            onError({
+                                lineNumber: word.lineNumber,
+                                detail: "Keywords must be backticked and in lowercase: " + word.content
+                            })
+                        }
+                    } else {
+                        if ((word.type === "code_inline") || (!keywords_lower.test(word.content))) {
+                            onError({
+                                lineNumber: word.lineNumber,
+                                detail: "Keyword in header must not be backticked and must be in lowercase: " + word.content
+                            })
+                        }
+                    }
                 }
             }
         })
