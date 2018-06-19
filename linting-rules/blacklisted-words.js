@@ -33,7 +33,7 @@ const rules = [
     new Rule("would", "-"),
     new Rule("may", "'can'"),
     new Rule("will", "use present tense"),
-    new Rule("was", "use present tens"),
+    new Rule("was", "use present tense"),
     new Rule("abort", "'stop', 'cancel'"),
     new Rule("kill", "'stop', 'cancel'"),
     new Rule("terminate", "'stop', 'cancel'"),
