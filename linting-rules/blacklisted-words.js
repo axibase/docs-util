@@ -58,7 +58,7 @@ const rules = [
 
 module.exports = {
     names: ["MD102", "blacklisted-words"],
-    description: " ",
+    description: "Plugin locates patterns prohibited in Axibase style guide",
     tags: ["blacklist"],
     "function": (params, onError) => {
         params.tokens.filter(t => t.type === "inline").forEach(token => {
@@ -66,7 +66,7 @@ module.exports = {
                 if (rule.regex.test(child.content)) {
                     onError({
                         lineNumber: child.lineNumber,
-                        detail: "The word '" + rule.pattern + "' is blacklisted. Alternatives: " + rule.suggestion
+                        detail: `The word '${rule.pattern} ' is blacklisted. Alternatives: ${rule.suggestion}`
                     })
                 }
             }))
