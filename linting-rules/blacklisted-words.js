@@ -19,34 +19,42 @@
  * Plugin checks blacklisted words below (case-insensitive).
  */
 
-const blacklist = {
-    "should": "use 'must' or 'remove'",
-    "could": "-",
-    "would": "-",
-    "may": "'can'",
-    "will": "use present tense",
-    "was": "use present tens",
-    "abort": "'stop', 'cancel'",
-    "kill": "'stop', 'cancel'",
-    "terminate": "'stop', 'cancel'",
-    "admin": "'administrator'",
-    "so, a lot": "use formal style",
-    "deselect": "'clear'",
-    "uncheck": "'clear'",
-    "flag": "'option', 'setting'",
-    "ingest": "'load', 'import'",
-    "lets": "-",
-    "please": "-",
-    "regex": "'regular expression'",
-    "Epoch time": "Unix time",
-    "datacenter": "data center",
-    "and/or": "clarify the meaning",
-    "in order to": "'to'",
-    "make sure": "'ensure'",
-    "end-point": "'endpoint'",
-    "click on": "'click'",
-    "robust": "avoid trite words"
+class Rule {
+    constructor(pattern, suggestion) {
+        this.pattern = pattern;
+        this.regex = new RegExp("\\b" + pattern + "\\b", "i");
+        this.suggestion = suggestion;
+    }
 }
+
+const rules = [
+    new Rule("should", "use 'must' or 'remove'"),
+    new Rule("could", "-"),
+    new Rule("would", "-"),
+    new Rule("may", "'can'"),
+    new Rule("will", "use present tense"),
+    new Rule("was", "use present tens"),
+    new Rule("abort", "'stop', 'cancel'"),
+    new Rule("kill", "'stop', 'cancel'"),
+    new Rule("terminate", "'stop', 'cancel'"),
+    new Rule("admin", "'administrator'"),
+    new Rule("so, a lot", "use formal style"),
+    new Rule("deselect", "'clear'"),
+    new Rule("uncheck", "'clear'"),
+    new Rule("flag", "'option', 'setting'"),
+    new Rule("ingest", "'load', 'import'"),
+    new Rule("lets", "-"),
+    new Rule("please", "-"),
+    new Rule("regex", "'regular expression'"),
+    new Rule("Epoch time", "Unix time"),
+    new Rule("datacenter", "data center"),
+    new Rule("and/or", "clarify the meaning"),
+    new Rule("in order to", "'to'"),
+    new Rule("make sure", "'ensure'"),
+    new Rule("end-point", "'endpoint'"),
+    new Rule("click on", "'click'"),
+    new Rule("robust", "avoid trite words"),
+];
 
 module.exports = {
     names: ["MD102", "blacklisted-words"],
@@ -54,12 +62,11 @@ module.exports = {
     tags: ["blacklist"],
     "function": (params, onError) => {
         params.tokens.filter(t => t.type === "inline").forEach(token => {
-            token.children.forEach(child => Object.keys(blacklist).forEach(bad_word => {
-                let regex = new RegExp(bad_word, 'i');
-                if (regex.test(child.content)) {
+            token.children.forEach(child => rules.forEach(rule => {
+                if (rule.regex.test(child.content)) {
                     onError({
                         lineNumber: child.lineNumber,
-                        detail: "The word '" + bad_word + "' is blacklisted. Alternatives: " + blacklist[bad_word]
+                        detail: "The word '" + rule.pattern + "' is blacklisted. Alternatives: " + rule.suggestion
                     })
                 }
             }))
