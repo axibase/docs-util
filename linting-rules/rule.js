@@ -31,7 +31,7 @@ class Match {
             return [ column, length ];
         }
         return null;
-    };
+    }
 
     toString() {
         return this.match ? "null" : this.match.toString();
