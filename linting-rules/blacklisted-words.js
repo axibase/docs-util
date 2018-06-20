@@ -20,25 +20,27 @@
  */
 
 class Rule {
-    constructor(pattern, suggestion) {
+    constructor(pattern, suggestion, caseSensitive) {
         this.pattern = pattern;
-        this.regex = new RegExp("\\b" + pattern + "\\b", "i");
+        const modifiers = caseSensitive ? "" : "i";
+        this.regex = new RegExp("\\b" + pattern + "\\b", modifiers);
         this.suggestion = suggestion;
     }
 }
 
 const rules = [
-    new Rule("should", "use 'must' or 'remove'"),
+    new Rule("should", "use 'must' or remove"),
     new Rule("could", "-"),
     new Rule("would", "-"),
-    new Rule("may", "'can'"),
+    new Rule("may", "'can'", true),
     new Rule("will", "use present tense"),
     new Rule("was", "use present tense"),
     new Rule("abort", "'stop', 'cancel'"),
     new Rule("kill", "'stop', 'cancel'"),
     new Rule("terminate", "'stop', 'cancel'"),
     new Rule("admin", "'administrator'"),
-    new Rule("so", "use formal style"),
+    new Rule("so ", "use formal style"),
+    new Rule("so,", "use formal style"),
     new Rule("a lot", "use formal style"),
     new Rule("as is", "remove"),
     new Rule("deselect", "'clear'"),
@@ -46,6 +48,7 @@ const rules = [
     new Rule("flag", "'option', 'setting'"),
     new Rule("ingest", "'load', 'import'"),
     new Rule("lets", "-"),
+    new Rule("let's", "-"),
     new Rule("please", "-"),
     new Rule("regex", "'regular expression'"),
     new Rule("Epoch time", "Unix time"),
