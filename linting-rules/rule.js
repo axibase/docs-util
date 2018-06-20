@@ -34,7 +34,7 @@ class Match {
     }
 
     toString() {
-        return this.match ? "null" : this.match.toString();
+        return this.match ? this.match.toString() : "null";
     }
 }
 
