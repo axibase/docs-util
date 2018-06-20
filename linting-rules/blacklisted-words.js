@@ -60,7 +60,6 @@ const rules = [
     new Rule("isn't", "'is not'"),
     new Rule("didn't", "'did not'"),
     new Rule("'s", "do not use possessives"),
-    new Rule("as is", "-"),
     new Rule("execute these steps", "avoid verbiage"),
     new Rule("follow the prompts", "avoid verbiage"),
     new Rule("perform these tasks", "avoid verbiage"),
