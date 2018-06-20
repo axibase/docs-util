@@ -33,7 +33,7 @@ const rules = [
     new Rule("kill", "'stop', 'cancel'"),
     new Rule("terminate", "'stop', 'cancel'"),
     new Rule("admin", "'administrator'", true),
-    new Rule("so", "use formal style"),
+    new Rule("so ", "use formal style"),
     new Rule("so,", "use formal style"),
     new Rule("a lot", "use formal style"),
     new Rule("as is", "remove"),
@@ -65,7 +65,8 @@ const rules = [
     new Rule("follow the prompts", "avoid verbiage"),
     new Rule("perform these tasks", "avoid verbiage"),
     new Rule("the following command", "avoid verbiage"),
-    new Rule("login into", "'log in to'")
+    new Rule("login into", "'log in to'"),
+    new Rule("log in into", "'log in to'")
 ];
 
 module.exports = {
@@ -78,7 +79,7 @@ module.exports = {
                 if ((child.type != "code_inline") && (rule.regex.test(child.content))) {
                     onError({
                         lineNumber: child.lineNumber,
-                        detail: `The phrase '${rule.pattern} ' is blacklisted. Alternatives: ${rule.suggestion}`,
+                        detail: `The phrase '${child.line.match(rule.pattern)} ' is blacklisted. Alternatives: ${rule.suggestion}`,
                         range: shared.rangeFromRegExp(child.line, rule.regex)
                     })
                 }
