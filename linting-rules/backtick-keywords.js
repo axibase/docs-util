@@ -16,14 +16,51 @@
  */
 
 /**
- * Plugin checks that keywords are backticked and in lowercase if they are:
+ * Plugin checks that keywords below are backticked and in lowercase (except words in keywords_only_upper ) if they are:
  * a) not in heading;
  * b) not in code block.
- * Keyword in header must not be backticked and must be in lowercase.
+ * Keyword in header must not be backticked and must be in lowercase (except words in keywords_only_upper).
  */
 
-const keywords = /(curl|wget|cron)/i;
-const keywords_lower = /(curl|wget|cron)/;
+const shared = require("markdownlint/lib/shared")
+
+const keywords = [
+    "curl",
+    "wget",
+    "crontab",
+    "cron",
+    "netcat",
+    "top",
+    "ps",
+    "ping",
+    "traceroute",
+    "sudo",
+    "root",
+    "axibase",
+    "true",
+    "false",
+    "null",
+    "jps",
+    "name=value",
+    "key=value",
+    "/.[^ ]*",
+    "atsd.log",
+    "logback.xml",
+    "stdout",
+    "stderr",
+    "graphite.conf",
+    "SIGTERM",
+    "NaN"
+]
+
+const keywords_only_upper = [
+    "NaN",
+    "SIGTERM"
+]
+
+const keywordsRegexAnyCase = new RegExp(keywords.join("|"), 'i');
+const keywordsRegexExactCase = new RegExp(keywords.join("|"));
+const keywordsOnlyUpperRegex = new RegExp(keywords_only_upper.join("|"), 'i');
 
 module.exports = {
     names: ["MD101", "backtick-keywords"],
@@ -32,20 +69,25 @@ module.exports = {
     "function": (params, onError) => {
         params.tokens.forEach((token, index, tokens) => {
             if (token.children != null) {
-                let words = token.children.filter(child => keywords.test(child.content));
+                let words = token.children.filter(child => keywordsRegexAnyCase.test(child.content));
                 for (let word of words) {
+                    let keyword = word.line.match(keywordsRegexAnyCase);
                     if (tokens[index - 1].type != "heading_open") {
-                        if ((word.type != "code_inline") || (!keywords_lower.test(word.content))) {
+                        if ((word.type != "code_inline") || (!keywordsRegexExactCase.test(word.content))) {
+                            let desc = "Keyword '" + keyword + "' must be backticked";
                             onError({
                                 lineNumber: word.lineNumber,
-                                detail: "Keywords must be backticked and in lowercase: " + word.content
+                                detail: keywordsOnlyUpperRegex.test(keyword) ? desc + " and must be in uppercase." : desc + " and must be in lowercase.",
+                                range: shared.rangeFromRegExp(word.line, keywordsRegexAnyCase)
                             })
                         }
                     } else {
-                        if ((word.type === "code_inline") || (!keywords_lower.test(word.content))) {
+                        if ((word.type === "code_inline") || (!keywordsRegexExactCase.test(word.content))) {
+                            let desc = "Keyword '" + keyword + "' in header must not be backticked";
                             onError({
                                 lineNumber: word.lineNumber,
-                                detail: "Keyword in header must not be backticked and must be in lowercase: " + word.content
+                                detail: keywordsOnlyUpperRegex.test(keyword) ? desc + " and must be in uppercase." : desc + " and must be in lowercase.",
+                                range: shared.rangeFromRegExp(word.line, keywordsRegexAnyCase)
                             })
                         }
                     }
