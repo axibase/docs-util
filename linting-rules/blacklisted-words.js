@@ -16,50 +16,70 @@
  */
 
 /**
- * Plugin checks blacklisted words below (case-insensitive).
+ * Plugin locates patterns prohibited in Axibase style guide.
  */
 
-const blacklist = {
-    "should": "use 'must' or 'remove'",
-    "could": "-",
-    "would": "-",
-    "may": "'can'",
-    "will": "use present tense",
-    "was": "use present tens",
-    "abort": "'stop', 'cancel'",
-    "kill": "'stop', 'cancel'",
-    "terminate": "'stop', 'cancel'",
-    "admin": "'administrator'",
-    "so, a lot": "use formal style",
-    "deselect": "'clear'",
-    "uncheck": "'clear'",
-    "flag": "'option', 'setting'",
-    "ingest": "'load', 'import'",
-    "lets": "-",
-    "please": "-",
-    "regex": "'regular expression'",
-    "Epoch time": "Unix time",
-    "datacenter": "data center",
-    "and/or": "clarify the meaning",
-    "in order to": "'to'",
-    "make sure": "'ensure'",
-    "end-point": "'endpoint'",
-    "click on": "'click'",
-    "robust": "avoid trite words"
-}
+const shared = require("markdownlint/lib/shared")
+const Rule = require("./rule")
+
+const rules = [
+    new Rule("should", "use 'must' or remove"),
+    new Rule("could", "-"),
+    new Rule("would", "-"),
+    new Rule("may", "'can'", true),
+    new Rule("will", "use present tense"),
+    new Rule("was", "use present tense"),
+    new Rule("abort", "'stop', 'cancel'"),
+    new Rule("kill", "'stop', 'cancel'"),
+    new Rule("terminate", "'stop', 'cancel'"),
+    new Rule("admin", "'administrator'", true),
+    new Rule("so", "use formal style"),
+    new Rule("so,", "use formal style"),
+    new Rule("a lot", "use formal style"),
+    new Rule("as is", "remove"),
+    new Rule("deselect", "'clear'"),
+    new Rule("uncheck", "'clear'"),
+    new Rule("flag", "'option', 'setting'"),
+    new Rule("ingest", "'load', 'import'"),
+    new Rule("lets|let", "-"),
+    new Rule("please", "-"),
+    new Rule("regex", "'regular expression'"),
+    new Rule("Epoch time", "Unix time"),
+    new Rule("datacenter", "data center"),
+    new Rule("and/or", "clarify the meaning"),
+    new Rule("in order to", "'to'"),
+    new Rule("make sure", "'ensure'"),
+    new Rule("end-point", "'endpoint'"),
+    new Rule("click on", "'click'"),
+    new Rule("robust", "avoid trite words"),
+    new Rule("i\\.e\\.", "'for example'"),
+    new Rule("e\\.g\\.", "'for example'"),
+    new Rule("don't", "'do not'"),
+    new Rule("can't", "'cannot'"),
+    new Rule("hasn't", "'has not'"),
+    new Rule("isn't", "'is not'"),
+    new Rule("didn't", "'did not'"),
+    new Rule("'s", "do not use possessives"),
+    new Rule("as is", "-"),
+    new Rule("execute these steps", "avoid verbiage"),
+    new Rule("follow the prompts", "avoid verbiage"),
+    new Rule("perform these tasks", "avoid verbiage"),
+    new Rule("the following command", "avoid verbiage"),
+    new Rule("login into", "'log in to'")
+];
 
 module.exports = {
     names: ["MD102", "blacklisted-words"],
-    description: " ",
+    description: "Plugin locates patterns prohibited in Axibase style guide.",
     tags: ["blacklist"],
     "function": (params, onError) => {
         params.tokens.filter(t => t.type === "inline").forEach(token => {
-            token.children.forEach(child => Object.keys(blacklist).forEach(bad_word => {
-                let regex = new RegExp(bad_word, 'i');
-                if (regex.test(child.content)) {
+            token.children.forEach(child => rules.forEach(rule => {
+                if ((child.type != "code_inline") && (rule.regex.test(child.content))) {
                     onError({
                         lineNumber: child.lineNumber,
-                        detail: "The word '" + bad_word + "' is blacklisted. Alternatives: " + blacklist[bad_word]
+                        detail: `The phrase '${rule.pattern} ' is blacklisted. Alternatives: ${rule.suggestion}`,
+                        range: shared.rangeFromRegExp(child.line, rule.regex)
                     })
                 }
             }))
