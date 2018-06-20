@@ -19,8 +19,7 @@
  * Plugin locates patterns prohibited in Axibase style guide.
  */
 
-const shared = require("markdownlint/lib/shared")
-const Rule = require("./rule")
+const Rule = require("./rule");
 
 const rules = [
     new Rule("should", "use 'must' or remove"),
@@ -75,11 +74,12 @@ module.exports = {
     "function": (params, onError) => {
         params.tokens.filter(t => t.type === "inline").forEach(token => {
             token.children.forEach(child => rules.forEach(rule => {
-                if ((child.type != "code_inline") && (rule.regex.test(child.content))) {
+                if ((child.type !== "code_inline") && (rule.regex.test(child.content))) {
+                    const match = rule.test(child.line);
                     onError({
                         lineNumber: child.lineNumber,
-                        detail: `The phrase '${child.line.match(rule.pattern)} ' is blacklisted. Alternatives: ${rule.suggestion}`,
-                        range: shared.rangeFromRegExp(child.line, rule.regex)
+                        detail: `The phrase '${match} ' is blacklisted. Alternatives: ${rule.suggestion}`,
+                        range: match.range()
                     })
                 }
             }))
