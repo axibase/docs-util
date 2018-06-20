@@ -24,7 +24,7 @@ class Match {
         if (this.match) {
             let column = this.match.index + 1;
             let length = this.match[0].length;
-            if (match[2]) {
+            if (this.match[2]) {
                 column += this.match[1].length;
                 length -= this.match[1].length;
             }
