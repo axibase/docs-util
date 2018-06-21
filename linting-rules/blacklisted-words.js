@@ -96,7 +96,7 @@ const rules = [
     new Rule("hasn't", "'has not'"),
     new Rule("isn't", "'is not'"),
     new Rule("didn't", "'did not'"),
-    new Rule("'s", "do not use possessives"),
+    new Rule(".+s('s|')?", "do not use possessives"),
     new Rule("execute these steps", "avoid verbiage"),
     new Rule("follow the prompts", "avoid verbiage"),
     new Rule("perform these tasks", "avoid verbiage"),
@@ -107,7 +107,7 @@ const rules = [
 
 module.exports = {
     names: ["MD102", "blacklisted-words"],
-    description: "Plugin locates patterns prohibited in Axibase style guide.",
+    description: " ",
     tags: ["blacklist"],
     "function": (params, onError) => {
         params.tokens.filter(t => t.type === "inline").forEach(token => {
@@ -116,7 +116,7 @@ module.exports = {
                     const match = rule.test(child.line);
                     onError({
                         lineNumber: child.lineNumber,
-                        detail: `The phrase '${match} ' is blacklisted. Alternatives: ${rule.suggestion}`,
+                        detail: `The phrase '${match}' is blacklisted. Alternatives: ${rule.suggestion}`,
                         range: match.range()
                     })
                 }
