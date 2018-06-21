@@ -96,7 +96,7 @@ const rules = [
     new Rule("hasn't", "'has not'"),
     new Rule("isn't", "'is not'"),
     new Rule("didn't", "'did not'"),
-    new Rule(".+s('s|')?", "do not use possessives"),
+    new Rule(".\\S+s('s|')?", "do not use possessives"),
     new Rule("execute these steps", "avoid verbiage"),
     new Rule("follow the prompts", "avoid verbiage"),
     new Rule("perform these tasks", "avoid verbiage"),
