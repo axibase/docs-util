@@ -85,7 +85,7 @@ const rules = [
     new Rule("uncheck", "'clear'"),
     new Rule("flag", "'option', 'setting'"),
     new Rule("ingest", "'load', 'import'"),
-    new Rule("lets|let", "-"),
+    new Rule("lets|let's", "informal"),
     new Rule("please", "-"),
     new Rule("regex", "'regular expression'"),
     new Rule("Epoch time", "Unix time"),
