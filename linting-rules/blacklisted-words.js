@@ -20,10 +20,10 @@
  */
 
 class Rule {
-    constructor(pattern, suggestion, caseSensitive) {
-        this.pattern = pattern;
+    constructor(pattern, suggestion, caseSensitive, noWordBoundary) {
+        this.pattern = noWordBoundary ? pattern : "\\b" + pattern + "\\b";
         const modifiers = caseSensitive ? "" : "i";
-        this.regex = new RegExp("\\b" + pattern + "\\b", modifiers);
+        this.regex = new RegExp(pattern, modifiers);
         this.suggestion = suggestion;
     }
 
@@ -49,7 +49,7 @@ class Match {
                 column += this.match[1].length;
                 length -= this.match[1].length;
             }
-            return [ column, length ];
+            return [column, length];
         }
         return null;
     }
@@ -102,8 +102,7 @@ const rules = [
     new Rule("can't", "'cannot'"),
     new Rule("hasn't", "'has not'"),
     new Rule("isn't", "'is not'"),
-    new Rule("didn't", "'did not'"),
-    new Rule(".\\S+s('s|')?", "do not use possessives"),
+    new Rule("\\w+s's?", "do not use possessives", false, true),
     new Rule("execute these steps", "avoid verbiage"),
     new Rule("follow the prompts", "avoid verbiage"),
     new Rule("perform these tasks", "avoid verbiage"),
