@@ -76,7 +76,6 @@ const rules = [
     new Rule("abort", "'stop', 'cancel'"),
     new Rule("kill", "'stop', 'cancel'"),
     new Rule("terminate", "'stop', 'cancel'"),
-    new Rule("admin", "'administrator'", true),
     new Rule("a lot", "use formal style"),
     new Rule("actually", "use formal style"),
     new Rule("as is", "remove"),
@@ -106,6 +105,8 @@ const rules = [
     new Rule("follow the prompts", "avoid verbiage"),
     new Rule("perform these tasks", "avoid verbiage"),
     new Rule("the following command", "avoid verbiage"),
+    new Rule("the following step", "avoid verbiage"),
+    new Rule("execute the following", "avoid verbiage"),
     new Rule("login into", "'log in to'"),
     new Rule("log in into", "'log in to'")
 ];
