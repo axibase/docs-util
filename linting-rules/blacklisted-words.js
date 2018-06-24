@@ -88,8 +88,6 @@ const rules = [
     new Rule("regex", "'regular expression'"),
     new Rule("dropdown", "'drop-down'"),
     new Rule("terminal", "'console'"),
-    new Rule("http", "'HTTP'"),
-    new Rule("https", "'HTTPS'"),
     new Rule("Epoch time", "Unix time"),
     new Rule("datacenter", "data center"),
     new Rule("and/or", "clarify the meaning"),
