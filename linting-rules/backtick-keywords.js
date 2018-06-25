@@ -56,8 +56,15 @@ const keywords_only_upper = [
     "SIGTERM"
 ]
 
-const keywordsRegexAnyCase = new RegExp(keywords.join("|"), 'i');
+
 const keywordsRegexExactCase = new RegExp(keywords.join("|"));
+const keywordsRegexAnyCase = new RegExp(keywords.map(word => {
+    if (word === "/.[^ ]*") {
+        return word;
+    } else {
+        return "\\b" + word + "\\b";
+    }
+}).join("|"), 'i');
 const keywordsOnlyUpperRegex = new RegExp(keywords_only_upper.join("|"), 'i');
 
 rangeFromRegExp = function rangeFromRegExp(line, regexp) {
@@ -86,8 +93,8 @@ module.exports = {
                 for (let word of words) {
                     let keyword = word.line.match(keywordsRegexAnyCase);
                     if (tokens[index - 1].type != "heading_open") {
-                        if ((word.type != "code_inline") || (!keywordsRegexExactCase.test(word.content))) {
-                            let desc = "Keyword '" + keyword + "' must be backticked";
+                        if ((word.type != "code_inline") || (!keywordsRegexExactCase.test(keyword))) {
+                            let desc = "Phrase '" + keyword + "' must be backticked";
                             onError({
                                 lineNumber: word.lineNumber,
                                 detail: keywordsOnlyUpperRegex.test(keyword) ? desc + " and must be in uppercase." : desc + " and must be in lowercase.",
@@ -95,8 +102,8 @@ module.exports = {
                             })
                         }
                     } else {
-                        if ((word.type === "code_inline") || (!keywordsRegexExactCase.test(word.content))) {
-                            let desc = "Keyword '" + keyword + "' in header must not be backticked";
+                        if ((word.type === "code_inline") || (!keywordsRegexExactCase.test(keyword))) {
+                            let desc = "Phrase '" + keyword + "' in header must not be backticked";
                             onError({
                                 lineNumber: word.lineNumber,
                                 detail: keywordsOnlyUpperRegex.test(keyword) ? desc + " and must be in uppercase." : desc + " and must be in lowercase.",
