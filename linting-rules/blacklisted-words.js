@@ -75,7 +75,7 @@ const rules = [
     new Rule("didn't", "use present tense"),
     new Rule("abort", "'stop', 'cancel'"),
     new Rule("kill", "'stop', 'cancel'"),
-    new Rule("terminate", "'stop', 'cancel'"),
+    new Rule(" terminate ", "'stop', 'cancel'"),
     new Rule("a lot", "use formal style"),
     new Rule("actually", "use formal style"),
     new Rule("as is", "remove"),
