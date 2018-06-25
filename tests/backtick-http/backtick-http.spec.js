@@ -4,19 +4,19 @@ import test from 'ava';
 import execa from 'execa';
 import path from 'path';
 
-const TESTED_RULE = './linting-rules/backtick-http.js';
+const tested_rule = './linting-rules/backtick-http.js';
 const lint_exec = './node_modules/markdownlint-cli/markdownlint.js';
 
 function lint(config, rule, file) {
     return execa(path.resolve(lint_exec),
-        ['-c', path.resolve(__dirname, config), '-r', path.resolve(rule),  file], {
+        ['-c', path.resolve(__dirname, config), '-r', path.resolve(rule), file], {
             cwd: __dirname
         })
 }
 
-test('linting results are sorted by file/line/names/description', async t => {
+test('HTTP related words should be backticked', async t => {
     try {
-        await lint('test-config.json', TESTED_RULE, 'incorrect.md');
+        await lint('test-config.json', tested_rule, 'incorrect.md');
         t.fail();
     } catch (err) {
         const expected = [
