@@ -1,0 +1,19 @@
+{
+  "name": "docs-util",
+  "version": "0.0.1",
+  "devDependencies": {
+    "ava": "1.0.0-beta.6",
+    "execa": "^0.6.3"
+  },
+  "main": "index.js",
+  "repository": "https://github.com/axibase/docs-util.git",
+  "author": "dev@axibase.com",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "test": "ava tests/**/*.spec.js"
+  },
+  "dependencies": {
+    "markdownlint-cli": "git+https://github.com/VeselovAlex/markdownlint-cli.git#custom-rules"
+  }
+}
