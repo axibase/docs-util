@@ -94,7 +94,7 @@ const rules = [
     new Rule("in order to", "'to'"),
     new Rule("make sure", "'ensure'"),
     new Rule("end-point", "'endpoint'"),
-    new Rule("click on", "'click'"),
+    new Rule("click on ", "'click'"),
     new Rule("robust", "avoid trite words"),
     new Rule("i\\.e\\.", "'for example'"),
     new Rule("e\\.g\\.", "'for example'"),
