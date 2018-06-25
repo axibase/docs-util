@@ -66,7 +66,7 @@ const rules = [
     new Rule("may", "'can'", true),
     new Rule("will", "use present tense"),
     new Rule("was", "use present tense"),
-    new Rule("were", "use present tense"),
+    new Rule("were ", "use present tense"),
     new Rule("had ", "use present tense"),
     new Rule("did", "use present tense"),
     new Rule("wasn't", "use present tense"),
