@@ -22,7 +22,7 @@
  * Keyword in header must not be backticked and must be in lowercase (except words in keywords_only_upper).
  */
 
-const api_path = "\\B\\/[\\w]+[\\w-\\/{}]*";
+//const api_path = "\\B\\/[\\w]+[\\w-\\/{}]*";
 const keywords = [
     "curl",
     "wget",
@@ -35,14 +35,13 @@ const keywords = [
     "traceroute",
     "sudo",
     "root",
-    "axibase",
     "true",
     "false",
     "null",
     "jps",
     "name=value",
     "key=value",
-    api_path,
+    //api_path,
     "atsd.log",
     "logback.xml",
     "stdout",
