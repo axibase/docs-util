@@ -85,7 +85,7 @@ const rules = [
     new Rule("ingest", "'load', 'import'"),
     new Rule("lets|let's", "informal"),
     new Rule("please", "-"),
-    new Rule("regex", "'regular expression'"),
+    new Rule("regex ", "'regular expression'"),
     new Rule("dropdown", "'drop-down'"),
     new Rule("terminal", "'console'"),
     new Rule("Epoch time", "Unix time"),
