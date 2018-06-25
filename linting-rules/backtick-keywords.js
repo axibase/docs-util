@@ -57,13 +57,14 @@ const keywords_only_upper = [
 ]
 
 const keywordsRegexExactCase = new RegExp(keywords.join("|"));
-const keywordsRegexAnyCase = new RegExp(keywords.map(word => {
-    if (word === api_path) {
-        return word;
-    } else {
-        return "\\b" + word + "\\b";
-    }
-}).join("|"), 'i');
+// const keywordsRegexAnyCase = new RegExp(keywords.map(word => {
+//     if (word === api_path) {
+//         return word;
+//     } else {
+//         return "\\b" + word + "\\b";
+//     }
+// }).join("|"), 'i');
+const keywordsRegexAnyCase = new RegExp(keywords.map(word => "\\b" + word + "\\b").join("|"), 'i');
 const keywordsOnlyUpperRegex = new RegExp(keywords_only_upper.join("|"), 'i');
 
 module.exports = {
