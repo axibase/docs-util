@@ -22,8 +22,8 @@
  * Keyword in header must not be backticked and must be in lowercase.
  */
 
-const keywords = /(curl|wget|cron)/i;
-const keywords_lower = /(curl|wget|cron)/;
+const keywords = /(curl |wget|cron)/i;
+const keywords_lower = /(curl |wget|cron)/;
 
 module.exports = {
     names: ["MD101", "backtick-keywords"],
