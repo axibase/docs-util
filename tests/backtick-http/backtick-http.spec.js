@@ -20,7 +20,7 @@ test('HTTP related words should be backticked', async t => {
         t.fail();
     } catch (err) {
         const expected = [
-            `incorrect.md: 3: MD103/backtick-http   [HTTP keyword 'GET' must be backticked.]\n`
+            `incorrect.md: 3: MD103/backtick-http HTTP keywords must be fenced. [Expected \`GET\`. Actual GET.]\n`
         ].join('\n');
         t.true(err.stdout === '');
         t.true(err.stderr === expected);
