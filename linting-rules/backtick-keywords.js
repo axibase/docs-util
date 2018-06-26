@@ -77,6 +77,9 @@ module.exports = {
                 let words = token.children.filter(child => keywordsRegexAnyCase.test(child.content));
                 for (let word of words) {
                     let match = word.line.match(keywordsRegexAnyCase);
+                    if (!match) {
+                        continue;    
+                    }
                     if (tokens[index - 1].type != "heading_open") {
                         if ((word.type != "code_inline") || (!keywordsRegexExactCase.test(match))) {
                             let desc = "Phrase '" + match + "' must be backticked";
