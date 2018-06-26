@@ -16,10 +16,8 @@
  */
 
 /**
- * Plugin checks that keywords below are backticked and in lowercase (except words in keywords_only_upper ) if they are:
- * a) not in heading;
- * b) not in code block.
- * Keyword in header must not be backticked and must be in lowercase (except words in keywords_only_upper).
+ * Plugin checks that keywords below are fenced and have exact case if they are not in code block.
+ * Keywords in headers can either be fenced or not, but must be in exact case.
  */
 
 //const api_path = "\\B\\/[\\w]+[\\w-\\/{}]*";
@@ -37,11 +35,9 @@ const keywords = [
     "root",
     "true",
     "false",
-    "null",
     "jps",
     "name=value",
     "key=value",
-    //api_path,
     "atsd.log",
     "logback.xml",
     "stdout",
@@ -50,57 +46,42 @@ const keywords = [
     "SIGTERM",
     "NaN"
 ]
-
-const keywords_only_upper = [
-    "NaN",
-    "SIGTERM"
-]
-
 const keywordsRegexExactCase = new RegExp(keywords.join("|"));
-// const keywordsRegexAnyCase = new RegExp(keywords.map(word => {
-//     if (word === api_path) {
-//         return word;
-//     } else {
-//         return "\\b" + word + "\\b";
-//     }
-// }).join("|"), 'i');
 const keywordsRegexAnyCase = new RegExp(keywords.map(word => "\\b" + word + "\\b").join("|"), 'i');
-const keywordsOnlyUpperRegex = new RegExp(keywords_only_upper.join("|"), 'i');
+
+const { InlineTokenChildren } = require("../common/InlineTokenChildren")
 
 module.exports = {
     names: ["MD101", "backtick-keywords"],
-    description: " ",
+    description: "Keywords must be fenced.",
     tags: ["backtick", "code", "bash"],
     "function": (params, onError) => {
-        params.tokens.forEach((token, index, tokens) => {
-            if (token.children != null) {
-                let words = token.children.filter(child => keywordsRegexAnyCase.test(child.content));
-                for (let word of words) {
-                    let match = word.line.match(keywordsRegexAnyCase);
-                    if (!match) {
-                        continue;    
-                    }
-                    if (tokens[index - 1].type != "heading_open") {
-                        if ((word.type != "code_inline") || (!keywordsRegexExactCase.test(match))) {
-                            let desc = "Phrase '" + match + "' must be backticked";
-                            onError({
-                                lineNumber: word.lineNumber,
-                                detail: keywordsOnlyUpperRegex.test(match) ? desc + " and must be in uppercase." : desc + " and must be in lowercase.",
-                                range: [match.index + 1, match[0].length]
-                            })
-                        }
-                    } else {
-                        if ((word.type === "code_inline") || (!keywordsRegexExactCase.test(match))) {
-                            let desc = "Phrase '" + match + "' in header must not be backticked";
-                            onError({
-                                lineNumber: word.lineNumber,
-                                detail: keywordsOnlyUpperRegex.test(match) ? desc + " and must be in uppercase." : desc + " and must be in lowercase.",
-                                range: [match.index + 1, match[0].length]
-                            })
+        var inHeading = false
+        for (let token of params.tokens) {
+            switch (token.type) {
+                case "heading_open":
+                    inHeading = true; break;
+                case "heading_close":
+                    inHeading = false; break;
+                case "inline":
+                    let children = new InlineTokenChildren(token);
+                    for (let { token: child, column, lineNumber } of children) {
+                        let isText = child.type === "text"
+                        let anyCaseMatch = child.content.match(keywordsRegexAnyCase);
+                        if (anyCaseMatch != null) {
+                            let match = anyCaseMatch[0];
+                            let correct = keywords.find(kw => kw.toLowerCase() === match.toLowerCase());
+                            if ((!inHeading && isText) || // Bad not fenced
+                                (!keywordsRegexExactCase.test(match))) { // Right fencing, wrong case                               
+                                onError({
+                                    lineNumber,
+                                    detail: `Expected \`${correct}\`. Actual ${match}.`,
+                                    range: [column, match.length]
+                                })
+                            }
                         }
                     }
-                }
             }
-        })
+        }
     }
 };
