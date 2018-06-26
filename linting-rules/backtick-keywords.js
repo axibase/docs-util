@@ -72,32 +72,35 @@ module.exports = {
     description: " ",
     tags: ["backtick", "code", "bash"],
     "function": (params, onError) => {
-        params.tokens.forEach((token, index, tokens) => {
-            if (token.children != null) {
-                let words = token.children.filter(child => keywordsRegexAnyCase.test(child.content));
-                for (let word of words) {
-                    let match = word.line.match(keywordsRegexAnyCase);
-                    if (tokens[index - 1].type != "heading_open") {
-                        if ((word.type != "code_inline") || (!keywordsRegexExactCase.test(match))) {
-                            let desc = "Phrase '" + match + "' must be backticked";
-                            onError({
-                                lineNumber: word.lineNumber,
-                                detail: keywordsOnlyUpperRegex.test(match) ? desc + " and must be in uppercase." : desc + " and must be in lowercase.",
-                                range: [match.index + 1, match[0].length]
-                            })
-                        }
-                    } else {
-                        if ((word.type === "code_inline") || (!keywordsRegexExactCase.test(match))) {
-                            let desc = "Phrase '" + match + "' in header must not be backticked";
-                            onError({
-                                lineNumber: word.lineNumber,
-                                detail: keywordsOnlyUpperRegex.test(match) ? desc + " and must be in uppercase." : desc + " and must be in lowercase.",
-                                range: [match.index + 1, match[0].length]
-                            })
+        let tokens = params.tokens;
+        if (tokens) {
+            tokens.forEach((token, index, tokens) => {
+                if (token.children != null) {
+                    let words = token.children.filter(child => keywordsRegexAnyCase.test(child.content));
+                    for (let word of words) {
+                        let match = word.line.match(keywordsRegexAnyCase);
+                        if (tokens[index - 1].type != "heading_open") {
+                            if ((word.type != "code_inline") || (!keywordsRegexExactCase.test(match))) {
+                                let desc = "Phrase '" + match + "' must be backticked";
+                                onError({
+                                    lineNumber: word.lineNumber,
+                                    detail: keywordsOnlyUpperRegex.test(match) ? desc + " and must be in uppercase." : desc + " and must be in lowercase.",
+                                    range: [match.index + 1, match[0].length]
+                                })
+                            }
+                        } else {
+                            if ((word.type === "code_inline") || (!keywordsRegexExactCase.test(match))) {
+                                let desc = "Phrase '" + match + "' in header must not be backticked";
+                                onError({
+                                    lineNumber: word.lineNumber,
+                                    detail: keywordsOnlyUpperRegex.test(match) ? desc + " and must be in uppercase." : desc + " and must be in lowercase.",
+                                    range: [match.index + 1, match[0].length]
+                                })
+                            }
                         }
                     }
                 }
-            }
-        })
+            })
+        }
     }
 };

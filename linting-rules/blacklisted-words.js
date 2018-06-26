@@ -122,17 +122,20 @@ module.exports = {
     description: " ",
     tags: ["blacklist"],
     "function": (params, onError) => {
-        params.tokens.filter(t => t.type === "inline").forEach(token => {
-            token.children.forEach(child => rules.forEach(rule => {
-                if ((child.type !== "code_inline") && (rule.regex.test(child.content))) {
-                    const match = rule.test(child.line);
-                    onError({
-                        lineNumber: child.lineNumber,
-                        detail: `The phrase '${match}' is blacklisted. Alternatives: ${rule.suggestion}`,
-                        range: match.range()
-                    })
-                }
-            }))
-        });
+        let tokens = params.tokens;
+        if (tokens) {
+            tokens.filter(t => t.type === "inline").forEach(token => {
+                token.children.forEach(child => rules.forEach(rule => {
+                    if ((child.type !== "code_inline") && (rule.regex.test(child.content))) {
+                        const match = rule.test(child.line);
+                        onError({
+                            lineNumber: child.lineNumber,
+                            detail: `The phrase '${match}' is blacklisted. Alternatives: ${rule.suggestion}`,
+                            range: match.range()
+                        })
+                    }
+                }))
+            });
+        }
     }
 };

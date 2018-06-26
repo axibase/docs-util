@@ -53,30 +53,33 @@ module.exports = {
     description: " ",
     tags: ["backtick", "HTTP", "HTTPS"],
     "function": (params, onError) => {
-        params.tokens.forEach((token, index, tokens) => {
-            if (token.children != null) {
-                let words = token.children.filter(child => keywordsRegex.test(child.content));
-                for (let word of words) {
-                    let match = word.line.match(keywordsRegex);
-                    if (tokens[index - 1].type != "heading_open") {
-                        if (word.type != "code_inline") {
-                            onError({
-                                lineNumber: word.lineNumber,
-                                detail: "HTTP keyword '" + match + "' must be backticked.",
-                                range: [match.index + 1, match[0].length]
-                            })
-                        }
-                    } else {
-                        if (word.type === "code_inline") {
-                            onError({
-                                lineNumber: word.lineNumber,
-                                detail: "HTTP keyword '" + match + "' in header must not be backticked.",
-                                range: [match.index + 1, match[0].length]
-                            })
+        let tokens = params.tokens;
+        if (tokens) {
+            params.tokens.forEach((token, index, tokens) => {
+                if (token.children != null) {
+                    let words = token.children.filter(child => keywordsRegex.test(child.content));
+                    for (let word of words) {
+                        let match = word.line.match(keywordsRegex);
+                        if (tokens[index - 1].type != "heading_open") {
+                            if (word.type != "code_inline") {
+                                onError({
+                                    lineNumber: word.lineNumber,
+                                    detail: "HTTP keyword '" + match + "' must be backticked.",
+                                    range: [match.index + 1, match[0].length]
+                                })
+                            }
+                        } else {
+                            if (word.type === "code_inline") {
+                                onError({
+                                    lineNumber: word.lineNumber,
+                                    detail: "HTTP keyword '" + match + "' in header must not be backticked.",
+                                    range: [match.index + 1, match[0].length]
+                                })
+                            }
                         }
                     }
                 }
-            }
-        })
+            })
+        }
     }
 };
