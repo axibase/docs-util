@@ -1,6 +1,6 @@
 # Visual Studio Code Linting Rules Installation
 
-Assuming you have markdownlint extension installed.
+Assuming you have [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) extension installed.
 
 1. Clone `axibase/docs-util` repository
 
