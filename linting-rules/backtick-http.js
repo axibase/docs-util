@@ -16,10 +16,8 @@
  */
 
 /**
- * Plugin checks that HTTP keywords below are backticked if they are:
- * a) not in heading;
- * b) not in code block.
- * HTTP keyword in header must not be backticked.
+ * Plugin checks that HTTP keywords below are fenced.
+ * HTTP keywords in headers can either be fenced or not.
  */
 
 const http_keywords = [
@@ -33,9 +31,8 @@ const http_keywords = [
     "Authorization.* ",
     "User-Agent.* ",
     "200 OK",
-    "200",
-    "401",
-    "403",
+    "401 Unauthorized",
+    "403 Forbidden",
     "API_DATA_READ",
     "API_DATA_WRITE",
     "API_META_READ",
@@ -45,38 +42,40 @@ const http_keywords = [
     "ENTITY_GROUP_ADMIN",
     "ADMIN"
 ]
-
 const keywordsRegex = new RegExp(http_keywords.map(word => "\\b" + word + "\\b").join("|"));
+
+const { InlineTokenChildren } = require("../common/InlineTokenChildren");
 
 module.exports = {
     names: ["MD103", "backtick-http"],
-    description: " ",
+    description: "HTTP keywords must be fenced.",
     tags: ["backtick", "HTTP", "HTTPS"],
     "function": (params, onError) => {
-        params.tokens.forEach((token, index, tokens) => {
-            if (token.children != null) {
-                let words = token.children.filter(child => keywordsRegex.test(child.content));
-                for (let word of words) {
-                    let match = word.line.match(keywordsRegex);
-                    if (tokens[index - 1].type != "heading_open") {
-                        if (word.type != "code_inline") {
-                            onError({
-                                lineNumber: word.lineNumber,
-                                detail: "HTTP keyword '" + match + "' must be backticked.",
-                                range: [match.index + 1, match[0].length]
-                            })
-                        }
-                    } else {
-                        if (word.type === "code_inline") {
-                            onError({
-                                lineNumber: word.lineNumber,
-                                detail: "HTTP keyword '" + match + "' in header must not be backticked.",
-                                range: [match.index + 1, match[0].length]
-                            })
+        var inHeading = false
+        for (let token of params.tokens) {
+            switch (token.type) {
+                case "heading_open":
+                    inHeading = true; break;
+                case "heading_close":
+                    inHeading = false; break;
+                case "inline":
+                    if (!inHeading) {
+                        let children = new InlineTokenChildren(token);
+                        for (let { token: child, column, lineNumber } of children) {
+                            if (child.type === "text") {
+                                let exactCaseMatch = child.content.match(keywordsRegex);
+                                if (exactCaseMatch != null) {
+                                    let match = exactCaseMatch[0];
+                                    onError({
+                                        lineNumber,
+                                        detail: `Expected \`${match}\`. Actual ${match}.`,
+                                        range: [column + exactCaseMatch.index, match.length]
+                                    })
+                                }
+                            }
                         }
                     }
-                }
             }
-        })
+        }
     }
 };
