@@ -59,20 +59,19 @@ module.exports = {
                 case "heading_close":
                     inHeading = false; break;
                 case "inline":
-                    let children = new InlineTokenChildren(token);
-                    for (let { token: child, column, lineNumber } of children) {
-                        let isText = child.type === "text"
-                        let anyCaseMatch = child.content.match(keywordsRegex);
-                        if (anyCaseMatch != null) {
-                            let match = anyCaseMatch[0];
-                            let correct = http_keywords.find(kw => kw.toLowerCase() === match.toLowerCase());
-                            // Bad not fenced
-                            if (!inHeading && isText) {                                
-                                onError({
-                                    lineNumber,
-                                    detail: `Expected \`${correct}\`. Actual ${match}.`,
-                                    range: [column, match.length]
-                                })
+                    if (!inHeading) {
+                        let children = new InlineTokenChildren(token);
+                        for (let { token: child, column, lineNumber } of children) {
+                            if (child.type === "text") {
+                                let exactCaseMatch = child.content.match(keywordsRegex);
+                                if (exactCaseMatch != null) {
+                                    let match = exactCaseMatch[0];
+                                    onError({
+                                        lineNumber,
+                                        detail: `Expected \`${match}\`. Actual ${match}.`,
+                                        range: [column, match.length]
+                                    })
+                                }
                             }
                         }
                     }
