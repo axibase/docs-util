@@ -76,7 +76,7 @@ module.exports = {
                                 onError({
                                     lineNumber,
                                     detail: `Expected \`${correct}\`. Actual ${match}.`,
-                                    range: [column, match.length]
+                                    range: [column + anyCaseMatch.index, match.length]
                                 })
                             }
                         }

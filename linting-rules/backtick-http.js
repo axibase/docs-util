@@ -69,7 +69,7 @@ module.exports = {
                                     onError({
                                         lineNumber,
                                         detail: `Expected \`${match}\`. Actual ${match}.`,
-                                        range: [column, match.length]
+                                        range: [column + exactCaseMatch.index, match.length]
                                     })
                                 }
                             }
