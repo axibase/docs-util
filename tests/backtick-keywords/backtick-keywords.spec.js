@@ -4,7 +4,7 @@ import test from 'ava';
 import execa from 'execa';
 import path from 'path';
 
-const tested_rule = './linting-rules/blacklisted-words.js';
+const tested_rule = './linting-rules/backtick-keywords.js';
 const lint_exec = './node_modules/markdownlint-cli/markdownlint.js';
 
 function lint(config, rule, file) {
@@ -14,7 +14,7 @@ function lint(config, rule, file) {
         })
 }
 
-test('Correct file doesn\'t reproduce errors' , async t => {
+test('File without rule violation' , async t => {
         await lint('test-config.json', tested_rule, 'correct.md')
             .then(res => t.is(res.code, 0))
             .catch(res => {
