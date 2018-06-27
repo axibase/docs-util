@@ -71,15 +71,12 @@ module.exports = {
                 case "inline":
                     let children = new InlineTokenChildren(token);
                     for (let { token: child, column, lineNumber } of children) {
+                        let isText = child.type === "text";
                         switch (child.type) {
                             case "link_open":
                                 inLink = true; break;
                             case "link_close":
                                 inLink = false; break;
-                            case "text":
-                                isText = true; break;
-                            default:
-                                isText = false; break;
                         }
                         let anyCaseMatch = child.content.match(keywordsRegexAnyCase);
                         if (anyCaseMatch != null) {
