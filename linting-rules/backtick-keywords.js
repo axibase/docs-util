@@ -78,7 +78,7 @@ module.exports = {
                                 inLink = false; break;
                             case "text":
                                 isText = true; break;
-                            case "code_inline":
+                            default:
                                 isText = false; break;
                         }
                         let anyCaseMatch = child.content.match(keywordsRegexAnyCase);
