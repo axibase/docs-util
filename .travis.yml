@@ -3,9 +3,12 @@ language: node_js
 node_js:
   - "10"
 install:
+  - wget https://raw.githubusercontent.com/axibase/atsd/master/.travis-functions.sh && source .travis-functions.sh
+  - install_checkers
   - npm install
 script:
   - npm run test
+  - stylecheck
 cache:
   directories:
     - $(npm config get prefix)/lib/node_modules
