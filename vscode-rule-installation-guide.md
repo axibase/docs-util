@@ -30,3 +30,5 @@ git clone https://github.com/axibase/docs-util.git
 ![security popup](./images/security-popup.png)
 
 6. If rules are not applied try to reload window: press <kbd>F1</kbd>, enter **Reload Window**.
+
+![](./images/reload_window.png)

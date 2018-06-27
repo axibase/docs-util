@@ -35,11 +35,11 @@ Test function takes 2 arguments: `params` object and `onError` callback.
 The most important thing in the function input is `params.tokes` field, which is the list of document tokens, parsed by `markdown-it`. Visit the [API reference](https://markdown-it.github.io/markdown-it/#Token) for details.
 One useful tool is the [`markdown-it` playground](https://markdown-it.github.io/), which can help you to discover how the token tree looks for your test case. Type an example and go to debug tab.
 
-The `onError` callback takes an object, describing what goes bad and where. The only required field is `lineNumber`, but try to provide as much info, as possible. Take a look at [InlineTokenChildren](common/InlineTokenChildren.js) module, it helps to [iterate](linting-rules/backtick-keywords.js#L73) over `token.children` array. Also it useful to provide [range](linting-rules/backtick-keywords.js#L90) array for proper underline in VSCode:
+The `onError` callback takes an object, describing what goes bad and where. The only required field is `lineNumber`, but try to provide as much info, as possible. Take a look at [InlineTokenChildren](common/InlineTokenChildren.js) module, it helps to [iterate](linting-rules/backtick-keywords.js#L73) over `token.children` array. Also this module useful for creating [range](linting-rules/backtick-keywords.js#L90) array for proper underline in VSCode:
 
 ![](images/vscode_underline.png)
 
-Refer to Axibase rule [rules](README.md#axibase-rules).
+Refer to Axibase [rules](README.md#axibase-rules).
 
 ## Debug Rule
 
@@ -55,7 +55,7 @@ Add some cases to `foo.md` and start debug:
 
 Before commit changes ensure tests are passed:
 
-```javascript
+```node
 npm install
 npm run test
 ```
