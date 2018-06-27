@@ -16,4 +16,6 @@ ISO - check `so` is not matched.
 
 panasonic - check `so` is not matched.
 
+so-called - check `so` is not matched.
+
 click online - check `click on` is not matched.
