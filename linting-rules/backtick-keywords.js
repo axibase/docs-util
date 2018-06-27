@@ -42,7 +42,7 @@ const keywords = [
     "jps",
     "name=value",
     "key=value",
-    "atsd.log",
+    "atsd\\.log",
     "logback.xml",
     "stdout",
     "stderr",
