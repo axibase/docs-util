@@ -16,8 +16,13 @@
  */
 
 /**
- * Plugin checks that keywords below are fenced and have exact case if they are not in code block.
- * Keywords in headers can either be fenced or not, but must be in exact case.
+ * Plugin checks that keywords below are fenced and have exact case. 
+ * Fence check is skipped for:
+ *  a) code blocks; 
+ *  b) links;
+ *  c) headers.
+ * Case check is skipped for:
+ *  a) code blocks.
  */
 
 //const api_path = "\\B\\/[\\w]+[\\w-\\/{}]*";
@@ -55,7 +60,8 @@ module.exports = {
     description: "Keywords must be fenced.",
     tags: ["backtick", "code", "bash"],
     "function": (params, onError) => {
-        var inHeading = false
+        var inHeading = false;
+        var inLink = false;
         for (let token of params.tokens) {
             switch (token.type) {
                 case "heading_open":
@@ -65,13 +71,19 @@ module.exports = {
                 case "inline":
                     let children = new InlineTokenChildren(token);
                     for (let { token: child, column, lineNumber } of children) {
-                        let isText = child.type === "text"
+                        let isText = child.type === "text";
+                        switch (child.type) {
+                            case "link_open":
+                                inLink = true; break;
+                            case "link_close":
+                                inLink = false; break;
+                        }
                         let anyCaseMatch = child.content.match(keywordsRegexAnyCase);
                         if (anyCaseMatch != null) {
                             let match = anyCaseMatch[0];
                             let correct = keywords.find(kw => kw.toLowerCase() === match.toLowerCase());
-                            if ((!inHeading && isText) || // Bad not fenced
-                                (!keywordsRegexExactCase.test(match))) { // Right fencing, wrong case                               
+                            if ((!inHeading && !inLink && isText) || // Bad not fenced
+                                (!keywordsRegexExactCase.test(match))) { // Right fencing, wrong case  
                                 onError({
                                     lineNumber,
                                     detail: `Expected \`${correct}\`. Actual ${match}.`,
