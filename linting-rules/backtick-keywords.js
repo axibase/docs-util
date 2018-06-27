@@ -16,10 +16,13 @@
  */
 
 /**
- * Plugin checks that keywords below are fenced and have exact case if they are not
- * a) in code block; 
- * b) in link.
- * Keywords in headers can either be fenced or not, but must be in exact case.
+ * Plugin checks that keywords below are fenced and have exact case. 
+ * Fence check is skipped for:
+ *  a) code blocks; 
+ *  b) links;
+ *  c) headers.
+ * Case check is skipped for:
+ *  a) code blocks.
  */
 
 //const api_path = "\\B\\/[\\w]+[\\w-\\/{}]*";
