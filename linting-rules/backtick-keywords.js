@@ -57,7 +57,7 @@ const { InlineTokenChildren } = require("../common/InlineTokenChildren")
 
 module.exports = {
     names: ["MD101", "backtick-keywords"],
-    description: "Keywords must be fenced.",
+    description: "Keywords must be fenced and must be in appropriate case.",
     tags: ["backtick", "code", "bash"],
     "function": (params, onError) => {
         var inHeading = false;
