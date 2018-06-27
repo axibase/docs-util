@@ -1,7 +1,5 @@
 # Correct
 
-Consider the Item List **'meteo-stations'**:
-
 waste - check `was` is not matched.
 
 terminated - check `terminate` is not matched.
@@ -15,5 +13,7 @@ letter - check `let` is not matched.
 ISO - check `so` is not matched.
 
 panasonic - check `so` is not matched.
+
+so-called - check `so` is not matched.
 
 click online - check `click on` is not matched.
