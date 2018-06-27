@@ -43,7 +43,7 @@ const keywords = [
     "name=value",
     "key=value",
     "atsd\\.log",
-    "logback.xml",
+    "logback\\.xml",
     "stdout",
     "stderr",
     "graphite.conf",
