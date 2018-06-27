@@ -28,7 +28,6 @@ const http_keywords = [
     "DELETE",
     "Content-Type",
     "Content-Encoding",
-    "Authorization",
     "User-Agent",
     "200 OK",
     "401 Unauthorized",
