@@ -87,7 +87,7 @@ const rules = [
     new Rule("flag", "'option', 'setting'"),
     new Rule("ingest", "'load', 'import'"),
     new Rule("lets", "-"),
-    new Rule(" let ", "-"),
+    new Rule("let", "-"),
     new Rule("please", "-"),
     new Rule("regex ", "'regular expression'"),
     new Rule("dropdown", "'drop-down'"),
