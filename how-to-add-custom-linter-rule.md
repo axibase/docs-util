@@ -37,7 +37,7 @@ One useful tool is the [`markdown-it` playground](https://markdown-it.github.io/
 
 The `onError` callback takes an object, describing what goes bad and where. The only required field is `lineNumber`, but try to provide as much info, as possible. Take a look at [InlineTokenChildren](common/InlineTokenChildren.js) module, it helps to [iterate](linting-rules/backtick-keywords.js#L73) over `token.children` array. Also this module useful for creating [range](linting-rules/backtick-keywords.js#L90) array for proper underline in VSCode:
 
-![](images/vscode_underline.png)
+![](./images/vscode_underline.png)
 
 Refer to Axibase [rules](README.md#axibase-rules).
 
@@ -45,11 +45,11 @@ Refer to Axibase [rules](README.md#axibase-rules).
 
 To debug the rule configure [mdlint.js](debug/mdlint.js), replace `<rule-filename>` with appropriate rule, for example `my-rule.js`:
 
-![](images/debug_myrule.png)
+![](./images/debug_myrule.png)
 
 Add some cases to `foo.md` and start debug:
 
-![](images/debug.png)
+![](./images/debug.png)
 
 ## Run Tests
 
@@ -60,4 +60,4 @@ npm install
 npm run test
 ```
 
-![](images/tests_passed.png)
+![](./images/tests_passed.png)
