@@ -8,8 +8,7 @@ install:
   - wget https://raw.githubusercontent.com/axibase/atsd/master/.markdownlint.json
 script:
   - npm run test
-  - rm -rf node_modules
-  - markdownlint . -r "linting-rules/*" .
+  - markdownlint -r "linting-rules/*" docs/**/*.md
 cache:
   directories:
     - $(npm config get prefix)/lib/node_modules
