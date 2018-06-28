@@ -43,13 +43,29 @@ Refer to Axibase [rules](README.md#axibase-rules).
 
 ## Debug Rule
 
-To debug the rule configure [mdlint.js](debug/mdlint.js), replace `<rule-filename>` with appropriate rule, for example `my-rule.js`:
+1. Configure `debug/mdlint.js`, replace `<rule-filename>` with appropriate rule file, for example `my-rule.js`:
 
-![](./images/debug_myrule.png)
+    ![](./images/debug_myrule.png)
 
-Add some cases to `foo.md` and start debug:
+2. Configure `.vscode/launch.json`, set field `program` to `"${workspaceFolder}/debug/mdlint.js"`:
 
-![](./images/debug.png)
+    ```json
+    {
+     "version": "0.2.0",
+     "configurations": [
+        {
+         "type": "node",
+         "request": "launch",
+         "name": "Launch Program",
+         "program": "${workspaceFolder}/debug/mdlint.js"
+        }
+      ]
+    }
+    ```
+
+3. Add some cases to `foo.md` and start debug:
+
+   ![](./images/debug.png)
 
 ## Run Tests
 
