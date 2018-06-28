@@ -5,10 +5,11 @@ node_js:
 install:
   - npm install -g markdownlint-cli@git+https://github.com/VeselovAlex/markdownlint-cli.git#custom-rules
   - npm install
+  - wget https://raw.githubusercontent.com/axibase/atsd/master/.markdownlint.json
 script:
   - npm run test
   - rm -rf node_modules
-  - markdownlint .
+  - markdownlint . -r "linting-rules/*" .
 cache:
   directories:
     - $(npm config get prefix)/lib/node_modules
