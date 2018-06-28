@@ -8,7 +8,7 @@ install:
 script:
   - npm run test
   - rm -rf node_modules
-  - markdownnlit .
+  - markdownlint .
 cache:
   directories:
     - $(npm config get prefix)/lib/node_modules
