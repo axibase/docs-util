@@ -16,7 +16,8 @@ To create new rule refer to [Create and Test Lint Rule](./how-to-add-custom-lint
 
 |ID | Name| Description|
 |---|---|---|
-|MD100|[relative-image-urls](linting-rules/relative-image-urls.js)| Checks relative image urls start with './' or '../', which is required by Vuepress image loader.|
-|MD101|[backtick-keywords](linting-rules/backtick-keywords.js)|Checks that [keywords](linting-rules/backtick-keywords.js#L29) are fenced and have exact case.<br>Fence check is skipped for:<ul><li>code blocks</li><li>links</li><li>headers</li></ul> Case check is skipped for:<ul><li>code blocks</li></ul>|
+|MD100|[relative-image-urls](linting-rules/relative-image-urls.js)| Checks relative image urls start with `./` or `../`, which is required by Vuepress image loader.|
+|MD101|[backtick-keywords](linting-rules/backtick-keywords.js)|Checks that [keywords](linting-rules/backtick-keywords.js#L29) are fenced and have exact case.<br>Fence check is skipped for: **code blocks**, **links**, **headers**. <br>Case check is skipped for: **code blocks**.|
 |MD102|[blacklisted-words](linting-rules/blacklisted-words.js)|Locates [patterns](linting-rules/blacklisted-words.js#L62) prohibited in Axibase style [guide](./guide.md).|
 |MD103|[backtick-http](linting-rules/backtick-http.js)|Checks that [HTTP-related](linting-rules/backtick-http.js#L23) words are fenced. HTTP keywords in headers can either be fenced or not.|
+|MD104|[whitelist-mail-and-host](linting-rules/whitelist-mail-and-host.js)|Locates credentials, email and url prohibited in Axibase style [guide](./guide.md). See [white list](linting-rules/whitelist-mail-and-host.js#L22).|
