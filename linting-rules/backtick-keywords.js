@@ -32,7 +32,6 @@ const keywords = [
     "crontab",
     "cron",
     "netcat",
-    "ps",
     "ping",
     "traceroute",
     "sudo",

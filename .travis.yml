@@ -3,9 +3,12 @@ language: node_js
 node_js:
   - "10"
 install:
+  - npm install -g markdownlint-cli@git+https://github.com/VeselovAlex/markdownlint-cli.git#custom-rules
   - npm install
 script:
   - npm run test
+  - rm -rf node_modules
+  - markdownnlit .
 cache:
   directories:
     - $(npm config get prefix)/lib/node_modules
