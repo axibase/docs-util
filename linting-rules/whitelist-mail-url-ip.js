@@ -65,9 +65,9 @@ const white_list = [
     "172.30.0.\\d{1,2}",
     "12.2.0.1", // Oracle EE 12c 12.2.0.1 database.
     "6.1.8.1", // Example in nmon-upload.md
-    "6.1.7.16", // Example in headers.md
-    "7.1.3.16", // Example in headers.md
-    "2.6.6.1" // RHEL version in ambari.md
+    "6.1.7.16", "7.1.3.16", // Examples in headers.md
+    "2.6.6.1", // RHEL version in ambari.md
+    "124.216.164.14", "37.58.57.238" // Example in data_retention.md
 ].map(x => x.replace(/\\?\./g, "\\."))
 
 const regexForSearch = /(?:[\w\.]+:)?[-_\w\.]+@[-_\w\.]+/g; // match URLs, credentials, Emails
