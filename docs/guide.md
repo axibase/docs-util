@@ -212,7 +212,7 @@ Exceptions:
 * Spell out month if the format is ambiguous:
   * :white_check_mark: `01/Jun/2018`.
   * :no_entry: `06/01/2018`.
-* Don't use ordinal numbers in dates.
+* Do not use ordinal numbers in dates.
   * :white_check_mark: `April 15`.
   * :no_entry: `April 15th`.
 * Use commas with full dates.
@@ -265,7 +265,7 @@ word | alternatives
 
 ## Interface Elements
 
-* Interface elements should be **bold**, exactly as they appear in the UI.
+* Interface elements must be **bold**, exactly as they appear in the UI.
 * Add `>` to describe navigation sequences.
   * :white_check_mark: `Open the **Alerts > Rules** page`.
 * Do not include types for named elements: button, split-button, checkbox, drop-down list, field, link, switch.
@@ -309,7 +309,7 @@ word | alternatives
 ## Product Names
 
 * Use original product names unless you introduce an abbreviation.
-* Articles may be omitted from product names in most cases.
+* Articles can be omitted from product names in most cases.
 
 ----
 
