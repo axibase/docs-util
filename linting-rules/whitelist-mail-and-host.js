@@ -20,25 +20,28 @@
  */
 
 const white_list = [
+    "support-atsd@axibase.com",
     "user@example.org",
+    "test@example.org",
     "john.doe@example.org",
     "jack.smith@example.org",
     "mary.jones@example.org",
-    "support-atsd@axibase.com",
     "username:password@atsd_hostname",
-    "username:password@atsd_ip_address",
     "username:password@192.0.2.1",
     "username:password@198.51.100.1",
     "username:password@203.0.113.0",
+    "john.doe:secret@atsd_hostname",
     "git@github.com",
     "SelectChannelConnector@0.0.0.0",
     "SslSelectChannelConnector@0.0.0.0",
     "username:password@HADOOP.EXAMPLE.ORG",
     "_HOST@HADOOP.EXAMPLE.ORG",
+    "login:axibase@HADOOP.EXAMPLE.ORG",
+    "axibase@HADOOP.EXAMPLE.ORG",
     "HBase@prod",
     "ATSD@prod",
     "Redmine@prod",
-    "atsdreadonly@atsd-tst"
+    "atsdreadonly@atsd_hostname"
 ]
 const regex = /\w+:?[-_\w\.]+@[-_\w\.]+/;
 const { InlineTokenChildren } = require("../common/InlineTokenChildren");
