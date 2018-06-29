@@ -6,10 +6,10 @@ install:
   - npm install -g markdownlint-cli@git+https://github.com/VeselovAlex/markdownlint-cli.git#custom-rules
   - npm install
   - wget https://raw.githubusercontent.com/axibase/atsd/master/.markdownlint.json
-  - git clone https://github.com/axibase/atsd.git /atsd
+  - git clone https://github.com/axibase/atsd.git /tmp/atsd
 script:
   - npm run test
-  - markdownlint -i . -r "linting-rules/*" /atsd
+  - markdownlint -i . -r "linting-rules/*" /tmp/atsd
 cache:
   directories:
     - $(npm config get prefix)/lib/node_modules
