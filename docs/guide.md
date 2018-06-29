@@ -200,10 +200,11 @@ Exceptions:
 * Host name: `atsd_hostname`, `atsd_ip_address`.
 * DNS name: `example.org` per [RFC 2606](https://tools.ietf.org/html/rfc2606).
 * Subdomain: `test.example.org`, `atsd.example.org`.
-* Email: `user@example.org`, `john.doe@example.org`.
+* Organization: Example Foundation, Example Corporation. Avoid [`Contoso`](https://en.wikipedia.org/wiki/List_of_fictional_Microsoft_companies).
+* Email: `user@example.org`, `test@example.org`, `john.doe@example.org`.
 * First name: `John`, `Jack`, `Jane`, `Mary`.
 * Last name: `Doe`, `Smith`, `Jones`.
-* Credentials: `username` and `password`.
+* Credentials: `username` and `password`, `username:password`, and `john.doe:secret` in examples.
 * SSN: `000-00-0000`.
 * File path: `/path/to/new-dir`, `/path/to/new-file`. Replace `new-dir` and `new-file` to indicate the purpose, for example, `/path/to/backup-dir`.
 
