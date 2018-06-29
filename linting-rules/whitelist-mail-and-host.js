@@ -21,6 +21,7 @@
 
 const white_list = [
     "support-atsd@axibase.com",
+    "axibase-api@axibase.com",
     "user@example.org",
     "test@example.org",
     "john.doe@example.org",
