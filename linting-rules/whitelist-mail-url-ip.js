@@ -76,7 +76,7 @@ const regexForCheck = new RegExp(white_list.map(word => "\\b^" + word + "$\\b").
 const { InlineTokenChildren } = require("../common/InlineTokenChildren");
 
 module.exports = {
-    names: ["MD104", "whitelist-mail-and-host"],
+    names: ["MD104", "whitelist-mail-url-ip"],
     description: "Example is prohibited, refer to whitelist.",
     tags: ["email", "url", "ip"],
     "function": (params, onError) => {
