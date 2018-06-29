@@ -113,6 +113,7 @@ const rules = [
     new Rule("the following command", "avoid verbiage"),
     new Rule("the following step", "avoid verbiage"),
     new Rule("execute the following", "avoid verbiage"),
+    new Rule("the following", "avoid verbiage"),
     new Rule("login into", "'log in to'"),
     new Rule("log in into", "'log in to'")
 ];
