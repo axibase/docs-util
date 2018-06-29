@@ -25,10 +25,10 @@ The guide contains a compilation of grammar and punctuation rules for software d
 ## Contractions
 
 * Replace "i.e." or "e.g." with "for example".
-  * :white_check_mark: ``Specify the recipient, for example `test@example.org`.``
-  * :no_entry: ``Specify the recipient, e.g. `test@example.org`.``
+  * :white_check_mark: ``Specify the recipient, for example `user@example.org`.``
+  * :no_entry: ``Specify the recipient, e.g. `user@example.org`.``
 * "etc" is allowed.
-* Replace "don't", "can't", "hasn't", "isn't", "didn't" with "do not", "cannot", etc.
+* Replace `don't`, `can't`, `hasn't`, `isn't`, `didn't` with `do not`, `cannot`, etc.
   * :white_check_mark: `The parameter is not valid.`
   * :no_entry: `The parameter isn't valid.`
 
@@ -103,7 +103,7 @@ Apply single backticks to the following:
 * Directory and file paths: `/opt/atsd/atsd/conf/server.properties`.
 * File extensions: `.png`, `.xml`.
 * Program names: `curl`, `wget`, `cron`.
-* Email addresses: `example@example.org`.
+* Email addresses: `user@example.org`.
 * Host names and IP addresses: `127.0.0.1`, `2001:db8::1`.
 * HTTP methods: `POST`, `GET`.
 * HTTP status codes: `200 OK`, `404`.
@@ -212,7 +212,7 @@ Exceptions:
 * Spell out month if the format is ambiguous:
   * :white_check_mark: `01/Jun/2018`.
   * :no_entry: `06/01/2018`.
-* Don't use ordinal numbers in dates.
+* Do not use ordinal numbers in dates.
   * :white_check_mark: `April 15`.
   * :no_entry: `April 15th`.
 * Use commas with full dates.
@@ -228,7 +228,7 @@ Exceptions:
 
 ## Present Tense
 
-* Do not use "will", "was", "were", "had". Write in the present tense.
+* Do not use `will`, `was`, `were`, `had`. Write in the present tense.
 
 ## Blacklisted Words
 
@@ -265,7 +265,7 @@ word | alternatives
 
 ## Interface Elements
 
-* Interface elements should be **bold**, exactly as they appear in the UI.
+* Interface elements must be **bold**, exactly as they appear in the UI.
 * Add `>` to describe navigation sequences.
   * :white_check_mark: `Open the **Alerts > Rules** page`.
 * Do not include types for named elements: button, split-button, checkbox, drop-down list, field, link, switch.
@@ -309,7 +309,7 @@ word | alternatives
 ## Product Names
 
 * Use original product names unless you introduce an abbreviation.
-* Articles may be omitted from product names in most cases.
+* Articles can be omitted from product names in most cases.
 
 ----
 
@@ -325,7 +325,7 @@ word | alternatives
 
 ## Style
 
-* Remove verbiage, such as "execute these steps", "follow the prompts", "perform these tasks", "by executing the following command."
+* Remove verbiage, such as `execute these steps`, `follow the prompts`, `perform these tasks`, `by executing the following command`.
   * :white_check_mark: `Create a Slack [workspace](https://slack.com/create).`
   * :no_entry: `Go to https://slack.com/create and follow the prompts to create a new workspace.`
   * :white_check_mark: ``Remove the ephemeral `/hbase` directory from Zookeeper cache.``  

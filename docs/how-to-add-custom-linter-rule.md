@@ -7,7 +7,7 @@ Create JavaScript file in `linting-rules` directory, e.g. `my-rule.js`. It must 
 ```typescript
 module.exports = {
     /**
-     * Name of rule, used in config files. Add MD1XX code, where XX should be 
+     * Name of rule, used in config files. Add MD1XX code, where XX should be
      * incremental, and the name of current file
      */
     names: string[];
