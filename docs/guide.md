@@ -228,7 +228,7 @@ Exceptions:
 
 ## Present Tense
 
-* Do not use "will", "was", "were", "had". Write in the present tense.
+* Do not use `will`, `was`, `were`, `had`. Write in the present tense.
 
 ## Blacklisted Words
 
