@@ -1,5 +1,5 @@
 const markdownlint = require("markdownlint");
-const myrule = require("../linting-rules/whitelist-mail-and-host.js");
+const myrule = require("../linting-rules/<rule-filename>");
 
 const options = {
   "files": ["./debug/foo.md"],
