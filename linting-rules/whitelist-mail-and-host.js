@@ -26,11 +26,20 @@ const white_list = [
     "john.doe@example.org",
     "jack.smith@example.org",
     "mary.jones@example.org",
+    "username:password@example.org",
     "username:password@atsd_hostname",
     "username:password@192.0.2.1",
     "username:password@198.51.100.1",
     "username:password@203.0.113.0",
+    "user:password@atsd_hostname",
+    "usr:pwd@atsd_hostname",
+    "atsd_user:atsd_user_password@atsd_hostname",
+    "reader:my_password@192.0.2.6",
+    "cuser:cpass@192.0.2.9",
+    "slack:12345678@atsd_hostname",
+    "telegram:12345678@atsd_hostname",
     "john.doe:secret@atsd_hostname",
+    "john.doe:secret@192.0.2.1",
     "git@github.com",
     "SelectChannelConnector@0.0.0.0",
     "SslSelectChannelConnector@0.0.0.0",
@@ -43,7 +52,7 @@ const white_list = [
     "Redmine@prod",
     "atsdreadonly@atsd_hostname"
 ]
-const regex = /\w+:?[-_\w\.]+@[-_\w\.]+/;
+const regex = /[\w\.]+:?[-_\w\.]+@[-_\w\.]+/;
 const { InlineTokenChildren } = require("../common/InlineTokenChildren");
 
 module.exports = {

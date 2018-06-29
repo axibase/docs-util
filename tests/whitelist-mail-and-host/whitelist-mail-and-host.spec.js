@@ -20,7 +20,7 @@ test('Use example names from the Axibase guide.', async t => {
         t.fail();
     } catch (err) {
         const expected = [
-            `incorrect.md: 3: MD104/whitelist-mail-and-host Example is prohibited, refer to whitelist. [Wrong: 'reader:my_password@192.0.2.6'.]\n`
+            `incorrect.md: 3: MD104/whitelist-mail-and-host Example is prohibited, refer to whitelist. [Wrong: 'reader:my_password@192.0.2.7'.]\n`
         ].join('\n');
         t.true(err.stdout === '');
         t.true(err.stderr === expected);
