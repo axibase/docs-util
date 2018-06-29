@@ -16,7 +16,7 @@
  */
 
 /**
- * Plugin locates credentials, email and url examples prohibited in Axibase style guide.
+ * Plugin locates credentials, email, url and ip examples prohibited in Axibase style guide.
  */
 
 const white_list = [
@@ -40,6 +40,8 @@ const white_list = [
     "telegram:12345678@atsd_hostname",
     "john.doe:secret@atsd_hostname",
     "john.doe:secret@192.0.2.1",
+    "john.doe:secret@192.0.2.6",
+    "john.doe:secret@example.org",
     "git@github.com",
     "SelectChannelConnector@0.0.0.0",
     "SslSelectChannelConnector@0.0.0.0",
@@ -50,41 +52,69 @@ const white_list = [
     "HBase@prod",
     "ATSD@prod",
     "Redmine@prod",
-    "atsdreadonly@atsd_hostname"
-]
-const regex = /[\w\.]+:?[-_\w\.]+@[-_\w\.]+/;
+    "atsdreadonly@atsd_hostname",
+    "0.0.0.0",
+    "1.1.1.1",
+    "8.8.8.8",
+    "192.0.2.\\d{1,3}",
+    "198.51.100.\\d{1}",
+    "203.0.113.\\d{1}",
+    "192.0.2.0/24",
+    "198.51.100.0/24",
+    "203.0.113.0/24",
+    "127.0.[01].1(\/\d+)?",
+    "172.17.0.\\d{1,2}",
+    "172.30.0.\\d{1,2}",
+    "12.2.0.1", // Oracle EE 12c 12.2.0.1 database.
+    "6.1.8.1", // Example in nmon-upload.md
+    "6.1.7.16", // Example in headers.md
+    "7.1.3.16", // Example in headers.md
+    "2.6.6.1" // RHEL version in ambari.md
+].map(x => x.replace(/\\?\./g, "\\."))
+
+const regexForSearch = /(?:[\w\.]+:)?[-_\w\.]+@[-_\w\.]+/g; // match URLs, credentials, Emails
+const ipRegexForSearch = /\b(?:\d{1,3}\.){3}\d{1,3}(\/\d+)?\b/g; // match IPs
+const regexForCheck = new RegExp(white_list.map(word => "\\b^" + word + "$\\b").join("|")); // white list
 const { InlineTokenChildren } = require("../common/InlineTokenChildren");
 
 module.exports = {
     names: ["MD104", "whitelist-mail-and-host"],
     description: "Example is prohibited, refer to whitelist.",
-    tags: ["email", "hostname"],
+    tags: ["email", "url", "ip"],
     "function": (params, onError) => {
         params.tokens.filter(t => (t.type == "inline" || t.type == "fence")).forEach(token => {
             let inFence = token.type === "fence";
             if (inFence) {
-                let match = token.content.match(regex);
-                if ((match != null) && (white_list.find(mail => mail === match[0]) == null)) {
-                    let beforeMatch = token.content.substring(0, token.content.indexOf(match[0]));
-                    let LF = beforeMatch.match(/\n/g);
-                    let ln = LF == null ? token.lineNumber + 1 : token.lineNumber + LF.length + 1;
-                    let left = LF == null ? token.content.indexOf(match[0]) + 1 : token.content.substring(beforeMatch.lastIndexOf("\n")).indexOf(match[0]);
-                    onError({
-                        lineNumber: ln,
-                        detail: `Wrong: '${match}'.`,
-                        range: [left, match[0].length]
-                    })
+                let match = [token.content.match(regexForSearch), token.content.match(ipRegexForSearch)];
+                if (match) {
+                    match.filter(m => m).forEach(m => {
+                        m.filter(checked => !regexForCheck.test(checked)).forEach(incorrect => {
+                            let beforeMatch = token.content.substring(0, token.content.indexOf(incorrect));
+                            let LF = beforeMatch.match(/\n/g);
+                            let ln = LF == null ? token.lineNumber + 1 : token.lineNumber + LF.length + 1;
+                            let left = LF == null ? token.content.indexOf(incorrect) + 1 : token.content.substring(beforeMatch.lastIndexOf("\n")).indexOf(incorrect);
+                            onError({
+                                lineNumber: ln,
+                                detail: `Wrong: '${incorrect}'.`,
+                                range: [left, incorrect.length]
+                            })
+                        })
+                    });
                 }
             } else {
                 let children = new InlineTokenChildren(token);
                 for (let { token: child, column, lineNumber } of children) {
-                    let match = child.content.match(regex);
-                    if ((match != null) && (white_list.find(mail => mail === match[0]) == null)) {
-                        onError({
-                            lineNumber,
-                            detail: `Wrong: '${match}'.`,
-                            range: [column + match.index, match[0].length]
-                        })
+                    let match = [child.content.match(regexForSearch), child.content.match(ipRegexForSearch)];
+                    if (match) {
+                        match.filter(m => m).forEach(m => {
+                            m.filter(checked => !regexForCheck.test(checked)).forEach(incorrect => {
+                                onError({
+                                    lineNumber,
+                                    detail: `Wrong: '${incorrect}'.`,
+                                    range: [column + child.content.indexOf(incorrect), incorrect.length]
+                                })
+                            });
+                        });
                     }
                 }
             }
