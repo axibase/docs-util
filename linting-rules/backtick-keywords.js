@@ -26,33 +26,34 @@
  */
 
 //const api_path = "\\B\\/[\\w]+[\\w-\\/{}]*";
-const keywords = [
-    "curl",
-    "wget",
-    "crontab",
-    "cron",
-    "netcat",
-    "ping",
-    "traceroute",
-    "sudo",
-    "root",
-    "true",
-    "false",
-    "jps",
-    "name=value",
-    "key=value",
-    "atsd\\.log",
-    "logback\\.xml",
-    "stdout",
-    "stderr",
-    "graphite.conf",
-    "SIGTERM",
-    "NaN"
-]
-const keywordsRegexExactCase = new RegExp(keywords.join("|"));
-const keywordsRegexAnyCase = new RegExp(keywords.map(word => "\\b" + word + "\\b").join("|"), 'i');
 
 const { InlineTokenChildren } = require("../common/InlineTokenChildren")
+const { WordPattern } = require("../common/Utils")
+
+const keywords = [
+    new WordPattern("curl", "curl"),
+    new WordPattern("wget", "wget"),
+    new WordPattern("crontab", "crontab"),
+    new WordPattern("cron", "cron"),
+    new WordPattern("netcat", "netcat"),
+    new WordPattern("ping", "ping"),
+    new WordPattern("traceroute", "traceroute"),
+    new WordPattern("sudo", "sudo"),
+    new WordPattern("root(?! ca)", "root"),// match "root", but not "root CA"
+    new WordPattern("true", "true"),
+    new WordPattern("false", "false"),
+    new WordPattern("jps", "jps"),
+    new WordPattern("name=value", "name=value"),
+    new WordPattern("key=value", "key=value"),
+    new WordPattern("atsd.log", "atsd.log"),
+    new WordPattern("logback.xml", "logback.xml"),
+    new WordPattern("graphite.conf", "graphite.conf"),
+    new WordPattern("command_malformed.log", "command_malformed.log"),
+    new WordPattern("stdout", "stdout"),
+    new WordPattern("stderr", "stderr"),
+    new WordPattern("SIGTERM", "SIGTERM"),
+    new WordPattern("NaN", "NaN")
+]
 
 module.exports = {
     names: ["MD101", "backtick-keywords"],
@@ -77,17 +78,19 @@ module.exports = {
                             case "link_close":
                                 inLink = false; break;
                         }
-                        let anyCaseMatch = child.content.match(keywordsRegexAnyCase);
-                        if (anyCaseMatch != null) {
-                            let match = anyCaseMatch[0];
-                            let correct = keywords.find(kw => kw.toLowerCase() === match.toLowerCase());
-                            if ((!inHeading && !inLink && isText) || // Bad not fenced
-                                (!keywordsRegexExactCase.test(match))) { // Right fencing, wrong case  
-                                onError({
-                                    lineNumber,
-                                    detail: `Expected \`${correct}\`. Actual ${match}.`,
-                                    range: [column + anyCaseMatch.index, match.length]
-                                })
+                        for (let k of keywords) {
+                            let anyCaseMatch = child.content.match(k.regex);
+                            if (anyCaseMatch != null) {
+                                let match = anyCaseMatch[0];
+                                let correct = k.suggestion;
+                                if ((!inHeading && !inLink && isText) || // Bad not fenced
+                                    (match != correct)) { // Right fencing, wrong case  
+                                    onError({
+                                        lineNumber,
+                                        detail: `Expected \`${correct}\`. Actual ${match}.`,
+                                        range: [column + anyCaseMatch.index, match.length]
+                                    })
+                                }
                             }
                         }
                     }

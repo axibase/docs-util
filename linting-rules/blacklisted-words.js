@@ -19,102 +19,65 @@
  * Plugin locates patterns prohibited in Axibase style guide.
  */
 
-class Rule {
-    constructor(pattern, suggestion, caseSensitive, noWordBoundary) {
-        this.pattern = noWordBoundary ? pattern : "\\b" + pattern + "\\b";
-        const modifiers = caseSensitive ? "" : "i";
-        this.regex = new RegExp(this.pattern, modifiers);
-        this.suggestion = suggestion;
-    }
-
-    test(line) {
-        return new Match(line.match(this.regex));
-    }
-}
-
-class Match {
-    constructor(match) {
-        this.match = match;
-    }
-
-    found() {
-        return !!this.match;
-    }
-
-    range() {
-        if (this.match) {
-            let column = this.match.index + 1;
-            let length = this.match[0].length;
-            if (this.match[2]) {
-                column += this.match[1].length;
-                length -= this.match[1].length;
-            }
-            return [column, length];
-        }
-        return null;
-    }
-
-    toString() {
-        return this.match ? this.match.toString() : "null";
-    }
-}
+const { WordPattern } = require("../common/Utils")
 
 const rules = [
-    new Rule("should", "use 'must' or remove"),
-    new Rule("could", "-"),
-    new Rule("would", "use present tense"),
-    new Rule("may", "'can'", true),
-    new Rule("will", "use present tense"),
-    new Rule("was", "use present tense"),
-    new Rule("were", "use present tense"),
-    new Rule("had", "use present tense"),
-    new Rule("did", "use present tense"),
-    new Rule("wasn't", "use present tense"),
-    new Rule("weren't", "use present tense"),
-    new Rule("hadn't", "use present tense"),
-    new Rule("didn't", "use present tense"),
-    new Rule("abort ", "'stop', 'cancel'"),
-    new Rule("kill", "'stop', 'cancel'"),
-    new Rule("terminate", "'stop', 'cancel'"),
-    new Rule("admin", "'administrator'", true),
-    new Rule("so ", "use formal style"),
-    new Rule("so, ", "use formal style"),
-    new Rule("a lot", "use formal style"),
-    new Rule("actually", "use formal style"),
-    new Rule("as is", "remove"),
-    new Rule("deselect", "'clear'"),
-    new Rule("uncheck", "'clear'"),
-    new Rule("flag", "'option', 'setting'"),
-    new Rule("ingest", "'load', 'import'"),
-    new Rule("lets", "-"),
-    new Rule("let", "-"),
-    new Rule("please", "-"),
-    new Rule("regex ", "'regular expression'"),
-    new Rule("dropdown", "'drop-down'"),
-    new Rule("terminal ", "'console'"),
-    new Rule("Epoch time", "Unix time"),
-    new Rule("datacenter", "data center"),
-    new Rule("and/or", "clarify the meaning"),
-    new Rule("in order to", "'to'"),
-    new Rule("make sure", "'ensure'"),
-    new Rule("end-point", "'endpoint'"),
-    new Rule("click on", "'click'"),
-    new Rule("robust", "avoid trite words"),
-    new Rule("i\\.e\\.", "'for example'"),
-    new Rule("e\\.g\\.", "'for example'"),
-    new Rule("don't", "'do not'"),
-    new Rule("can't", "'cannot'"),
-    new Rule("hasn't", "'has not'"),
-    new Rule("isn't", "'is not'"),
-    new Rule("\\w+s's?", "do not use possessives", false, true),
-    new Rule("execute these steps", "avoid verbiage"),
-    new Rule("follow the prompts", "avoid verbiage"),
-    new Rule("perform these tasks", "avoid verbiage"),
-    new Rule("the following command", "avoid verbiage"),
-    new Rule("the following step", "avoid verbiage"),
-    new Rule("execute the following", "avoid verbiage"),
-    new Rule("login into", "'log in to'"),
-    new Rule("log in into", "'log in to'")
+    new WordPattern("should", "use 'must' or remove"),
+    new WordPattern("could", "-"),
+    new WordPattern("would", "use present tense"),
+    new WordPattern("may", "'can'", true),
+    new WordPattern("will", "use present tense"),
+    new WordPattern("was", "use present tense"),
+    new WordPattern("were", "use present tense"),
+    new WordPattern("had", "use present tense"),
+    new WordPattern("did", "use present tense"),
+    new WordPattern("wasn't", "use present tense"),
+    new WordPattern("weren't", "use present tense"),
+    new WordPattern("hadn't", "use present tense"),
+    new WordPattern("didn't", "use present tense"),
+    new WordPattern("abort ", "'stop', 'cancel'"),
+    new WordPattern("kill", "'stop', 'cancel'"),
+    new WordPattern("terminate", "'stop', 'cancel'"),
+    new WordPattern("admin", "'administrator'", { caseSensitive: true }),
+    new WordPattern("so(?!-)", "use formal style"), // It's experiment. In case of errors remove and uncomment lines below.
+    //new WordPattern("so ", "use formal style"),
+    //new WordPattern("so, ", "use formal style"),
+    new WordPattern("a lot", "use formal style"),
+    new WordPattern("actually", "use formal style"),
+    new WordPattern("as is", "remove"),
+    new WordPattern("deselect", "'clear'"),
+    new WordPattern("uncheck", "'clear'"),
+    new WordPattern("flag", "'option', 'setting'"),
+    new WordPattern("ingest", "'load', 'import'"),
+    new WordPattern("lets", "-"),
+    new WordPattern("let(?!'s enc)", "-"), // match "let", but not "Let's Encrypt"
+    new WordPattern("please", "-"),
+    new WordPattern("regex ", "'regular expression'"),
+    new WordPattern("dropdown", "'drop-down'"),
+    new WordPattern("terminal ", "'console'"),
+    new WordPattern("Epoch time", "Unix time"),
+    new WordPattern("datacenter", "data center"),
+    new WordPattern("and/or", "clarify the meaning"),
+    new WordPattern("in order to", "'to'"),
+    new WordPattern("make sure", "'ensure'"),
+    new WordPattern("end-point", "'endpoint'"),
+    new WordPattern("click on", "'click'"),
+    new WordPattern("robust", "avoid trite words"),
+    new WordPattern("i\\.e\\.", "'for example'"),
+    new WordPattern("e\\.g\\.", "'for example'"),
+    new WordPattern("don't", "'do not'"),
+    new WordPattern("can't", "'cannot'"),
+    new WordPattern("hasn't", "'has not'"),
+    new WordPattern("isn't", "'is not'"),
+    new WordPattern("\\w+s's?", "do not use possessives", false, true),
+    new WordPattern("execute these steps", "avoid verbiage"),
+    new WordPattern("follow the prompts", "avoid verbiage"),
+    new WordPattern("perform these tasks", "avoid verbiage"),
+    new WordPattern("the following command", "avoid verbiage"),
+    new WordPattern("the following step", "avoid verbiage"),
+    new WordPattern("execute the following", "avoid verbiage"),
+    new WordPattern("login into", "'log in to'"),
+    new WordPattern("log in into", "'log in to'")
 ];
 
 module.exports = {
