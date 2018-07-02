@@ -1,18 +1,12 @@
-# Documentation Helpers
+# Reference
 
-## Axibase Documentation Guide
+## Resources
 
-To write good documentation refer to [Axibase Documentation Guide](./guide.md).
+* [Axibase Documentation Guide](../guide.md).
+* Installing [Custom Rules in VSCode](./vscode-rule-installation-guide.md).
+* Creating a [Custom Rule](./how-to-add-custom-linter-rule.md).
 
-## Install Axibase Rules in VSCode
-
-To apply automatic checks for `*.md` files refer to [Install Rules in VSCode](./vscode-rule-installation-guide.md) guide.
-
-## Create and Test Lint Rule
-
-To create new rule refer to [Create and Test Lint Rule](./how-to-add-custom-linter-rule.md) guide.
-
-## Axibase Rules
+## Custom Rules
 
 |ID | Name| Description|
 |---|---|---|
