@@ -30,6 +30,7 @@ const white_list = [
     "mary.jones@example.org",
     "username:password@example.org",
     "username:password@atsd_hostname",
+    "collector:collector@atsd_hostname",
     "username:password@192.0.2.1",
     "username:password@198.51.100.1",
     "username:password@203.0.113.0",
@@ -50,6 +51,7 @@ const white_list = [
     "0.0.0.0",
     "1.1.1.1",
     "8.8.8.8",
+    "255.255.255.255",
     "192.0.2.\\d{1,3}(/24)?",
     "198.51.100.\\d{1}",
     "203.0.113.\\d{1}",
@@ -62,10 +64,12 @@ const white_list = [
     "6.1.8.1", // Example in nmon-upload.md
     "6.1.7.16", "7.1.3.16", // Examples in headers.md    
     "10.12.1.1", //derby version in collector
-    "124.216.164.14", "37.58.57.238" // Examples in data_retention.md
+    "124.216.164.14", "37.58.57.238", // Examples in data_retention.md
+    "2.5.29.19", // Example in atsd-use-cases/tutorials/workshop/lets-encrypt.md
+    "0.10.2.0" // Kafka version in atsd-use-cases/integrations/kafka/consumers-monitoring/resources/send_offset.sh and README.md
 ].map(x => x.replace(/\\?\./g, "\\."))
 
-const regexForSearch = /(?:[\w\.]+:)?[-_\w\.]+@[-_\w\.]+/g; // match URLs, credentials, Emails
+const regexForSearch = /(?:[\w\.-]+:)?[-_\w\.]+@[-_\w\.]+/g; // match URLs, credentials, Emails
 const ipRegexForSearch = /\b(?<!\.)(?:\d{1,3}\.){3}\d{1,3}(\/\d+)?(?!\.)\b/g; // match IPs
 const regexForCheck = new RegExp(white_list.map(word => "\\b^" + word + "$\\b").join("|")); // white list
 const { InlineTokenChildren } = require("../common/InlineTokenChildren");

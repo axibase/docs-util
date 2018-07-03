@@ -25,7 +25,7 @@ const rules = [
     new WordPattern("should", "use 'must' or remove"),
     new WordPattern("could", "-"),
     new WordPattern("would", "use present tense"),
-    new WordPattern("may", "'can'", true),
+    new WordPattern("may", "'can'",  { caseSensitive: true }),
     new WordPattern("will", "use present tense"),
     new WordPattern("was", "use present tense"),
     new WordPattern("were", "use present tense"),
@@ -50,7 +50,7 @@ const rules = [
     new WordPattern("flag", "'option', 'setting'"),
     new WordPattern("ingest", "'load', 'import'"),
     new WordPattern("lets", "-"),
-    new WordPattern("let(?!'s enc)", "-"), // match "let", but not "Let's Encrypt"
+    new WordPattern("let(?!'s enc)", "-"), // Match "let", but not "Let's Encrypt".
     new WordPattern("please", "-"),
     new WordPattern("regex ", "'regular expression'"),
     new WordPattern("dropdown", "'drop-down'"),
@@ -77,7 +77,8 @@ const rules = [
     new WordPattern("the following step", "avoid verbiage"),
     new WordPattern("execute the following", "avoid verbiage"),
     new WordPattern("login into", "'log in to'"),
-    new WordPattern("log in into", "'log in to'")
+    new WordPattern("log in into", "'log in to'"),
+    new WordPattern("atsd_host", "'atsd_hostname'")
 ];
 
 module.exports = {

@@ -39,7 +39,7 @@ const keywords = [
     new WordPattern("ping", "ping"),
     new WordPattern("traceroute", "traceroute"),
     new WordPattern("sudo", "sudo"),
-    new WordPattern("root(?! ca)", "root"),// match "root", but not "root CA"
+    new WordPattern("(?<!(system |ISRG ))root(?! ca)", "root"),// match "root", but not "root CA", "MacOS System Root" and "ISRG Root X1"
     new WordPattern("true", "true"),
     new WordPattern("false", "false"),
     new WordPattern("jps", "jps"),
