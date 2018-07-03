@@ -7,9 +7,13 @@ install:
   - npm install
   - wget https://raw.githubusercontent.com/axibase/atsd/master/.markdownlint.json
   - git clone https://github.com/axibase/atsd.git /tmp/atsd
+  - git clone https://github.com/axibase/atsd-use-cases.git /tmp/atsd-use-cases
+  - git clone https://github.com/axibase/axibase-collector.git /tmp/axibase-collector
 script:
   - npm run test
   - markdownlint -i . -r "linting-rules/*" /tmp/atsd
+  - markdownlint -i . -r "linting-rules/*" /tmp/atsd-use-cases
+  - markdownlint -i . -r "linting-rules/*" /tmp/axibase-collector
 cache:
   directories:
     - $(npm config get prefix)/lib/node_modules
