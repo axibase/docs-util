@@ -198,7 +198,7 @@ Exceptions:
 * IPv6 address range: `2001:db8::/32`.
 * Phone number: `(800) 555-0100`.
 * Host name: `atsd_hostname`, `atsd_ip_address`.
-* DNS name: `example.org` per [RFC 2606](https://tools.ietf.org/html/rfc2606).
+* DNS name: `example.org` per [RFC 2606](https://tools.ietf.org/html/rfc2606), [localized domains](https://www.iana.org/domains/reserved).
 * Subdomain: `test.example.org`, `atsd.example.org`.
 * Organization: Example Foundation, Example Corporation. Avoid [`Contoso`](https://en.wikipedia.org/wiki/List_of_fictional_Microsoft_companies).
 * Email: `user@example.org`, `test@example.org`, `john.doe@example.org`.
