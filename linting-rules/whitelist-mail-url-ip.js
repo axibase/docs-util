@@ -31,6 +31,11 @@ const white_list = [
     "username:password@example.org",
     "username:password@atsd_hostname",
     "collector:collector@atsd_hostname",
+    "aws-cw:password@atsd_hostname",
+    "github:password@atsd_hostname",
+    "jenkins:password@atsd_hostname",
+    "slack:password@atsd_hostname",
+    "telegram:password@atsd_hostname",
     "username:password@192.0.2.1",
     "username:password@198.51.100.1",
     "username:password@203.0.113.0",
@@ -52,7 +57,7 @@ const white_list = [
     "1.1.1.1",
     "8.8.8.8",
     "255.255.255.255",
-    "192.0.2.\\d{1,3}(/24)?",
+    "192.0.2.\\d{1,3}(/24)?", // 192.0.2.1 preferred
     "198.51.100.\\d{1}",
     "203.0.113.\\d{1}",
     "198.51.100.0/24",
@@ -61,11 +66,7 @@ const white_list = [
     "172.17.0.\\d{1,2}",
     "172.30.0.\\d{1,2}",
     "12.2.0.1", // Oracle EE 12c 12.2.0.1 database.
-    "6.1.8.1", // Example in nmon-upload.md
-    "6.1.7.16", "7.1.3.16", // Examples in headers.md    
     "10.12.1.1", //derby version in collector
-    "124.216.164.14", "37.58.57.238", // Examples in data_retention.md
-    "2.5.29.19", // Example in atsd-use-cases/tutorials/workshop/lets-encrypt.md
     "0.10.2.0" // Kafka version in atsd-use-cases/integrations/kafka/consumers-monitoring/resources/send_offset.sh and README.md
 ].map(x => x.replace(/\\?\./g, "\\."))
 
