@@ -10,9 +10,9 @@ install:
   - git clone https://github.com/axibase/axibase-collector.git /tmp/axibase-collector
 script:
   - npm run test
-  - markdownlint -i . -r "linting-rules/*" /tmp/atsd
-  - markdownlint -i . -r "linting-rules/*" /tmp/atsd-use-cases
-  - markdownlint -i . -r "linting-rules/*" /tmp/axibase-collector
+  - cd /tmp/atsd && markdownlint -r "../../linting-rules/*" .
+  - cd /tmp/atsd-use-cases && markdownlint -r "../../linting-rules/*" .
+  - cd /tmp/axibase-collector && markdownlint -r "../../linting-rules/*" .
 cache:
   directories:
     - $(npm config get prefix)/lib/node_modules
