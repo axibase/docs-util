@@ -12,7 +12,8 @@ script:
   - npm run test
   - cd /tmp/atsd && markdownlint -r "../../linting-rules/*" .
   - cd /tmp/atsd-use-cases && markdownlint -r "../../linting-rules/*" .
-  - cd /tmp/axibase-collector && markdownlint -r "../../linting-rules/*" .
+  - cd /tmp/axibase-collector && wget https://raw.githubusercontent.com/axibase/atsd/master/.markdownlint.json
+  - markdownlint -r "../../linting-rules/*" .
 cache:
   directories:
     - $(npm config get prefix)/lib/node_modules
