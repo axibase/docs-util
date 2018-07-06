@@ -7,6 +7,24 @@ The guide contains a compilation of grammar and punctuation rules for software d
 * [Google Developer Documentation Style Guide](https://developers.google.com/style/).
 * [Salesforce Style Guide for Documentation and User Interface Text](https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/overview.htm).
 
+## Configure Rule
+
+To enable or disable [rules](./linting-rules/) within a file, add one of these markers to the appropriate place (HTML
+comments don't appear in the final markup):
+
+* Disable all rules: `<!-- markdownlint-disable -->`
+* Enable all rules: `<!-- markdownlint-enable -->`
+* Disable one or more rules: `<!-- markdownlint-disable MD001 MD002 -->`
+* Enable one or more rules: `<!-- markdownlint-enable MD001 MD002 -->`
+
+For example:
+
+```markdown
+<!-- markdownlint-disable MD037 -->
+deliberate space * in * emphasis
+<!-- markdownlint-enable MD037 -->
+```
+
 ## Abbreviations
 
 * Abbreviate if the acronym is known to the target audience.
