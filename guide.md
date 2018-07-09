@@ -1,30 +1,14 @@
 # Axibase Documentation Guide
 
-The guide contains a compilation of grammar and punctuation rules for software developers. The formatting rules are targeted at markdown. To comply with general markdown syntax, use [markdownlint](https://www.npmjs.com/package/markdownlint).
+The guide contains a compilation of grammar, punctuation, and formatting rules for software developers. The formatting rules are applicable to Markdown.
+
+* To comply with general markdown syntax, use [markdownlint](https://www.npmjs.com/package/markdownlint).
+* To comply with the rules specified in this guide, enable custom [linting](#linting) rules.
 
 ## References
 
 * [Google Developer Documentation Style Guide](https://developers.google.com/style/).
 * [Salesforce Style Guide for Documentation and User Interface Text](https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/overview.htm).
-
-## Configure Rule
-
-To enable or disable [rules](./linting-rules/) within a file, add one of these markers to the appropriate place (HTML
-comments don't appear in the final markup):
-
-* Disable all rules: `<!-- markdownlint-disable -->`
-* Enable all rules: `<!-- markdownlint-enable -->`
-* Disable one or more rules: `<!-- markdownlint-disable MD001 MD002 -->`
-* Enable one or more rules: `<!-- markdownlint-enable MD001 MD002 -->`
-
-For example:
-
-```markdown
-<!-- markdownlint-disable MD037 -->
-deliberate space * in * emphasis
-<!-- markdownlint-enable MD037 -->
-```
-To disable the rule for the entire `*.md` file add "enable" marker before the first header and do not use "disable" marker for the same rule.
 
 ## Abbreviations
 
@@ -358,3 +342,24 @@ word | alternatives
 * Favor `example` over `sample`.
   * :white_check_mark: `Example configuration:`
   * :no_entry: `Sample configuration:`
+
+## Linting
+
+The repository contains custom linting rules for identifying inconsistencies and style violations.
+
+To enable or disable [rules](./linting-rules/) within the given Markdown file, add an HTML marker to the selected section of the document.
+
+* Disable all rules: `<!-- markdownlint-disable -->`
+* Enable all rules: `<!-- markdownlint-enable -->`
+* Disable one or more rules: `<!-- markdownlint-disable MD001 MD002 -->`
+* Enable one or more rules: `<!-- markdownlint-enable MD001 MD002 -->`
+
+For example:
+
+```markdown
+<!-- markdownlint-disable MD037 -->
+deliberate space * in * emphasis
+<!-- markdownlint-enable MD037 -->
+```
+
+To disable the rule for the entire `*.md` file add the `enable` marker before the first header. A `disable` marker is not necessary in this case.
