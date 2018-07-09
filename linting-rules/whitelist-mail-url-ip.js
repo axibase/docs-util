@@ -32,6 +32,7 @@ const white_list = [
     "username:password@atsd_hostname",
     "collector:collector@atsd_hostname",
     "aws-cw:password@atsd_hostname",
+    "github:password@atsd.example.org",
     "github:password@atsd_hostname",
     "jenkins:password@atsd_hostname",
     "slack:password@atsd_hostname",
@@ -65,13 +66,11 @@ const white_list = [
     "127.0.[01].1(/\\d+)?",
     "172.17.0.\\d{1,2}",
     "172.30.0.\\d{1,2}",
-    "12.2.0.1", // Oracle EE 12c 12.2.0.1 database.
-    "10.12.1.1", //derby version in collector
     "0.10.2.0" // Kafka version in atsd-use-cases/integrations/kafka/consumers-monitoring/resources/send_offset.sh and README.md
 ].map(x => x.replace(/\\?\./g, "\\."))
 
 const regexForSearch = /(?:[\w\.-]+:)?[-_\w\.]+@[-_\w\.]+/g; // match URLs, credentials, Emails
-const ipRegexForSearch = /\b(?<!\.)(?:\d{1,3}\.){3}\d{1,3}(\/\d+)?(?!\.)\b/g; // match IPs
+const ipRegexForSearch = /\b(?<!(database:|\.))(?:\d{1,3}\.){3}\d{1,3}(\/\d+)?(?!\.)\b/g; // match IPs
 const regexForCheck = new RegExp(white_list.map(word => "\\b^" + word + "$\\b").join("|")); // white list
 const { InlineTokenChildren } = require("../common/InlineTokenChildren");
 
