@@ -78,7 +78,19 @@ const rules = [
     new WordPattern("execute the following", "avoid verbiage"),
     new WordPattern("login into", "'log in to'"),
     new WordPattern("log in into", "'log in to'"),
-    new WordPattern("atsd_host", "'atsd_hostname'")
+    new WordPattern("atsd_host", "`atsd_hostname`"),
+    new WordPattern("rodionos", "-"),
+    new WordPattern("raipc", "-'"),
+    new WordPattern("alexandertokarev", "-"),
+    new WordPattern("annstriganova", "-"),
+    new WordPattern("kghamilton89", "-"),
+    new WordPattern("kirmanak", "-"),
+    new WordPattern("MikhailZvagelsky", "-"),
+    new WordPattern("VeselovAlex", "-"),
+    new WordPattern("unrealwork", "-"),
+    new WordPattern("nur.axibase", "review white list"),
+    new WordPattern("hbs.axibase", "review white list"),
+
 ];
 
 module.exports = {
