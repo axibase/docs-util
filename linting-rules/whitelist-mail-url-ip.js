@@ -40,6 +40,7 @@ const white_list = [
     "username:password@192.0.2.1",
     "username:password@198.51.100.1",
     "username:password@203.0.113.0",
+    "username:password@localhost",
     "username:password@atsd.example.org",
     "john.doe:secret@atsd_hostname",
     "john.doe:secret@192.0.2.\\d{1,3}",
