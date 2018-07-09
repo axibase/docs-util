@@ -20,7 +20,6 @@
  * by Vuepress image loader
  */
 
-console.log("Rules Version 1")
 const testExternal = /^(?:https?\:)?\/\//;
 const testValidRelative = /^(?:\.\.?\/)/;
 
