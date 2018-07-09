@@ -24,6 +24,7 @@ For example:
 deliberate space * in * emphasis
 <!-- markdownlint-enable MD037 -->
 ```
+To disable the rule for the entire `*.md` file add "enable" marker before the first header and do not use "disable" marker for the same rule.
 
 ## Abbreviations
 
