@@ -351,8 +351,8 @@ To enable or disable [rules](./linting-rules/) within the given Markdown file, a
 
 * Disable all rules: `<!-- markdownlint-disable -->`
 * Enable all rules: `<!-- markdownlint-enable -->`
-* Disable one or more rules: `<!-- markdownlint-disable MD001 MD002 -->`
-* Enable one or more rules: `<!-- markdownlint-enable MD001 MD002 -->`
+* Disable specific rules: `<!-- markdownlint-disable MD001 MD002 -->`
+* Enable specific rules: `<!-- markdownlint-enable MD001 MD002 -->`
 
 For example:
 
@@ -362,4 +362,13 @@ deliberate space * in * emphasis
 <!-- markdownlint-enable MD037 -->
 ```
 
-To disable the rule for the entire `*.md` file add the `enable` marker before the first header. A `disable` marker is not necessary in this case.
+To disable the rule for the entire `*.md` file,
+add the `enable` marker before the first header.
+
+A `disable` marker is not necessary in this case.
+
+### Automated Checks
+
+Configure Travis CI to check modified files with custom rules as part of the pull request workflow.
+
+![Travis](./docs/images/travis-check.png)
