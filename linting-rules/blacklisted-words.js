@@ -90,7 +90,13 @@ const rules = [
     new WordPattern("unrealwork", "-"),
     new WordPattern("nur.axibase", "review white list"),
     new WordPattern("hbs.axibase", "review white list"),
-
+    new WordPattern("multi-action button", "'split-button'"),
+    new WordPattern("drop-down button", "'split-button'"),
+    new WordPattern("combo-button", "'split-button'"),
+    new WordPattern("check box", "'checkbox'"),
+    new WordPattern("drop-down menu", "'drop-down list'"),
+    new WordPattern("selector", "'switch', 'drop-down list' or 'dual list'"),
+    new WordPattern("popup window", "'dialog window'")
 ];
 
 module.exports = {
