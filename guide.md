@@ -180,6 +180,14 @@ Exceptions:
   * :no_entry: `## Import data from file.`
 * Avoid punctuation symbols in headers except colon (`:`).
   * :no_entry: `## Import Data from File (Directory)`.
+  
+## Methods
+
+* Use present tense for method and function descriptions. Omit the noun.
+  * :white_check_mark: `Returns a collection of alert history records`.
+  * :white_check_mark: `Returns the natural logarithm of x`.
+  * :no_entry: `The method returns a collection of alert history records`.
+  * :no_entry: `Return a collection of alert history records`.
 
 ## Variables
 
