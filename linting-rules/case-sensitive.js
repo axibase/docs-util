@@ -39,7 +39,7 @@ const keywords = [
     new WordPattern("Unix"),
     new WordPattern("XLS"),
     new WordPattern("(?<!.)CSV", { suggestion: "CSV" }),
-    new WordPattern("(?<!.)JSON", { suggestion: "JSON" }),
+    new WordPattern("(?<![./])JSON", { suggestion: "JSON" }),
     new WordPattern("(?<!.)XML", { suggestion: "XML" }),
     new WordPattern("(?<!.)PDF", { suggestion: "PDF" }),
     new WordPattern("(?<!.)HTML", { suggestion: "HTML" }),
