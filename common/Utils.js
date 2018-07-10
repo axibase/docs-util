@@ -16,12 +16,13 @@
  */
 
 class WordPattern {
-    constructor(pattern, suggestion, caseSensitive, noWordBoundary) {
+    constructor(pattern, parameters) {
         const escapedDots = pattern.replace(/\\?\./g, "\\.");
-        this.pattern = noWordBoundary ? escapedDots : "\\b" + escapedDots + "\\b";
-        const modifiers = caseSensitive ? "" : "i";
+        this.pattern = parameters && parameters.hasOwnProperty('noWordBoundary') ? escapedDots : "\\b" + escapedDots + "\\b";
+        const modifiers = parameters && parameters.hasOwnProperty('caseSensitive') && parameters.caseSensitive ? "" : "i";
         this.regex = new RegExp(this.pattern, modifiers);
-        this.suggestion = suggestion;
+        this.suggestion = parameters && parameters.hasOwnProperty('suggestion') ? parameters.suggestion : pattern;
+        this.stringRegex = new RegExp("^" + escapedDots + "$", modifiers); // To match "Category" column words in changelogs, see case-sensitive.js
     }
 
     test(line) {

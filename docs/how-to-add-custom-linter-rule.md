@@ -17,6 +17,7 @@ module.exports = {
     description: string;
     /**
      * Add some groups which this rule can belong to
+     * Important: do not use dashes, for example "case-sensitive"
      */
     tags: string[]
     /**

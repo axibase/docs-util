@@ -1,14 +1,19 @@
 # Visual Studio Code Linting Rules Installation
 
+> Note: lookbehind assertion in regular expressions breaks error highlighting, rules `case-sensitive`, `backtick-keywords` do not work.
+
 Assuming you have [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) extension installed.
 
 1. Clone `axibase/docs-util` repository:
+
     ```bash
     git clone https://github.com/axibase/docs-util.git
     ```
 2. Press <kbd>F1</kbd>, type `settings` and select **Preferences: Open Workspace Settings** to install for current workspace, or **Preferences: Open User Settings** to install globally.
+
     ![command-panel](./images/command-panel.png)
-3. Add `markdownlint.customRules` property to configuration JSON file on the right panel. List all `.js` files in `linting-rules` directory.
+
+3. Add `markdownlint.customRules` property to configuration JSON file on the right panel. List `.js` files from `linting-rules` directory.
     ```json
         "markdownlint.customRules": [
             "<path-to-docs-util>/linting-rules/relative-image-urls.js",
