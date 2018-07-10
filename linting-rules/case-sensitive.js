@@ -28,6 +28,8 @@ const keywords = [
     new WordPattern("HBase"),
     new WordPattern("HTTP(?!-pool)", { suggestion: "HTTP" }),
     new WordPattern("HTTPS"),
+    new WordPattern("FTP"),
+    new WordPattern("SFTP"),
     new WordPattern("LDAP"),
     new WordPattern("TCP"),
     new WordPattern("UDP"),
