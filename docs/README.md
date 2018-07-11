@@ -26,10 +26,12 @@ Install [markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli#mar
 npm install -g markdownlint-cli
 ```
 
-Clone `docs-util`:
+Clone or update `docs-util`:
 
 ```bash
 git clone https://github.com/axibase/docs-util.git
+// update
+cd docs-util && git pull
 ```
 
 Replace `/path/to` with appropriate values:
