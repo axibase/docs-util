@@ -1,14 +1,16 @@
 # Axibase Documentation Guide
 
-The guide contains a compilation of grammar, punctuation, and formatting rules for software developers. The formatting rules are applicable to Markdown.
+The guide contains a compilation of grammar, punctuation, and Markdown formatting rules for software developers.
 
-* To comply with general markdown syntax, use [markdownlint](https://www.npmjs.com/package/markdownlint).
-* To comply with the rules specified in this guide, enable custom [linting](#linting) rules.
+* To comply with general Markdown syntax, use [markdownlint](https://www.npmjs.com/package/markdownlint).
+* To comply with all or subset of custom rules discussed in this guide, enable [custom](#custom-rules) rules.
 
-## References
+References:
 
 * [Google Developer Documentation Style Guide](https://developers.google.com/style/).
 * [Salesforce Style Guide for Documentation and User Interface Text](https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/overview.htm).
+
+---
 
 ## Abbreviations
 
@@ -64,7 +66,7 @@ The guide contains a compilation of grammar, punctuation, and formatting rules f
 
 ## Colons
 
-* Begin lists with colons (:).
+* Begin lists with colons (`:`).
   * :white_check_mark: `Execute the following commands to stop the database:`
 * Separate list titles from their content with a colon.
   * :white_check_mark: `Step 1: stop ATSD process.`
@@ -323,8 +325,6 @@ word | alternatives
 * Use original product names unless you introduce an abbreviation.
 * Articles can be omitted from product names in most cases.
 
-----
-
 ## Issue Subjects
 
 * Add prefix (topic) to subject. The topic can repeat the category or clarify it if necessary.
@@ -351,11 +351,15 @@ word | alternatives
   * :white_check_mark: `Example configuration:`
   * :no_entry: `Sample configuration:`
 
-## Linting
+---
 
-The repository contains custom linting rules for identifying inconsistencies and style violations.
+## Custom Rules
 
-To enable or disable [rules](./linting-rules/) within the given Markdown file, add an HTML marker to the selected section of the document.
+The repository contains custom rules for identifying inconsistencies and style violations.
+
+## Rule Scope
+
+To enable or disable [rules](./linting-rules/) within the given Markdown file, wrap the text with non-printable HTML comments.
 
 * Disable all rules: `<!-- markdownlint-disable -->`
 * Enable all rules: `<!-- markdownlint-enable -->`
@@ -371,12 +375,12 @@ deliberate space * in * emphasis
 ```
 
 To disable the rule for the entire `*.md` file,
-add the `enable` marker before the first header.
+add the `markdownlint-disable` marker before the first header.
 
-A `disable` marker is not necessary in this case.
+A `markdownlint-enable` marker is not necessary in this case.
 
-### Automated Checks
+## Automated Checks
 
-Configure Travis CI to check modified files with custom rules as part of the pull request workflow.
+Configure Travis CI to check custom rules as part of the pull request workflow.
 
 ![Travis](./docs/images/travis-check.png)
