@@ -11,6 +11,7 @@ install:
   - wget -P /tmp/axibase-collector https://raw.githubusercontent.com/axibase/atsd/master/.markdownlint.json
 script:
   - npm run test
+after_script:
   - markdownlint -i . --config /tmp/atsd/.markdownlint.json -r "linting-rules/*" /tmp/atsd
   - markdownlint -i . --config /tmp/atsd-use-cases/.markdownlint.json -r "linting-rules/*" /tmp/atsd-use-cases
   - markdownlint -i . --config /tmp/axibase-collector/.markdownlint.json -r "linting-rules/*" /tmp/axibase-collector
