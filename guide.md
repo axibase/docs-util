@@ -2,42 +2,19 @@
 
 The guide contains a compilation of grammar, punctuation, and Markdown formatting rules for software developers.
 
-* To comply with general Markdown syntax, use [markdownlint](https://www.npmjs.com/package/markdownlint).
+* To comply with general Markdown syntax, use [`markdownlint`](https://www.npmjs.com/package/markdownlint).
 * To comply with all or subset of custom rules discussed in this guide, enable [custom](#custom-rules) rules.
 
-References:
+**References**:
 
 * [Google Developer Documentation Style Guide](https://developers.google.com/style/).
 * [Salesforce Style Guide for Documentation and User Interface Text](https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/overview.htm).
 
 ---
 
-## Abbreviations
+## Grammar
 
-* Abbreviate if the acronym is known to the target audience.
-* Introduce new acronyms in parentheses and re-use thereafter.
-  * :white_check_mark: `Hadoop Distributed File System (HDFS) is a clustered system. HDFS is resilient.`
-* Always abbreviate:
-  * Known terms: SQL, API, REST, JVM, UTF, URL, URI.
-    * :white_check_mark: `SQL report`
-    * :no_entry: `Structure Query Language (SQL) report`
-  * Data formats: CSV, JSON, XLS, XML, XLS, PDF.
-  * Protocols: HTTP, HTTPS, SSL, JMX, TCP, UDP, SSH, DNS.
-  * Standards and organizations: ISO, ASCII, ANSI, W3C.
-  * Time zones: UTC, EST, GMT.
-  * ATSD in Axibase documentation repositories.
-  
-## Contractions
-
-* Replace "i.e." or "e.g." with "for example".
-  * :white_check_mark: ``Specify the recipient, for example `user@example.org`.``
-  * :no_entry: ``Specify the recipient, e.g. `user@example.org`.``
-* "etc" is allowed.
-* Replace `don't`, `can't`, `hasn't`, `isn't`, `didn't` with `do not`, `cannot`, etc.
-  * :white_check_mark: `The parameter is not valid.`
-  * :no_entry: `The parameter isn't valid.`
-
-## Capitalization
+### Capitalization
 
 * Use [title case](https://titlecase.com/) in headers.
   * :white_check_mark: `## Import Data`.
@@ -55,7 +32,52 @@ References:
   * :white_check_mark: Unix, bash, IPv4, IPv6, URL.
   * :no_entry: UNIX, Bash, IP v4, IP v6, Url.
 
-## Parentheses
+### Contractions
+
+* Replace "i.e." or "e.g." with "for example".
+  * :white_check_mark: ``Specify the recipient, for example `user@example.org`.``
+  * :no_entry: ``Specify the recipient, e.g. `user@example.org`.``
+* "etc" is allowed.
+* Replace `don't`, `can't`, `hasn't`, `isn't`, `didn't` with `do not`, `cannot`, etc.
+  * :white_check_mark: `The parameter is not valid.`
+  * :no_entry: `The parameter isn't valid.`
+
+### Commas
+
+* Do not use a comma to separate clauses with multiple actors. Create separate sentences.
+  * :white_check_mark: `Submit the query. Review the results.`
+  * :no_entry: `Submit the query, the result is displayed.`
+
+### Colons
+
+* Begin lists with colons (`:`).
+  * :white_check_mark: `Execute the following commands to stop the database:`
+* Separate list titles from their content with a colon.
+  * :white_check_mark: `Step 1: stop ATSD process.`
+
+### Hyphens
+
+* Hyphenate compound adjectives.
+  * :white_check_mark: `Cancel a long-running query`.
+* Do not hyphenate adverb adjectives that end with `ly`.
+  * :white_check_mark: `Review frequently used queries`.
+  * :no_entry: `Load data from the publicly-accessible service`.
+* Do not use a hyphen to separate title from meaning, use a [colon](#colons).
+  * :white_check_mark: `Meta Query: retrieves metadata from the service.`
+  * :no_entry: `Meta Query - retrieves metadata from the service.`
+
+### Numbers
+
+* Write out numbers one through ten, unless they have units.
+  * :white_check_mark: `There are three ways to perform this calculation`.
+* Write out ordinal numbers.
+  * :white_check_mark: `The first query causes the database to lock the table`.
+* Add thousands separator except for milliseconds and machine output.
+  * :white_check_mark: `Stop the query if the row count exceeds 1,000`.
+* Insert a space between a number and multiple-letter unit. Omit space for one-letter units.
+  * :white_check_mark: `8 GB`, `128 MB`, `2 CPUs`, `10%`.
+
+### Parentheses
 
 * Do not use parentheses.
   * :white_check_mark: ``Execute `SELECT 1` query to test the connection.``
@@ -64,14 +86,13 @@ References:
   * :white_check_mark: ``The field supports wildcards (`*`).``
   * :white_check_mark: ``Up to nine (`9`) fractions are printed.``
 
-## Colons
+### Possessives
 
-* Begin lists with colons (`:`).
-  * :white_check_mark: `Execute the following commands to stop the database:`
-* Separate list titles from their content with a colon.
-  * :white_check_mark: `Step 1: stop ATSD process.`
+* Do not use possessives.
+  * :white_check_mark: `Modify the file content` or `Modify the contents of the file`.
+  * :no_entry: `Modify the file's content`.
 
-## Quotation Marks
+### Quotation Marks
 
 * Do not use quotation marks.
 * To designate [UI elements](#interface-elements) use bold text.
@@ -83,24 +104,11 @@ References:
   * :no_entry: `Watch the log file for "Start completed" message.`  
 * To designate multiple-line machine output use code blocks with `txt` dialect.
 
-## Commas
+---
 
-* Do not use a comma to separate clauses with multiple actors. Create separate sentences.
-  * :white_check_mark: `Submit the query. Review the results.`
-  * :no_entry: `Submit the query, the result is displayed.`
+## Formatting
 
-## Hyphens
-
-* Hyphenate compound adjectives.
-  * :white_check_mark: `Cancel a long-running query`.
-* Do not hyphenate adverb adjectives that end with `ly`.
-  * :white_check_mark: `Review frequently used queries`.
-  * :no_entry: `Load data from the publicly-accessible service`.
-* Do not use a hyphen to separate title from meaning, use a [colon](#colons).
-  * :white_check_mark: `Meta Query: retrieves metadata from the service.`
-  * :no_entry: `Meta Query - retrieves metadata from the service.`
-
-## Backticks
+### Backticks
 
 Apply single backticks to the following:
 
@@ -134,7 +142,7 @@ Apply single backticks to the following:
   * :white_check_mark: ``Watch the log file for `Start completed` message.``
 * Shell commands: `su`, `chown`, `sudo`.
 
-Exceptions:
+**Exceptions**:
 
 * Do not backtick an acronym, unless it represents a field or parameter value.
   * :white_check_mark: ``Select `GZIP` or `LZO` option in the **Codec** drop-down list.``
@@ -142,7 +150,7 @@ Exceptions:
 * Do not use backticks in headings.
   * :white_check_mark: `## Install Python 3.5 using curl`.
 
-### Code Block
+### Code Blocks
 
 * Fence code with triple backticks.
 * Fence multiple-line machine output with triple backticks.
@@ -153,57 +161,21 @@ Exceptions:
   * Use `ls` for Charts configuration.
   * Use `javascript` for rule engine expressions.
 
-## Numbers
+### Dates and Times
 
-* Write out numbers one through ten, unless they have units.
-  * :white_check_mark: `There are three ways to perform this calculation`.
-* Write out ordinal numbers.
-  * :white_check_mark: `The first query causes the database to lock the table`.
-* Add thousands separator except for milliseconds and machine output.
-  * :white_check_mark: `Stop the query if the row count exceeds 1,000`.
-* Insert a space between a number and multiple-letter unit. Omit space for one-letter units.
-  * :white_check_mark: `8 GB`, `128 MB`, `2 CPUs`, `10%`.
+* Spell out month if the format is ambiguous:
+  * :white_check_mark: `01/Jun/2018`.
+  * :no_entry: `06/01/2018`.
+* Do not use ordinal numbers in dates.
+  * :white_check_mark: `April 15`.
+  * :no_entry: `April 15th`.
+* Use commas with full dates.
+  * :white_check_mark: `The report was published on December 13, 2017`.
+* Write time in 24-hour format.
+  * :white_check_mark: `April 15, 2018 at 20:30`.
+  * :no_entry: `April 15, 2018 at 8:30 pm`.
 
-## Possessives
-
-* Do not use possessives.
-  * :white_check_mark: `Modify the file content` or `Modify the contents of the file`.
-  * :no_entry: `Modify the file's content`.
-
-## Headers
-
-* Use [title case](https://titlecase.com/) in headers.
-  * :white_check_mark: `## Import Data from File`.
-  * :no_entry: `## Import data from file`.
-* Do not use backticks in headers.
-  * :white_check_mark: `## Configure cron`.
-  * :no_entry: ``## Configure `cron` schedule``.
-* Do not terminate sentences in headers with dot.
-  * :no_entry: `## Import data from file.`
-* Avoid punctuation symbols in headers except colon (`:`).
-  * :no_entry: `## Import Data from File (Directory)`.
-  
-## Methods
-
-* Use present tense for method and function descriptions. Omit the noun.
-  * :white_check_mark: `Returns a collection of alert history records`.
-  * :white_check_mark: `Returns the natural logarithm of x`.
-  * :no_entry: `The method returns a collection of alert history records`.
-  * :no_entry: `Return a collection of alert history records`.
-
-## Variables
-
-* Use curly brackets (`{}`) to designate a variable in URI path or query string:
-  * :white_check_mark: `/api/{entity}/metrics`
-  * :white_check_mark: `/api/metrics?id={metricId}`
-* Use camelCase in compound variable names in REST API:
-  * :white_check_mark: `entityGroup`
-  * :no_entry: `entity-group`
-* Add "the" article before the variables with types.
-  * :white_check_mark: ``Open the `atsd.log` file.``
-  * :no_entry: ``Open the file `atsd.log`.``
-
-## Example Names
+### Example Names
 
 * IPv4 address: `192.0.2.1`, `198.51.100.1`, `203.0.113.0` per [RFC 5737](https://tools.ietf.org/html/rfc5737).
 * IPv4 address range: `192.0.2.0/24`, `198.51.100.0/24`, `203.0.113.0/24`.
@@ -221,30 +193,56 @@ Exceptions:
 * SSN: `000-00-0000`.
 * File path: `/path/to/new-dir`, `/path/to/new-file`. Replace `new-dir` and `new-file` to indicate the purpose, for example, `/path/to/backup-dir`.
 
-## Date and Time
+### Headers
 
-* Spell out month if the format is ambiguous:
-  * :white_check_mark: `01/Jun/2018`.
-  * :no_entry: `06/01/2018`.
-* Do not use ordinal numbers in dates.
-  * :white_check_mark: `April 15`.
-  * :no_entry: `April 15th`.
-* Use commas with full dates.
-  * :white_check_mark: `The report was published on December 13, 2017`.
-* Write time in 24-hour format.
-  * :white_check_mark: `April 15, 2018 at 20:30`.
-  * :no_entry: `April 15, 2018 at 8:30 pm`.
-  
-## Active Voice
+* Use [title case](https://titlecase.com/) in headers.
+  * :white_check_mark: `## Import Data from File`.
+  * :no_entry: `## Import data from file`.
+* Do not use backticks in headers.
+  * :white_check_mark: `## Configure cron`.
+  * :no_entry: ``## Configure `cron` schedule``.
+* Do not terminate sentences in headers with dot.
+  * :no_entry: `## Import data from file.`
+* Avoid punctuation symbols in headers except colon (`:`).
+  * :no_entry: `## Import Data from File (Directory)`.
+
+### Links
+
+* Use relative paths when linking markdown files in the same repository:
+  * :white_check_mark: `Initiate a [restart](../../administration/restarting.md)`.
+  * :no_entry: `Initiate a [restart](/administration/restarting.md)`.
+* When linking to documents in the same repository, link to markdown files, and not to `https://axibase.com/` URLs:
+  * :white_check_mark: `Initiate a [restart](../../administration/restarting.md)`.
+  * :no_entry: `Initiate a [restart](https://axibase.com/docs/atsd/administration/restarting.html)`.
+* Describe the linked document in the link title:
+  * :white_check_mark: `Review [installation notes](install.md).`
+  * :no_entry: `Click [here](install.md) to view installation notes.`
+
+---
+
+## Style
+
+### Active Voice
 
 * Maintain active voice for technical documentation.
 * Describe both the actor and the action, or use the imperative to instruct a user.  
 
-## Present Tense
+### Abbreviations
 
-* Do not use `will`, `was`, `were`, `had`. Write in the present tense.
+* Abbreviate if the acronym is known to the target audience.
+* Introduce new acronyms in parentheses and re-use thereafter.
+  * :white_check_mark: `Hadoop Distributed File System (HDFS) is a clustered system. HDFS is resilient.`
+* Always abbreviate:
+  * Known terms: SQL, API, REST, JVM, UTF, URL, URI.
+    * :white_check_mark: `SQL report`
+    * :no_entry: `Structure Query Language (SQL) report`
+  * Data formats: CSV, JSON, XLS, XML, XLS, PDF.
+  * Protocols: HTTP, HTTPS, SSL, JMX, TCP, UDP, SSH, DNS.
+  * Standards and organizations: ISO, ASCII, ANSI, W3C.
+  * Time zones: UTC, EST, GMT.
+  * ATSD in Axibase documentation repositories.
 
-## Blacklisted Words
+### Blacklisted Words
 
 word | alternatives
 ---|---
@@ -277,7 +275,7 @@ word | alternatives
 `click on` | `click`
 `robust` | avoid trite words
 
-## Interface Elements
+### Interface Elements
 
 * Interface elements must be **bold**, exactly as they appear in the UI.
 * Add `>` to describe navigation sequences.
@@ -308,24 +306,7 @@ word | alternatives
 * Use `log in` as verb and `login` as noun.
   * `Log in to ATSD`.
 
-## Links
-
-* Use relative paths when linking markdown files in the same repository:
-  * :white_check_mark: `Initiate a [restart](../../administration/restarting.md)`.
-  * :no_entry: `Initiate a [restart](/administration/restarting.md)`.
-* When linking to documents in the same repository, link to markdown files, and not to `https://axibase.com/` URLs:
-  * :white_check_mark: `Initiate a [restart](../../administration/restarting.md)`.
-  * :no_entry: `Initiate a [restart](https://axibase.com/docs/atsd/administration/restarting.html)`.
-* Describe the linked document in the link title:
-  * :white_check_mark: `Review [installation notes](install.md).`
-  * :no_entry: `Click [here](install.md) to view installation notes.`
-
-## Product Names
-
-* Use original product names unless you introduce an abbreviation.
-* Articles can be omitted from product names in most cases.
-
-## Issue Subjects
+### Issue Subjects
 
 * Add prefix (topic) to subject. The topic can repeat the category or clarify it if necessary.
   * :white_check_mark: `UI: SQL Query Statistics page error.`
@@ -335,7 +316,15 @@ word | alternatives
 * Use descriptive sentences for bugs.
   * :white_check_mark: `NMON Parser: property record is not updated.`
 
-## Style
+### Methods
+
+* Use present tense for method and function descriptions. Omit the noun.
+  * :white_check_mark: `Returns a collection of alert history records`.
+  * :white_check_mark: `Returns the natural logarithm of x`.
+  * :no_entry: `The method returns a collection of alert history records`.
+  * :no_entry: `Return a collection of alert history records`.
+
+### Phrasing
 
 * Remove verbiage, such as `execute these steps`, `follow the prompts`, `perform these tasks`, `by executing the following command`.
   * :white_check_mark: `Create a Slack [workspace](https://slack.com/create).`
@@ -351,15 +340,44 @@ word | alternatives
   * :white_check_mark: `Example configuration:`
   * :no_entry: `Sample configuration:`
 
+### Present Tense
+
+* Do not use `will`, `was`, `were`, `had`. Write in the present tense.
+
+### Product Names
+
+* Use original product names unless you introduce an abbreviation.
+* Articles can be omitted from product names in most cases.
+
+### Variables
+
+* Use curly brackets (`{}`) to designate a variable in URI path or query string:
+  * :white_check_mark: `/api/{entity}/metrics`
+  * :white_check_mark: `/api/metrics?id={metricId}`
+* Use camelCase in compound variable names in REST API:
+  * :white_check_mark: `entityGroup`
+  * :no_entry: `entity-group`
+* Add "the" article before the variables with types.
+  * :white_check_mark: ``Open the `atsd.log` file.``
+  * :no_entry: ``Open the file `atsd.log`.``
+
 ---
 
-## Custom Rules
+## Configuration
+
+### Automated Checks
+
+Configure Travis CI to check custom rules as part of the pull request workflow.
+
+![Travis](./docs/images/travis-check.png)
+
+### Custom Rules
 
 The repository contains custom rules for identifying inconsistencies and style violations.
 
-## Rule Scope
+### Rule Scope
 
-To enable or disable [rules](./linting-rules/) within the given Markdown file, wrap the text with non-printable HTML comments.
+To enable or disable [rules](./linting-rules/) within a given Markdown file, wrap the text with non-printable HTML comments.
 
 * Disable all rules: `<!-- markdownlint-disable -->`
 * Enable all rules: `<!-- markdownlint-enable -->`
@@ -378,9 +396,3 @@ To disable the rule for the entire `*.md` file,
 add the `markdownlint-disable` marker before the first header.
 
 A `markdownlint-enable` marker is not necessary in this case.
-
-## Automated Checks
-
-Configure Travis CI to check custom rules as part of the pull request workflow.
-
-![Travis](./docs/images/travis-check.png)
