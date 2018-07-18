@@ -14,6 +14,21 @@ The guide contains a compilation of grammar, punctuation, and Markdown formattin
 
 ## Grammar
 
+### Abbreviations
+
+* Abbreviate if the acronym is known to the target audience.
+* Introduce new acronyms in parentheses and re-use thereafter.
+  * :white_check_mark: `Hadoop Distributed File System (HDFS) is a clustered system. HDFS is resilient.`
+* Always abbreviate:
+  * Known terms: SQL, API, REST, JVM, UTF, URL, URI.
+    * :white_check_mark: `SQL report`
+    * :no_entry: `Structure Query Language (SQL) report`
+  * Data formats: CSV, JSON, XLS, XML, XLS, PDF.
+  * Protocols: HTTP, HTTPS, SSL, JMX, TCP, UDP, SSH, DNS.
+  * Standards and organizations: ISO, ASCII, ANSI, W3C.
+  * Time zones: UTC, EST, GMT.
+  * ATSD in Axibase documentation repositories.
+
 ### Capitalization
 
 * Use [title case](https://titlecase.com/) in headers.
@@ -101,7 +116,7 @@ The guide contains a compilation of grammar, punctuation, and Markdown formattin
 * To designate single-line machine output use bold text or backticks.
   * :white_check_mark: `Watch the log file for **Start completed** message.`
   * :white_check_mark: ``Watch the log file for `Start completed` message.``
-  * :no_entry: `Watch the log file for "Start completed" message.`  
+  * :no_entry: `Watch the log file for "Start completed" message.`
 * To designate multiple-line machine output use code blocks with `txt` dialect.
 
 ---
@@ -175,24 +190,6 @@ Apply single backticks to the following:
   * :white_check_mark: `April 15, 2018 at 20:30`.
   * :no_entry: `April 15, 2018 at 8:30 pm`.
 
-### Example Names
-
-* IPv4 address: `192.0.2.1`, `198.51.100.1`, `203.0.113.0` per [RFC 5737](https://tools.ietf.org/html/rfc5737).
-* IPv4 address range: `192.0.2.0/24`, `198.51.100.0/24`, `203.0.113.0/24`.
-* IPv6 address: `2001:db8::1` per [RFC 3849](https://tools.ietf.org/html/rfc3849).
-* IPv6 address range: `2001:db8::/32`.
-* Phone number: `(800) 555-0100`.
-* Host name: `atsd_hostname`, `atsd_ip_address`.
-* DNS name: `example.org` per [RFC 2606](https://tools.ietf.org/html/rfc2606), [localized domains](https://www.iana.org/domains/reserved).
-* Subdomain: `test.example.org`, `atsd.example.org`.
-* Organization: Example Foundation, Example Corporation. Avoid [`Contoso`](https://en.wikipedia.org/wiki/List_of_fictional_Microsoft_companies).
-* Email: `user@example.org`, `test@example.org`, `john.doe@example.org`.
-* First name: `John`, `Jack`, `Jane`, `Mary`.
-* Last name: `Doe`, `Smith`, `Jones`.
-* Credentials: `username` and `password`, `username:password`, and `john.doe:secret` in examples.
-* SSN: `000-00-0000`.
-* File path: `/path/to/new-dir`, `/path/to/new-file`. Replace `new-dir` and `new-file` to indicate the purpose, for example, `/path/to/backup-dir`.
-
 ### Headers
 
 * Use [title case](https://titlecase.com/) in headers.
@@ -225,22 +222,11 @@ Apply single backticks to the following:
 ### Active Voice
 
 * Maintain active voice for technical documentation.
-* Describe both the actor and the action, or use the imperative to instruct a user.  
-
-### Abbreviations
-
-* Abbreviate if the acronym is known to the target audience.
-* Introduce new acronyms in parentheses and re-use thereafter.
-  * :white_check_mark: `Hadoop Distributed File System (HDFS) is a clustered system. HDFS is resilient.`
-* Always abbreviate:
-  * Known terms: SQL, API, REST, JVM, UTF, URL, URI.
-    * :white_check_mark: `SQL report`
-    * :no_entry: `Structure Query Language (SQL) report`
-  * Data formats: CSV, JSON, XLS, XML, XLS, PDF.
-  * Protocols: HTTP, HTTPS, SSL, JMX, TCP, UDP, SSH, DNS.
-  * Standards and organizations: ISO, ASCII, ANSI, W3C.
-  * Time zones: UTC, EST, GMT.
-  * ATSD in Axibase documentation repositories.
+  * :white_check_mark: `The database filters metrics based on user settings.`
+  * :no_entry: `Metrics are filtered based on user settings`
+* Describe both the actor and the action, or use the imperative to instruct a user.
+  * :white_check_mark: `Log in to ATSD web interface to import the CSV file on the CSV Parsers page. Configure upload settings to filter unneeded metrics.`
+  * :no_entry: `When the CSV file is imported, unneeded metrics are filtered.`
 
 ### Blacklisted Words
 
@@ -275,6 +261,24 @@ word | alternatives
 `click on` | `click`
 `robust` | avoid trite words
 
+### Example Names
+
+* IPv4 address: `192.0.2.1`, `198.51.100.1`, `203.0.113.0` per [RFC 5737](https://tools.ietf.org/html/rfc5737).
+* IPv4 address range: `192.0.2.0/24`, `198.51.100.0/24`, `203.0.113.0/24`.
+* IPv6 address: `2001:db8::1` per [RFC 3849](https://tools.ietf.org/html/rfc3849).
+* IPv6 address range: `2001:db8::/32`.
+* Phone number: `(800) 555-0100`.
+* Host name: `atsd_hostname`, `atsd_ip_address`.
+* DNS name: `example.org` per [RFC 2606](https://tools.ietf.org/html/rfc2606), [localized domains](https://www.iana.org/domains/reserved).
+* Subdomain: `test.example.org`, `atsd.example.org`.
+* Organization: Example Foundation, Example Corporation. Avoid [`Contoso`](https://en.wikipedia.org/wiki/List_of_fictional_Microsoft_companies).
+* Email: `user@example.org`, `test@example.org`, `john.doe@example.org`.
+* First name: `John`, `Jack`, `Jane`, `Mary`.
+* Last name: `Doe`, `Smith`, `Jones`.
+* Credentials: `username` and `password`, `username:password`, and `john.doe:secret` in examples.
+* SSN: `000-00-0000`.
+* File path: `/path/to/new-dir`, `/path/to/new-file`. Replace `new-dir` and `new-file` to indicate the purpose, for example, `/path/to/backup-dir`.
+
 ### Interface Elements
 
 * Interface elements must be **bold**, exactly as they appear in the UI.
@@ -304,7 +308,7 @@ word | alternatives
   * :white_check_mark: `Click the **Web Notifications** tab`
   * :no_entry: `Click **Web Notifications** tab`
 * Use `log in` as verb and `login` as noun.
-  * `Log in to ATSD`.
+  * :white_check_mark: `Log in to ATSD`.
 
 ### Issue Subjects
 
@@ -316,12 +320,12 @@ word | alternatives
 * Use descriptive sentences for bugs.
   * :white_check_mark: `NMON Parser: property record is not updated.`
 
-### Methods
+### Functions
 
-* Use present tense for method and function descriptions. Omit the noun.
+* Use present tense for function descriptions. Omit the noun.
   * :white_check_mark: `Returns a collection of alert history records`.
   * :white_check_mark: `Returns the natural logarithm of x`.
-  * :no_entry: `The method returns a collection of alert history records`.
+  * :no_entry: `This function returns a collection of alert history records`.
   * :no_entry: `Return a collection of alert history records`.
 
 ### Phrasing
@@ -343,11 +347,15 @@ word | alternatives
 ### Present Tense
 
 * Do not use `will`, `was`, `were`, `had`. Write in the present tense.
+  * :white_check_mark: `Collector starts the job immediately.`
+  * :no_entry: `Collector will start the job immediately.`
 
 ### Product Names
 
 * Use original product names unless you introduce an abbreviation.
 * Articles can be omitted from product names in most cases.
+  * :white_check_mark: `Axibase Time Series Database`
+  * :no_entry: `The Axibase Time Series Database`
 
 ### Variables
 
