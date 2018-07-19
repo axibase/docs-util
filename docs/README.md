@@ -18,6 +18,7 @@
 |MD105|[blacklisted-words-for-use-cases](./../linting-rules/blacklisted-words-for-use-cases.js)|Locates [patterns](./../linting-rules/blacklisted-words-for-use-cases.js#L24) in atsd-use-cases prohibited in Axibase style [guide](../guide.md).|
 |MD106|[case-sensitive](./../linting-rules/case-sensitive.js)|Plugin checks that [keywords](./../linting-rules/case-sensitive.js#L25) have exact case. <br>Case check is skipped for: **code blocks**, **links**, **"Category" column** (changelogs), **fence blocks**.|
 |MD107|[no-space-in-fenced-code](./../linting-rules/no-space-in-fenced-code.js)|Plugin locates whitespace characters at the beginning of code block excluding `txt`.|
+|MD108|[ls-info-for-charts-code](./../linting-rules/ls-info-for-charts-code.js)|Plugin checks that Charts code blocks are fenced with `ls` info.|
 
 ## Manual Checks
 
