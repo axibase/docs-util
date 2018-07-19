@@ -16,7 +16,7 @@
  */
 
 /**
- * Plugin locates whitespace characters at the beginning of code block.
+ * Plugin locates whitespace characters at the beginning of code block excluding `txt`.
  */
 
 const spacesAtBegin = /^\s+/
@@ -25,8 +25,8 @@ module.exports = {
     description: "Remove whitespace characters at the beginning of code block.",
     tags: ["fence"],
     "function": (params, onError) => {
-        params.tokens.filter(t => (t.type === "fence")).forEach(token => {            
-            if (match = token.content.match(spacesAtBegin)) {                
+        params.tokens.filter(t => (t.type === "fence") && (t.info != "txt")).forEach(token => {
+            if (match = token.content.match(spacesAtBegin)) {
                 onError({
                     lineNumber: token.lineNumber + 1,
                     range: [match.index + 1, match[0].length]
