@@ -95,7 +95,10 @@ const rules = [
     new WordPattern("check box", { suggestion: "'checkbox'" }),
     new WordPattern("drop-down menu", { suggestion: "'drop-down list'" }),
     new WordPattern("selector", { suggestion: "'switch','drop-down list' or 'dual list'" }),
-    new WordPattern("popup window", { suggestion: "'dialog window'" })
+    new WordPattern("desired", { suggestion: "non-technical word" }),
+    new WordPattern("maximal", { suggestion: "replace with 'maximum'" }),
+    new WordPattern("in terms of", { suggestion: "too verbose" }),
+    new WordPattern("go to", { suggestion: "Use 'Open' or 'Navigate to'" })
 ];
 
 module.exports = {
