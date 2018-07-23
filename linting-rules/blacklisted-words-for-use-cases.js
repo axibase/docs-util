@@ -57,7 +57,11 @@ const rules = [
     new WordPattern("execute the following", { suggestion: "avoid verbiage" }),
     new WordPattern("login into", { suggestion: "'log in to'" }),
     new WordPattern("log in into", { suggestion: "'log in to'" }),
-    new WordPattern("atsd_host", { suggestion: "'atsd_hostname'" })
+    new WordPattern("atsd_host", { suggestion: "'atsd_hostname'" }),
+    new WordPattern("desired", { suggestion: "non-technical word" }),
+    new WordPattern("maximal", { suggestion: "replace with 'maximum'" }),
+    new WordPattern("in terms of", { suggestion: "too verbose" }),
+    new WordPattern("go to", { suggestion: "Use 'Open' or 'Navigate to'" })
 ];
 
 module.exports = {
