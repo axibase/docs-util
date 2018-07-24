@@ -362,7 +362,7 @@ word | alternatives
 
 ### Functions
 
-* Use present tense for function descriptions. Omit the noun.
+* Use present tense in function, method, and API endpoint overview descriptions. Omit the noun.
   * :white_check_mark: `Returns a collection of alert history records`.
   * :white_check_mark: `Returns the natural logarithm of x`.
   * :no_entry: `This function returns a collection of alert history records`.
