@@ -14,41 +14,41 @@ The guide contains a compilation of grammar, punctuation, and Markdown formattin
 
 ## Contents
 
-[**Grammar**](#grammar)<br>
-[Abbreviations](#abbreviations)<br>
-[Capitalization](#capitalization)<br>
-[Contractions](#contractions)<br>
-[Commas](#commas)<br>
-[Colons](#colons)<br>
-[Hyphens](#hyphens)<br>
-[Numbers](#numbers)<br>
-[Parentheses](#parentheses)<br>
-[Possessives](#possessives)<br>
-[Quotation Marks](#quotation-marks)
+* [**Grammar**](#grammar)<br>
+  * [Abbreviations](#abbreviations)<br>
+  * [Capitalization](#capitalization)<br>
+  * [Contractions](#contractions)<br>
+  * [Commas](#commas)<br>
+  * [Colons](#colons)<br>
+  * [Hyphens](#hyphens)<br>
+  * [Numbers](#numbers)<br>
+  * [Parentheses](#parentheses)<br>
+  * [Possessives](#possessives)<br>
+  * [Quotation Marks](#quotation-marks)
 
-[**Formatting**](#formatting)<br>
-[Backticks](#backticks)<br>
-[Code Blocks](#code-blocks)<br>
-[Dates and Times](#dates-and-times)<br>
-[Headers](#headers)<br>
-[Links](#links)
+* [**Formatting**](#formatting)<br>
+  * [Backticks](#backticks)<br>
+  * [Code Blocks](#code-blocks)<br>
+  * [Dates and Times](#dates-and-times)<br>
+  * [Headers](#headers)<br>
+  * [Links](#links)
 
-[**Style**](#style)<br>
-[Active Voice](#active-voice)<br>
-[Blacklisted Words](#blacklisted-words)<br>
-[Example Names](#examples-names)<br>
-[Interface Elements](#interface-elements)<br>
-[Issue Subjects](#issue-subjects)<br>
-[Functions](#functions)<br>
-[Phrasing](#phrasing)<br>
-[Present Tense](#present-tense)<br>
-[Product Names](#product-names)<br>
-[Variables](#variables)
+* [**Style**](#style)<br>
+  * [Active Voice](#active-voice)<br>
+  * [Blacklisted Words](#blacklisted-words)<br>
+  * [Example Names](#examples-names)<br>
+  * [Interface Elements](#interface-elements)<br>
+  * [Issue Subjects](#issue-subjects)<br>
+  * [Functions](#functions)<br>
+  * [Phrasing](#phrasing)<br>
+  * [Present Tense](#present-tense)<br>
+  * [Product Names](#product-names)<br>
+  * [Variables](#variables)
 
-[**Configuration**](#configuration)<br>
-[Automated Checks](#automated-checks)<br>
-[Custom Rules](#custom-rules)<br>
-[Rule Scope](#rule-scope)
+* [**Configuration**](#configuration)<br>
+  * [Automated Checks](#automated-checks)<br>
+  * [Custom Rules](#custom-rules)<br>
+  * [Rule Scope](#rule-scope)
 
 ---
 
