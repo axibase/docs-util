@@ -19,15 +19,15 @@
  * Plugin locates patterns prohibited in Axibase style guide.
  */
 
-const rules = require("../common/Blacklist")
+const bad_words = require("../common/Blacklist")
 
 module.exports = {
-    names: ["MD102", "blacklisted-words"],
+    names: ["MD102", "blacklisted"],
     description: " ",
     tags: ["blacklist"],
     "function": (params, onError) => {
         params.tokens.filter(t => t.type === "inline").forEach(token => {
-            token.children.forEach(child => rules.forEach(rule => {
+            token.children.forEach(child => bad_words.forEach(rule => {
                 if ((child.type !== "code_inline") && (rule.regex.test(child.content))) {
                     const match = rule.test(child.line);
                     onError({

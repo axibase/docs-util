@@ -19,6 +19,7 @@
 |MD106|[case-sensitive](./../linting-rules/case-sensitive.js)|Plugin checks that [keywords](./../linting-rules/case-sensitive.js#L25) have exact case. <br>Case check is skipped for: **code blocks**, **links**, **"Category" column** (changelogs), **fence blocks**.|
 |MD107|[no-space-in-fenced-code](./../linting-rules/no-space-in-fenced-code.js)|Plugin locates whitespace characters at the beginning of code block excluding `txt`.|
 |MD108|[ls-info-for-charts-code](./../linting-rules/ls-info-for-charts-code.js)|Plugin checks that Charts code blocks are fenced with `ls` info.|
+|MD109|[no-types-for-named-elements](./../linting-rules/no-types-for-named-elements.js)|Plugin checks that types for named elements are not used. See [Interface Elements](../guide.md#interface-elements).|
 
 ## Manual Checks
 

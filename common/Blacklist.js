@@ -1,5 +1,5 @@
 const { WordPattern } = require("../common/Utils")
-rules = [
+patterns = [
     new WordPattern("should", { suggestion: "use 'must' or remove", skipForUseCases: true }),
     new WordPattern("could", { suggestion: "-", skipForUseCases: true }),
     new WordPattern("would", { suggestion: "use present tense", skipForUseCases: true }),
@@ -86,4 +86,4 @@ rules = [
     new WordPattern("go to", { suggestion: "Use 'Open' or 'Navigate to'" })
 ];
 
-module.exports = rules
+module.exports = patterns

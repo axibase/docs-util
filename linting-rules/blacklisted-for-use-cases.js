@@ -20,15 +20,15 @@
  */
 
 const patterns = require("../common/Blacklist")
-rules = patterns.filter(r => !r.skipForUseCases)
+bad_words = patterns.filter(r => !r.skipForUseCases)
 
 module.exports = {
-    names: ["MD105", "blacklisted-words-for-use-cases"],
+    names: ["MD105", "blacklisted-for-use-cases"],
     description: " ",
     tags: ["blacklist"],
     "function": (params, onError) => {
         params.tokens.filter(t => t.type === "inline").forEach(token => {
-            token.children.forEach(child => rules.forEach(rule => {
+            token.children.forEach(child => bad_words.forEach(rule => {
                 if ((child.type !== "code_inline") && (rule.regex.test(child.content))) {
                     const match = rule.test(child.line);
                     onError({
