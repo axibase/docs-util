@@ -1,40 +1,18 @@
-/**
- * @license
- * Copyright 2018 Axibase Corporation or its affiliates. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-/**
- * Plugin locates patterns prohibited in Axibase style guide.
- */
-
 const { WordPattern } = require("../common/Utils")
-
-const rules = [
-    new WordPattern("should", { suggestion: "use 'must' or remove" }),
-    new WordPattern("could", { suggestion: "-" }),
-    new WordPattern("would", { suggestion: "use present tense" }),
-    new WordPattern("may", { suggestion: "'can'", caseSensitive: true }),
-    new WordPattern("will", { suggestion: "use present tense" }),
-    new WordPattern("was", { suggestion: "use present tense" }),
-    new WordPattern("were", { suggestion: "use present tense" }),
-    new WordPattern("had", { suggestion: "use present tense" }),
-    new WordPattern("did", { suggestion: "use present tense" }),
-    new WordPattern("wasn't", { suggestion: "use present tense" }),
-    new WordPattern("weren't", { suggestion: "use present tense" }),
-    new WordPattern("hadn't", { suggestion: "use present tense" }),
-    new WordPattern("didn't", { suggestion: "use present tense" }),
+rules = [
+    new WordPattern("should", { suggestion: "use 'must' or remove", skipForUseCases: true }),
+    new WordPattern("could", { suggestion: "-", skipForUseCases: true }),
+    new WordPattern("would", { suggestion: "use present tense", skipForUseCases: true }),
+    new WordPattern("may", { suggestion: "'can'", caseSensitive: true, skipForUseCases: true }),
+    new WordPattern("will", { suggestion: "use present tense", skipForUseCases: true }),
+    new WordPattern("was", { suggestion: "use present tense", skipForUseCases: true }),
+    new WordPattern("were", { suggestion: "use present tense", skipForUseCases: true }),
+    new WordPattern("had", { suggestion: "use present tense", skipForUseCases: true }),
+    new WordPattern("did", { suggestion: "use present tense", skipForUseCases: true }),
+    new WordPattern("wasn't", { suggestion: "use present tense", skipForUseCases: true }),
+    new WordPattern("weren't", { suggestion: "use present tense", skipForUseCases: true }),
+    new WordPattern("hadn't", { suggestion: "use present tense", skipForUseCases: true }),
+    new WordPattern("didn't", { suggestion: "use present tense", skipForUseCases: true }),
     new WordPattern("abort ", { suggestion: "'stop', 'cancel'" }),
     new WordPattern("kill", { suggestion: "'stop', 'cancel'" }),
     new WordPattern("terminate", { suggestion: "'stop', 'cancel'" }),
@@ -45,7 +23,7 @@ const rules = [
     new WordPattern("as is", { suggestion: "remove" }),
     new WordPattern("deselect", { suggestion: "'clear'" }),
     new WordPattern("uncheck", { suggestion: "'clear'" }),
-    new WordPattern("flag", { suggestion: "'option', 'setting'" }),
+    new WordPattern("flag", { suggestion: "'option', 'setting'", skipForUseCases: true }),
     new WordPattern("ingest", { suggestion: "'load', 'import'" }),
     new WordPattern("lets", { suggestion: "-" }),
     new WordPattern("let(?!'s enc)", { suggestion: "-" }), // Match "let", but not "Let's Encrypt".
@@ -63,11 +41,16 @@ const rules = [
     new WordPattern("robust", { suggestion: "avoid trite words" }),
     new WordPattern("i\\.e\\.", { suggestion: "'for example'" }),
     new WordPattern("e\\.g\\.", { suggestion: "'for example'" }),
-    new WordPattern("don't", { suggestion: "'do not'" }),
-    new WordPattern("can't", { suggestion: "'cannot'" }),
-    new WordPattern("hasn't", { suggestion: "'has not'" }),
-    new WordPattern("isn't", { suggestion: "'is not'" }),
-    new WordPattern("\\w+s's?", { suggestion: "do not use possessives", caseSensitive: false, noWordBoundary: true }),
+    new WordPattern("don't", { suggestion: "'do not'", skipForUseCases: true }),
+    new WordPattern("can't", { suggestion: "'cannot'", skipForUseCases: true }),
+    new WordPattern("hasn't", { suggestion: "'has not'", skipForUseCases: true }),
+    new WordPattern("isn't", { suggestion: "'is not'", skipForUseCases: true }),
+    new WordPattern("\\w+s's?", {
+        suggestion: "do not use possessives",
+        caseSensitive: false,
+        noWordBoundary: true,
+        skipForUseCases: true
+    }),
     new WordPattern("execute these steps", { suggestion: "avoid verbiage" }),
     new WordPattern("follow the prompts", { suggestion: "avoid verbiage" }),
     new WordPattern("perform these tasks", { suggestion: "avoid verbiage" }),
@@ -88,6 +71,8 @@ const rules = [
     new WordPattern("unrealwork", { suggestion: "-" }),
     new WordPattern("nur.axibase", { suggestion: "review white list" }),
     new WordPattern("hbs.axibase", { suggestion: "review white list" }),
+    new WordPattern("myuser", { suggestion: "review white list" }),
+    new WordPattern("mypassword", { suggestion: "review white list" }),
     new WordPattern("multi-action button", { suggestion: "'split-button'" }),
     new WordPattern("drop-down button", { suggestion: "'split-button'" }),
     new WordPattern("combo-button", { suggestion: "'split-button'" }),
@@ -101,22 +86,4 @@ const rules = [
     new WordPattern("go to", { suggestion: "Use 'Open' or 'Navigate to'" })
 ];
 
-module.exports = {
-    names: ["MD102", "blacklisted-words"],
-    description: " ",
-    tags: ["blacklist"],
-    "function": (params, onError) => {
-        params.tokens.filter(t => t.type === "inline").forEach(token => {
-            token.children.forEach(child => rules.forEach(rule => {
-                if ((child.type !== "code_inline") && (rule.regex.test(child.content))) {
-                    const match = rule.test(child.line);
-                    onError({
-                        lineNumber: child.lineNumber,
-                        detail: `The phrase '${match}' is blacklisted. Alternatives: ${rule.suggestion}`,
-                        range: match.range()
-                    })
-                }
-            }))
-        });
-    }
-};
+module.exports = rules
