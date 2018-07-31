@@ -34,7 +34,7 @@ Since we use Node 8 or Chromium you can use most of ES6 features, except esm-mod
 
 Test function takes 2 arguments: `params` object and `onError` callback.
 The most important thing in the function input is `params.tokes` field, which is the list of document tokens, parsed by `markdown-it`. Visit the [API reference](https://markdown-it.github.io/markdown-it/#Token) for details.
-One useful tool is the [`markdown-it` playground](https://markdown-it.github.io/), which can help you to discover how the token tree looks for your test case. Type an example and go to debug tab.
+One useful tool is the [`markdown-it` playground](https://markdown-it.github.io/), which can help you to discover how the token tree looks for your test case. Type an example and switch to debug tab.
 
 The `onError` callback takes an object, describing what goes bad and where. The only required field is `lineNumber`, but try to provide as much info, as possible. Take a look at [InlineTokenChildren](common/InlineTokenChildren.js) module, it helps to [iterate](linting-rules/backtick-keywords.js#L73) over `token.children` array. Also this module useful for creating [range](linting-rules/backtick-keywords.js#L90) array for proper underline in VSCode:
 
