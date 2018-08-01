@@ -3,8 +3,12 @@
 import argparse
 import contextlib
 import json
-import requests
 import sys
+try:
+    import urllib.request as req
+except ImportError:
+    import urllib as req
+
 
 
 """
@@ -64,11 +68,11 @@ def convert_dictionary(file_provider, transformer_func, result):
 
 
 def download_file(filename):
-    response = requests.get(BASE_DICTIONARY_LOCATION + filename)
-    if response.ok:
-        return contextlib.closing(response)
-    response.close()
-    response.raise_for_status()
+    urlopen = req.urlopen(BASE_DICTIONARY_LOCATION + filename)
+    if urlopen.code >= 400:
+        urlopen.close()
+        raise IOError("Response code: {}".format(urlopen.code))
+    return contextlib.closing(urlopen)
 
 
 def validate_arguments():
