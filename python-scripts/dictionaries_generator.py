@@ -3,7 +3,7 @@
 import json
 import sys
 import urllib.request as req
-from typing import Callable
+from typing import Callable, IO
 
 """
 The script converts human-readable dictionary files to regular expressions understood by
@@ -30,11 +30,11 @@ DEFAULT_PLAIN_DICTIONARY_DESTINATION = ".spelling"
 DEFAULT_JSON_DICTIONARY_DESTINATION = ".yaspeller-dictionary.json"
 
 
-def wrap_pattern(pattern: str):
+def wrap_pattern(pattern: str) -> str:
     return ".*?\\b{}\\b.*?".format(pattern)
 
 
-def modify_regex(pattern: str):
+def modify_regex(pattern: str) -> str:
     first_letter = pattern[0]
     if first_letter.isalpha():
         return wrap_pattern("[{}{}]{}".format(first_letter.upper(), first_letter.lower(), pattern[1:]))
@@ -42,7 +42,7 @@ def modify_regex(pattern: str):
         return wrap_pattern(pattern)
 
 
-def convert_dictionary(file_provider: Callable, transformer_func: Callable, result: set):
+def convert_dictionary(file_provider: Callable[[], IO], transformer_func: Callable[[str], str], result: set):
     try:
         with file_provider() as f:
             for line in f:
@@ -55,7 +55,7 @@ def convert_dictionary(file_provider: Callable, transformer_func: Callable, resu
         sys.stderr.write(str(exc) + "\n")
 
 
-def download_file(filename):
+def download_file(filename) -> IO:
     return req.urlopen(BASE_DICTIONARY_LOCATION + filename)
 
 
