@@ -24,7 +24,7 @@ $3 other dictionary filename (default is ".dictionary-other")
 """
 
 BASE_DICTIONARY_LOCATION = "https://raw.githubusercontent.com/axibase/atsd/master/"
-DEFAULT_NAMES_DICTIONARY_FILENAME = ".dictionary-name"
+DEFAULT_NAMES_DICTIONARY_FILENAME = ".dictionary-names"
 DEFAULT_OTHER_DICTIONARY_FILENAME = ".dictionary-other"
 DEFAULT_PLAIN_DICTIONARY_DESTINATION = ".spelling"
 DEFAULT_JSON_DICTIONARY_DESTINATION = ".yaspeller-dictionary.json"
