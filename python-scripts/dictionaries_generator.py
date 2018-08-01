@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 
 import argparse
+import contextlib
 import json
+import requests
 import sys
-import urllib.request as req
-from typing import Callable, IO
+
 
 """
 The script converts human-readable dictionary files to regular expressions understood by
@@ -31,7 +32,7 @@ DEFAULT_PLAIN_DICTIONARY_DESTINATION = ".spelling"
 DEFAULT_JSON_DICTIONARY_DESTINATION = ".yaspeller-dictionary.json"
 
 
-def wrap_pattern(pattern: str) -> str:
+def wrap_pattern(pattern):
     """
     wraps the pattern to word boundaries.
     punctuation marks are checked to reduce number of false-positive matches in spellchecker-cli
@@ -41,7 +42,7 @@ def wrap_pattern(pattern: str) -> str:
     return "\\b{}\\b[.,:?!)]*?".format(pattern)
 
 
-def to_case_insensitive_regex(pattern: str) -> str:
+def to_case_insensitive_regex(pattern):
     first_letter = pattern[0]
     if first_letter.isalpha():
         return wrap_pattern("[{}{}]{}".format(first_letter.upper(), first_letter.lower(), pattern[1:]))
@@ -49,7 +50,7 @@ def to_case_insensitive_regex(pattern: str) -> str:
         return wrap_pattern(pattern)
 
 
-def convert_dictionary(file_provider: Callable[[], IO], transformer_func: Callable[[str], str], result: set):
+def convert_dictionary(file_provider, transformer_func, result):
     try:
         with file_provider() as f:
             for line in f:
@@ -62,11 +63,15 @@ def convert_dictionary(file_provider: Callable[[], IO], transformer_func: Callab
         sys.stderr.write(str(exc) + "\n")
 
 
-def download_file(filename) -> IO:
-    return req.urlopen(BASE_DICTIONARY_LOCATION + filename)
+def download_file(filename):
+    response = requests.get(BASE_DICTIONARY_LOCATION + filename)
+    if response.ok:
+        return contextlib.closing(response)
+    response.close()
+    response.raise_for_status()
 
 
-def validate_arguments() -> argparse.Namespace:
+def validate_arguments():
     parser = argparse.ArgumentParser(description='Spellchecking dictionaries converter.')
     parser.add_argument('--mode', '-m', type=str,
                         help="mode: atsd (don't download additional dictionaries), "
