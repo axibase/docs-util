@@ -9,6 +9,8 @@ try:
 except ImportError:
     import urllib as req
 
+PY3 = sys.version_info >= (3, 0)
+str_type = str if PY3 else unicode
 
 
 """
@@ -43,13 +45,13 @@ def wrap_pattern(pattern):
     :param pattern: original regex
     :return: modified regex pattern
     """
-    return "\\b{}\\b[.,:?!)]*?".format(pattern)
+    return str_type("\\b{}\\b[.,:?!)]*?").format(pattern)
 
 
 def to_case_insensitive_regex(pattern):
     first_letter = pattern[0]
     if first_letter.isalpha():
-        return wrap_pattern("[{}{}]{}".format(first_letter.upper(), first_letter.lower(), pattern[1:]))
+        return wrap_pattern(str_type("[{}{}]{}").format(first_letter.upper(), first_letter.lower(), pattern[1:]))
     else:
         return wrap_pattern(pattern)
 
@@ -60,11 +62,11 @@ def convert_dictionary(file_provider, transformer_func, result):
             for line in f:
                 line = line.strip()
                 if len(line) > 0:
-                    if isinstance(line, bytes):
+                    if not isinstance(line, str_type):
                         line = line.decode('utf-8')
                     result.add(transformer_func(line))
     except (OSError, IOError) as exc:
-        sys.stderr.write(str(exc) + "\n")
+        sys.stderr.write(str_type(exc) + "\n")
 
 
 def download_file(filename):
@@ -97,10 +99,15 @@ def validate_arguments():
     return args
 
 
+def write(destination, string):
+    result = string if PY3 else string.encode('utf-8')
+    destination.write(result)
+
+
 if __name__ == '__main__':
     args = validate_arguments()
     patterns = set()
-    if args.mode.lower() != "atsd":
+    if args.mode.lower() != "atsd" and False:
         convert_dictionary(lambda: download_file(DEFAULT_NAMES_DICTIONARY_FILENAME), wrap_pattern, patterns)
         convert_dictionary(lambda: download_file(DEFAULT_OTHER_DICTIONARY_FILENAME), to_case_insensitive_regex, patterns)
     if args.mode.lower() == "legacy":
@@ -111,7 +118,7 @@ if __name__ == '__main__':
     sorted_dictionary = list(sorted(patterns))
 
     with open(DEFAULT_PLAIN_DICTIONARY_DESTINATION, 'w') as out:
-        out.write('\n'.join(sorted_dictionary))
+        write(out, '\n'.join(sorted_dictionary))
 
     with open(DEFAULT_JSON_DICTIONARY_DESTINATION, 'w') as out:
-        out.write(json.dumps(sorted_dictionary))
+        write(out, json.dumps(sorted_dictionary))
