@@ -107,7 +107,7 @@ def write(destination, string):
 if __name__ == '__main__':
     args = validate_arguments()
     patterns = set()
-    if args.mode.lower() != "atsd" and False:
+    if args.mode.lower() != "atsd":
         convert_dictionary(lambda: download_file(DEFAULT_NAMES_DICTIONARY_FILENAME), wrap_pattern, patterns)
         convert_dictionary(lambda: download_file(DEFAULT_OTHER_DICTIONARY_FILENAME), to_case_insensitive_regex, patterns)
     if args.mode.lower() == "legacy":
