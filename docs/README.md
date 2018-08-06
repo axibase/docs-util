@@ -32,7 +32,7 @@ Clone or update `docs-util`:
 
 ```bash
 git clone https://github.com/axibase/docs-util.git
-// update
+# update
 cd docs-util && git pull
 ```
 
