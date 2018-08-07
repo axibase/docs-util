@@ -45,7 +45,13 @@ def wrap_pattern(pattern):
     :param pattern: original regex
     :return: modified regex pattern
     """
-    return str_type("\\b{}\\b[.,:?!)]*?").format(pattern)
+    if pattern.startswith('['):  # allow possessives for names
+        tail = str_type("[.,:?!)]*?")
+    else:
+        tail = str_type("(?:'s)?[.,:?!)]*?")
+    if all(ord(c) < 256 for c in pattern):  # word boundary works incorrectly with unicode characters
+        return str_type("\\b{}\\b{}").format(pattern, tail)
+    return pattern + tail
 
 
 def to_case_insensitive_regex(pattern):
