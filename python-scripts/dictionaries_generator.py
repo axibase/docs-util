@@ -12,6 +12,85 @@ except ImportError:
 PY3 = sys.version_info >= (3, 0)
 str_type = str if PY3 else unicode
 
+ORDINALS_PATTERN_TO_TEN = "(?:1st|2nd|3rd|[4-90]th)"
+
+DEFAULT_DICTIONARY = {
+    "days of week": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+
+    "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+
+    "measurement units": ["kg", "kW", "kWh", "GWh", "MWh", "lbs", "ms", "AF", "AFD", "GB", "MB", "Hz", "MHz", "nm", "mg", "pH"],
+
+    "technologies": ["nginx", "Java", "JavaScript", "Hadoop", "Hbase", "Hbase-2", "Scala", "MATLAB",
+                     "Bing", "VMWare", "vCenter", "vSphere", "Xeon", "cAdvisor", "DataFrame", "cron", "cgroup[s]?",
+                     "TSDB[s]?", "ATSD", "atsd", "Rssa", "MacOS", "Mesos", "GraphQL", "GitHub"],
+
+    "technical abbreviations": ["AWS", "IAM", "EC2", "SNS", "ARN", "T2", "SCOM", "DWH",  "CMDB", "SSA", "CFS", "WPA",
+                                "TDW", "AER",
+                                "JVM", "JMX", "JMH", "LRU", "MQ", "W3C", "IO", "v?CPU[s]?", "VM[s]?", "GMT", "ARIMA",
+                                "QA", "CI", "DevOps", "UI", "UX", "CA[s]?", "ETL", "UDF",
+                                "RDF", "PDF", "XLS[X]?", "XML", "CSV", "TCV", "UDP", "JSONPath"],
+
+
+    "numeric": [ORDINALS_PATTERN_TO_TEN, "\\d\\d+{}".format(ORDINALS_PATTERN_TO_TEN),
+                "\\d{2}s", "\\d{4}s", "[Vv]\\d{1,}", "Q[1234]"]
+
+}
+
+EXTENDED_DEFAULT_DICTIONARY = {
+    "airports": ["SFO", "LGA", "JFK"],
+
+    "US state abbreviations": ["AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DE", "FL", "GA",
+                               "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA", "MD",
+                               "ME", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH",
+                               "NJ", "NM", "NV", "NY", "OH", "OK", "OR", "PA", "RI", "SC",
+                               "SD", "TN", "TX", "UT", "VA", "VT", "WA", "WI", "WV", "WY"],
+
+    "economic indicators": ["GDP",  # Gross Domestic Product
+                            "c?CPI",  # Core? Consumer Price Index
+                            "c?PPI",  # Core? Producer Price Index
+                            "MPV",  # Marginal Profit Value?
+                            "PPV",  # Potential Profitability Value?
+                            "LIBOR",  # London Inter-Bank Offered Rate
+                            "DSR",  # Debt-service ratio
+                            "EPU",  # Economic Policy Uncertainty
+                            "AGI",  # Adjusted Gross Income
+                            "CPIE",  # Experimental Consumer Price Index
+                            "WPI",  # Wholesale Price Index
+                            ],
+
+    "state agencies, organizations, laws": ["EU",  # European Union
+                                            "NSA",  # National Security Agency
+                                            "CAA",  # Civil Aviation Authority
+                                            "CDC",  # Center for Disease Control and Prevention
+                                            "FEMA",  # Federal Emergency Management Agency
+                                            "EPA",  # Environmental Protection Agency
+                                            "FOMC",  # Federal Open Market Committee
+                                            "ICHS",  # International Community Health Services
+                                            "FCC",  # Federal Communications Commission
+                                            "BLS",  # Bureau of Labor Statistics
+                                            "IRS",  # Internal Revenue Service
+                                            "BPD",  # Baltimore Police Department
+                                            "MVA",  # Motor Vehicle Administration
+                                            "NCHS",  # National Center for Health Statistics
+                                            "USDA",  # US Department of Agriculture
+                                            "MSC",  # Meteorological Satellite Center
+                                            "JMA",  # Japan Meteorological Agency
+                                            "CDWR",  # California Department of Water Resources
+                                            "CDEC",  # California Data Exchange Center
+                                            "ACSM",  # American College of Sports Medicine
+                                            "AEI",  # American Enterprise Institute
+                                            "NAICS",  # North American Industry Classification System
+                                            "FRED",  # Federal Reserve Economic Data
+                                            "OPEC",  # Organization of the Petroleum Exporting Countries
+                                            "NAFTA",  # North American Free Trade Agreement
+                                            "FICA",  # Federal Insurance Contribution Act
+                                            "HIPAA",  # Health Insurance Portability and Accountability Act
+                                            "NPT",  # Non-Proliferation Treaty
+                                            ],
+
+}
+
 
 """
 The script converts human-readable dictionary files to regular expressions understood by
@@ -28,6 +107,7 @@ Optional arguments:
     dictionaries
 --names-dictionary filename of dictionary with case-sensitive patterns (default is ".dictionary-names")
 --words-dictionary filename of dictionary with patterns with case-insensitive capital (default is ".dictionary-other")
+--use-extended-dictionary include abbreviations for US states, airports, organizations which may not needed
 """
 
 BASE_DICTIONARY_LOCATION = "https://raw.githubusercontent.com/axibase/atsd/master/"
@@ -36,6 +116,12 @@ DEFAULT_OTHER_DICTIONARY_FILENAME = ".dictionary-other"
 DEFAULT_LEGACY_DICTIONARY_FILENAME = ".dictionary"
 DEFAULT_PLAIN_DICTIONARY_DESTINATION = ".spelling"
 DEFAULT_JSON_DICTIONARY_DESTINATION = ".yaspeller-dictionary.json"
+
+
+def add_default_dictionary(words, dictionary):
+    for lst in dictionary.values():
+        for item in lst:
+            words.add(str_type("\\b{}\\b".format(item)))
 
 
 def wrap_pattern(pattern):
@@ -49,7 +135,7 @@ def wrap_pattern(pattern):
         tail = str_type("[.,:?!)]*?")
     else:
         tail = str_type("(?:'s)?[.,:?!)]*?")
-    if all(ord(c) < 256 for c in pattern):  # word boundary works incorrectly with unicode characters
+    if all(ord(c) < 128 for c in pattern):  # word boundary works incorrectly with unicode characters
         return str_type("\\b{}\\b{}").format(pattern, tail)
     return pattern + tail
 
@@ -97,12 +183,15 @@ def validate_arguments():
     parser.add_argument('--words-dictionary', '-d', type=str,
                         help='Other dictionary filename',
                         default=DEFAULT_OTHER_DICTIONARY_FILENAME)
-    args = parser.parse_args()
+    parser.add_argument('--use-extended-dictionary', '-ed', type=bool,
+                        help='Include abbreviations for US states, airports, organizations into the dictionary',
+                        default=False)
+    arguments = parser.parse_args()
 
-    if DEFAULT_PLAIN_DICTIONARY_DESTINATION in (args.names_dictionary, args.words_dictionary):
+    if DEFAULT_PLAIN_DICTIONARY_DESTINATION in (arguments.names_dictionary, arguments.words_dictionary):
         sys.stderr("Source dictionary filename must not be equal to {}\n".format(DEFAULT_PLAIN_DICTIONARY_DESTINATION))
         exit(1)
-    return args
+    return arguments
 
 
 def write(destination, string):
@@ -113,6 +202,9 @@ def write(destination, string):
 if __name__ == '__main__':
     args = validate_arguments()
     patterns = set()
+    add_default_dictionary(patterns, DEFAULT_DICTIONARY)
+    if args.use_extended_dictionary:
+        add_default_dictionary(patterns, EXTENDED_DEFAULT_DICTIONARY)
     if args.mode.lower() != "atsd":
         convert_dictionary(lambda: download_file(DEFAULT_NAMES_DICTIONARY_FILENAME), wrap_pattern, patterns)
         convert_dictionary(lambda: download_file(DEFAULT_OTHER_DICTIONARY_FILENAME), to_case_insensitive_regex, patterns)
