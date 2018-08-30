@@ -225,7 +225,8 @@ Apply single backticks to the following:
   * Use `json` for JSON documents, `xml` for XML files etc.
   * Use `txt` for machine output, unless the output is formatted, in which case use  appropriate dialect.
   * Use `ls` for Charts configuration.
-  * Use `javascript` for rule engine expressions.
+  * Use `javascript` for rule engine expressions and examples.
+  * Use `csharp` for definitions of rule engine functions that contain argument types.
 
 ### Dates and Times
 
