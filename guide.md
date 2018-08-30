@@ -204,6 +204,17 @@ Apply single backticks to the following:
   * :no_entry: ``The file is exported in `CSV` format.``
 * Do not use backticks in headings.
   * :white_check_mark: `## Install Python 3.5 using curl`.
+  
+### Brackets
+
+* When brackets are required in syntax, indicate the type of bracket needed.
+  * Round brackets `()`
+  * Curly brackets `{}`
+  * Sqaure brackets `[]`
+* Avoid ambiguous terms such as `braces`, `parentheses`, or `brackets` with no descriptor.
+  * :white_check_mark: ``Enclose parameters in round brackets after calling the function``
+  * :no_entry: ``Enclose parameters in brackets/braces after calling the function``
+
 
 ### Code Blocks
 
@@ -300,6 +311,7 @@ word | alternatives
 `end-point` | `endpoint`
 `click on` | `click`
 `robust` | avoid trite words
+`braces` | Define type of [bracket](#brackets) 
 
 ### Example Names
 
