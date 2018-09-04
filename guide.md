@@ -68,6 +68,16 @@ The guide contains a compilation of grammar, punctuation, and Markdown formattin
   * Standards and organizations: ISO, ASCII, ANSI, W3C.
   * Time zones: UTC, EST, GMT.
   * ATSD in Axibase documentation repositories.
+  
+### Brackets
+
+* When brackets are required in syntax, indicate the type of bracket needed.
+  * Round brackets `()`
+  * Curly brackets `{}`
+  * Square brackets `[]`
+* Avoid ambiguous terms such as `braces`, `parentheses`, or `brackets` with no descriptor.
+  * :white_check_mark: `Enclose parameters in round brackets when calling the function`
+  * :no_entry: `Enclose parameters in brackets when calling the function`   
 
 ### Capitalization
 
@@ -204,17 +214,6 @@ Apply single backticks to the following:
   * :no_entry: ``The file is exported in `CSV` format.``
 * Do not use backticks in headings.
   * :white_check_mark: `## Install Python 3.5 using curl`.
-  
-### Brackets
-
-* When brackets are required in syntax, indicate the type of bracket needed.
-  * Round brackets `()`
-  * Curly brackets `{}`
-  * Sqaure brackets `[]`
-* Avoid ambiguous terms such as `braces`, `parentheses`, or `brackets` with no descriptor.
-  * :white_check_mark: ``Enclose parameters in round brackets after calling the function``
-  * :no_entry: ``Enclose parameters in brackets/braces after calling the function``
-
 
 ### Code Blocks
 
