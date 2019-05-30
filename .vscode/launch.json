@@ -8,7 +8,20 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/debug/mdlint.js"
+            "program": "${workspaceFolder}/debug/mdlint.js",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Test",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script",
+                "test"
+            ],
+            "console": "integratedTerminal"
         }
     ]
 }
