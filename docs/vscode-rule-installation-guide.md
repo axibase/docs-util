@@ -24,6 +24,24 @@ Assuming you have [markdownlint](https://marketplace.visualstudio.com/items?item
     ```
 
     ![settings-json](./images/settings-json.png)
+    
+Current rules:
+
+```
+"markdownlint.customRules": [
+    "</path/to>/docs-util/linting-rules/relative-image-urls.js",
+    "</path/to>/docs-util/linting-rules/backtick-keywords.js",
+    "</path/to>a/docs-util/linting-rules/blacklisted.js",
+    "</path/to>/docs-util/linting-rules/backtick-http.js",
+    "</path/to>/docs-util/linting-rules/whitelist-mail-url-ip.js",
+    // "</path/to>/docs-util/linting-rules/blacklisted-for-use-cases.js",
+    "</path/to>/docs-util/linting-rules/case-sensitive.js",
+    "</path/to>/docs-util/linting-rules/no-space-in-fenced-code.js",
+    "</path/to>/docs-util/linting-rules/ls-info-for-charts-code.js",
+    "</path/to>/docs-util/linting-rules/no-number-at-link-start.js"
+]
+```
+
 4. Save configuration file changes.
 5. If you are installing rules locally, press **Allow** in the popup. In the other case restart VSCode.
     ![security popup](./images/security-popup.png)
