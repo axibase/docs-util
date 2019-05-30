@@ -1,6 +1,6 @@
 # Visual Studio Code Linting Rules Installation
 
-> Note: lookbehind assertion in regular expressions breaks error highlighting, rules `case-sensitive`, `backtick-keywords` do not work.
+> Note: lookbehind assertion in regular expressions breaks error highlighting, rules `case-sensitive`, `backtick-keywords` do not work in `vscode`. Consider [manual](./README.md#manual-checks) checks.
 
 Assuming you have [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) extension installed.
 
@@ -30,12 +30,12 @@ Current rules:
 ```javascript
 "markdownlint.customRules": [
     "</path/to>/docs-util/linting-rules/relative-image-urls.js",
-    "</path/to>/docs-util/linting-rules/backtick-keywords.js",
+    // "</path/to>/docs-util/linting-rules/backtick-keywords.js", doesn't work in vscode
     "</path/to>a/docs-util/linting-rules/blacklisted.js",
     "</path/to>/docs-util/linting-rules/backtick-http.js",
     "</path/to>/docs-util/linting-rules/whitelist-mail-url-ip.js",
     // "</path/to>/docs-util/linting-rules/blacklisted-for-use-cases.js",
-    "</path/to>/docs-util/linting-rules/case-sensitive.js",
+    // "</path/to>/docs-util/linting-rules/case-sensitive.js", doesn't work in vscode
     "</path/to>/docs-util/linting-rules/no-space-in-fenced-code.js",
     "</path/to>/docs-util/linting-rules/ls-info-for-charts-code.js",
     "</path/to>/docs-util/linting-rules/no-number-at-link-start.js"
