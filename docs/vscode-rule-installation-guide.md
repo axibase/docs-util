@@ -27,7 +27,7 @@ Assuming you have [markdownlint](https://marketplace.visualstudio.com/items?item
     
 Current rules:
 
-```
+```javascript
 "markdownlint.customRules": [
     "</path/to>/docs-util/linting-rules/relative-image-urls.js",
     "</path/to>/docs-util/linting-rules/backtick-keywords.js",
