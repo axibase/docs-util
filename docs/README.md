@@ -4,7 +4,7 @@
 
 * [Axibase Documentation Guide](../guide.md).
 * Installing [Custom Rules in VSCode](./vscode-rule-installation-guide.md).
-* Creating a [Custom Rule](./how-to-add-custom-linter-rule.md).
+* Creating a [Custom Rule](./CONTRIBUTING.md).
 
 ## Custom Rules
 
