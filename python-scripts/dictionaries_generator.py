@@ -21,7 +21,7 @@ DEFAULT_DICTIONARY = {
 
     "measurement units": ["kg", "kW", "kWh", "GWh", "MWh", "lbs", "ms", "AF", "AFD", "GB", "MB", "Hz", "MHz", "eHz", "nm", "mg", "pH"],
 
-    "technologies": ["nginx", "Java", "JavaScript", "Hadoop", "Hbase", "Hbase-2", "Scala", "MATLAB", "OSISoft",
+    "technologies": ["[Nn]ginx", "Java", "JavaScript", "Hadoop", "Hbase", "Hbase-2", "Scala", "MATLAB", "OSISoft",
                      "Bing", "VMWare", "vCenter", "vSphere", "Xeon", "cAdvisor", "DataFrame", "cron", "cgroup[s]?",
                      "TSDB[s]?", "ATSD", "atsd", "Rssa", "MacOS", "Mesos", "GraphQL", "GitHub"],
 
