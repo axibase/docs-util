@@ -19,7 +19,7 @@ DEFAULT_DICTIONARY = {
 
     "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
 
-    "measurement units": ["kg", "kW", "kWh", "GWh", "MWh", "lbs", "ms", "AF", "AFD", "GB", "MB", "Hz", "MHz", "nm", "mg", "pH"],
+    "measurement units": ["kg", "kW", "kWh", "GWh", "MWh", "lbs", "ms", "AF", "AFD", "GB", "MB", "Hz", "MHz", "eHz", "nm", "mg", "pH"],
 
     "technologies": ["nginx", "Java", "JavaScript", "Hadoop", "Hbase", "Hbase-2", "Scala", "MATLAB", "OSISoft",
                      "Bing", "VMWare", "vCenter", "vSphere", "Xeon", "cAdvisor", "DataFrame", "cron", "cgroup[s]?",
