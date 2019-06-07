@@ -37,8 +37,7 @@ Current rules:
     // "</path/to>/docs-util/linting-rules/blacklisted-for-use-cases.js",
     // "</path/to>/docs-util/linting-rules/case-sensitive.js", doesn't work in vscode
     "</path/to>/docs-util/linting-rules/no-space-in-fenced-code.js",
-    "</path/to>/docs-util/linting-rules/ls-info-for-charts-code.js",
-    "</path/to>/docs-util/linting-rules/no-number-at-link-start.js"
+    "</path/to>/docs-util/linting-rules/ls-info-for-charts-code.js"
 ]
 ```
 

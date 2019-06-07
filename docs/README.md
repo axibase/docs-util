@@ -19,7 +19,6 @@
 |MD106|[case-sensitive](./../linting-rules/case-sensitive.js)|Plugin checks that [keywords](./../linting-rules/case-sensitive.js#L25) have exact case. <br>Case check is skipped for: **code blocks**, **links**, **"Category" column** (changelogs), **fence blocks**.|
 |MD107|[no-space-in-fenced-code](./../linting-rules/no-space-in-fenced-code.js)|Plugin locates whitespace characters at the beginning of code block excluding `txt`.|
 |MD108|[ls-info-for-charts-code](./../linting-rules/ls-info-for-charts-code.js)|Plugin checks that Charts code blocks are fenced with `ls` info.|
-|MD109|[no-number-at-link-start](./../linting-rules/no-number-at-link-start.js)|Plugin checks that relative url does not start with number and suggest to insert `_` between `#` and number, because Vuepress performs the same [transformation](https://github.com/axibase/atsd/tree/master/.vuepress/config.js#L436) during headers links parsing and links, referencing that headers, became broken.|
 
 ## Manual Checks
 
