@@ -1,4 +1,4 @@
-const { WordPattern } = require(".//utils");
+const { WordPattern } = require("./wordPattern");
 patterns = [
     new WordPattern("should", { suggestion: "use 'must' or remove", skipForUseCases: true }),
     new WordPattern("could", { suggestion: "-", skipForUseCases: true }),
