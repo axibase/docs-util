@@ -1,4 +1,4 @@
-const { WordPattern } = require("../common/Utils")
+const { WordPattern } = require(".//utils");
 patterns = [
     new WordPattern("should", { suggestion: "use 'must' or remove", skipForUseCases: true }),
     new WordPattern("could", { suggestion: "-", skipForUseCases: true }),
@@ -41,7 +41,7 @@ patterns = [
     new WordPattern("robust", { suggestion: "avoid trite words" }),
     new WordPattern("i\\.e\\.", { suggestion: "'for example'" }),
     new WordPattern("e\\.g\\.", { suggestion: "'for example'" }),
-    new WordPattern("don't", { suggestion: "'do not'", skipForUseCases: true }),    
+    new WordPattern("don't", { suggestion: "'do not'", skipForUseCases: true }),
     new WordPattern("doesn't", { suggestion: "'does not'", skipForUseCases: true }),
     new WordPattern("can't", { suggestion: "'cannot'", skipForUseCases: true }),
     new WordPattern("hasn't", { suggestion: "'has not'", skipForUseCases: true }),
@@ -87,4 +87,4 @@ patterns = [
     new WordPattern("go to", { suggestion: "Use 'Open' or 'Navigate to'" })
 ];
 
-module.exports = patterns
+module.exports = patterns;

@@ -19,7 +19,7 @@
  * Plugin locates patterns prohibited in Axibase style guide.
  */
 
-const bad_words = require("../common/Blacklist")
+const bad_words = require("./common/blacklist");
 
 module.exports = {
     names: ["MD102", "blacklisted"],

@@ -19,8 +19,8 @@
  * Plugin locates patterns in atsd-use-cases prohibited in Axibase style guide.
  */
 
-const patterns = require("../common/Blacklist")
-bad_words = patterns.filter(r => !r.skipForUseCases)
+const patterns = require("./common/blacklist");
+bad_words = patterns.filter(r => !r.skipForUseCases);
 
 module.exports = {
     names: ["MD105", "blacklisted-for-use-cases"],

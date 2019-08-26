@@ -29,9 +29,9 @@ module.exports = {
     tags: ["links"],
     "function": (params, onError) => {
         params.tokens.filter(t => t.type === "inline").forEach(token => {
-            let images = token.children.filter(t => t.type === "image")
+            let images = token.children.filter(t => t.type === "image");
             for (let img of images) {
-                let src = img.attrGet("src")
+                let src = img.attrGet("src");
                 if (src) {
                     let isExternal = testExternal.test(src);
                     let isValidRelative = testValidRelative.test(src);

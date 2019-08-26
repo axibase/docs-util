@@ -19,14 +19,14 @@
  * Plugin checks that Charts code blocks are fenced with `ls` info.
  */
 
-const charts = /\[widget\]|\[series\]|\[tags\]|\[column\]|\[property\]/
+const charts = /\[widget\]|\[series\]|\[tags\]|\[column\]|\[property\]/;
 module.exports = {
     names: ["MD108", "ls-info-for-charts-code"],
     description: "Charts code blocks fence.",
     tags: ["fence", "charts"],
     "function": (params, onError) => {
         params.tokens.filter(t => (t.type === "fence") && (charts.test(t.content))).forEach(token => {
-            if (token.info != "ls") {
+            if (token.info !== "ls") {
                 onError({
                     lineNumber: token.lineNumber,
                     detail: `Expected "ls". Actual "${token.info}".`
