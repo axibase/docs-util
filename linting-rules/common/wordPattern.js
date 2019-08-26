@@ -23,7 +23,7 @@ class WordPattern {
         this.regex = new RegExp(this.pattern, modifiers);
         this.suggestion = parameters && parameters.hasOwnProperty('suggestion') ? parameters.suggestion : pattern;
         this.stringRegex = new RegExp("^" + escapedDots + "$", modifiers); // To match "Category" column words in changelogs, see case-sensitive.js
-        this.skipForUseCases = parameters && parameters.hasOwnProperty('skipForUseCases') ? true : false;
+        this.skipForUseCases = !!(parameters && parameters.hasOwnProperty('skipForUseCases'));
     }
 
     test(line) {
@@ -34,10 +34,6 @@ class WordPattern {
 class Match {
     constructor(match) {
         this.match = match;
-    }
-
-    get found() {
-        return !!this.match;
     }
 
     range() {
@@ -58,4 +54,4 @@ class Match {
     }
 }
 
-module.exports = { WordPattern }
+module.exports = { WordPattern };

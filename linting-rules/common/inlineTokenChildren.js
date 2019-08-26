@@ -29,7 +29,7 @@
     *[Symbol.iterator]() {
         for (let token of this.root.children) {
             let { line, lineNumber } = token;
-            if (this.lineNumber != lineNumber) {
+            if (this.lineNumber !== lineNumber) {
                 this.column = -1;
                 this.lineNumber = lineNumber;
             }
@@ -39,4 +39,4 @@
     }
 }
 
-module.exports = { InlineTokenChildren }
+module.exports = { InlineTokenChildren };

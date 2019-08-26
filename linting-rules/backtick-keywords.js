@@ -16,9 +16,9 @@
  */
 
 /**
- * Plugin checks that keywords below are fenced and have exact case. 
+ * Plugin checks that keywords below are fenced and have exact case.
  * Fence check is skipped for:
- *  a) code blocks; 
+ *  a) code blocks;
  *  b) links;
  *  c) headers.
  * Case check is skipped for:
@@ -27,8 +27,8 @@
 
 //const api_path = "\\B\\/[\\w]+[\\w-\\/{}]*";
 
-const { InlineTokenChildren } = require("../common/InlineTokenChildren")
-const { WordPattern } = require("../common/Utils")
+const { InlineTokenChildren } = require("./common/inlineTokenChildren");
+const { WordPattern } = require("./common/wordPattern");
 
 const keywords = [
     new WordPattern("curl"),
@@ -67,7 +67,7 @@ const keywords = [
     new WordPattern(".pdf", { noWordBoundary: true }),
     new WordPattern(".html", { noWordBoundary: true })
 
-]
+];
 
 module.exports = {
     names: ["MD101", "backtick-keywords"],
@@ -98,7 +98,7 @@ module.exports = {
                                 let match = anyCaseMatch[0];
                                 let correct = k.suggestion;
                                 if ((!inHeading && !inLink && isText) || // Bad not fenced
-                                    (match != correct)) { // Right fencing, wrong case  
+                                    (match !== correct)) { // Right fencing, wrong case
                                     onError({
                                         lineNumber,
                                         detail: `Expected \`${correct}\`. Actual ${match}.`,

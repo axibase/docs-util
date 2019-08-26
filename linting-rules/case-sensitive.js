@@ -16,11 +16,11 @@
  */
 
 /**
- * Plugin checks that keywords below have exact case if they are not in code blocks, 
- * links, "Category" column (changelogs) and are not fenced. 
+ * Plugin checks that keywords below have exact case if they are not in code blocks,
+ * links, "Category" column (changelogs) and are not fenced.
  */
-const { InlineTokenChildren } = require("../common/InlineTokenChildren")
-const { WordPattern } = require("../common/Utils")
+const { InlineTokenChildren } = require("./common/inlineTokenChildren");
+const { WordPattern } = require("./common/wordPattern");
 
 const keywords = [
     new WordPattern("ATSD(?![-@:])", { suggestion: "ATSD" }),
@@ -62,7 +62,7 @@ const keywords = [
     new WordPattern("UTC"),
     new WordPattern("EST"),
     new WordPattern("GMT")
-]
+];
 
 var inTableCell = false;
 module.exports = {
@@ -103,7 +103,7 @@ module.exports = {
                                 if (anyCaseMatch != null) {
                                     let match = anyCaseMatch[0];
                                     let correct = k.suggestion;
-                                    if (!inLink && isText && (match != correct)) {
+                                    if (!inLink && isText && (match !== correct)) {
                                         onError({
                                             lineNumber,
                                             detail: `Expected ${correct}. Actual ${match}.`,

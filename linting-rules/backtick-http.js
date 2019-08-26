@@ -40,17 +40,17 @@ const http_keywords = [
     "EDITOR",
     "ENTITY_GROUP_ADMIN",
     "ADMIN"
-]
+];
 const keywordsRegex = new RegExp(http_keywords.map(word => "\\b" + word + "\\b").join("|"));
 
-const { InlineTokenChildren } = require("../common/InlineTokenChildren");
+const { InlineTokenChildren } = require("./common/inlineTokenChildren");
 
 module.exports = {
     names: ["MD103", "backtick-http"],
     description: "HTTP keywords must be fenced.",
     tags: ["backtick", "HTTP", "HTTPS"],
     "function": (params, onError) => {
-        var inHeading = false
+        var inHeading = false;
         for (let token of params.tokens) {
             switch (token.type) {
                 case "heading_open":

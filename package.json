@@ -10,7 +10,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "test": "ava test/**/*.spec.js"
+    "test": "ava linting-rules/test/**/*.spec.js"
   },
   "dependencies": {
     "markdownlint-cli": "git+https://github.com/VeselovAlex/markdownlint-cli.git#custom-rules"

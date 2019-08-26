@@ -72,19 +72,19 @@ const white_list = [
     "172.17.0.\\d{1,2}",
     "172.30.0.\\d{1,2}",
     "0.10.2.0" // Kafka version in atsd-use-cases/integrations/kafka/consumers-monitoring/resources/send_offset.sh and README.md
-].map(x => x.replace(/\\?\./g, "\\."))
+].map(x => x.replace(/\\?\./g, "\\."));
 
 const regexForSearch = /(?:[\w\.-]+:)?[-_\w\.]+@[-_\w\.]+/g; // match URLs, credentials, Emails
 const ipRegexForSearch = /\b(?<!(database:|\.))(?:\d{1,3}\.){3}\d{1,3}(\/\d+)?(?!\.)\b/g; // match IPs
 const regexForCheck = new RegExp(white_list.map(word => "\\b^" + word + "$\\b").join("|")); // white list
-const { InlineTokenChildren } = require("../common/InlineTokenChildren");
+const { InlineTokenChildren } = require("./common/inlineTokenChildren");
 
 module.exports = {
     names: ["MD104", "whitelist-mail-url-ip"],
     description: "Example is prohibited, refer to whitelist.",
     tags: ["email", "url", "ip"],
     "function": (params, onError) => {
-        params.tokens.filter(t => (t.type == "inline" || t.type == "fence")).forEach(token => {
+        params.tokens.filter(t => (t.type === "inline" || t.type === "fence")).forEach(token => {
             let inFence = token.type === "fence";
             if (inFence) {
                 let match = [token.content.match(regexForSearch), token.content.match(ipRegexForSearch)];
