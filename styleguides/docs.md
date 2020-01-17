@@ -429,7 +429,7 @@ word | alternatives
 
 Configure Travis CI to check custom rules as part of the pull request workflow.
 
-![Travis](./docs/images/travis-check.png)
+![Travis](../docs/images/travis-check.png)
 
 ### Custom Rules
 

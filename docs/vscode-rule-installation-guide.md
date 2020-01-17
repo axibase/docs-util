@@ -1,6 +1,6 @@
 # Visual Studio Code Linting Rules Installation
 
-> Note: lookbehind assertion in regular expressions breaks error highlighting, rules `case-sensitive`, `backtick-keywords` do not work in `vscode`. Consider [manual](./README.md#manual-checks) checks.
+> Note: lookbehind assertion in regular expressions breaks error highlighting, rules `case-sensitive`, `backtick-keywords` do not work in `vscode`. Consider [manual](../README.md#manual-checks) checks.
 
 Assuming you have [markdownlint](https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint) extension installed.
 

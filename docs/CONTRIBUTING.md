@@ -40,7 +40,7 @@ The `onError` callback takes an object, describing what goes bad and where. The 
 
 ![](./images/vscode_underline.png)
 
-Refer to Axibase [rules](README.md#custom-rules).
+Refer to Axibase [rules](../README.md#custom-rules).
 
 ## Debug Rule
 
