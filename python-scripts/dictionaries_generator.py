@@ -23,13 +23,15 @@ DEFAULT_DICTIONARY = {
 
     "technologies": ["[Nn]ginx", "Java", "JavaScript", "Hadoop", "Hbase", "Hbase-2", "Scala", "MATLAB", "OSISoft",
                      "Bing", "VMWare", "vCenter", "vSphere", "Xeon", "cAdvisor", "DataFrame", "cron", "cgroup[s]?",
-                     "TSDB[s]?", "ATSD", "atsd", "Rssa", "MacOS", "Mesos", "GraphQL", "GitHub"],
+                     "TSDB[s]?", "ATSD", "atsd", "Rssa", "MacOS", "Mesos", "GraphQL", "GitHub", "API[s]?"],
 
     "technical abbreviations": ["AWS", "IAM", "EC2", "SNS", "ARN", "T2", "SCOM", "DWH",  "CMDB", "SSA", "CFS", "WPA",
                                 "TDW", "AER",
                                 "JVM", "JMX", "JMH", "LRU", "MQ", "W3C", "IO", "v?CPU[s]?", "VM[s]?", "GMT", "ARIMA",
                                 "QA", "CI", "DevOps", "UI", "UX", "CA[s]?", "ETL", "UDF",
                                 "RDF", "PDF", "XLS[X]?", "XML", "CSV", "TCV", "UDP", "JSONPath"],
+    
+    "financial": ["ETF[s]?", "ETN[s]?"],
 
 
     "numeric": [ORDINALS_PATTERN_TO_TEN, "\\d\\d+{}".format(ORDINALS_PATTERN_TO_TEN),
